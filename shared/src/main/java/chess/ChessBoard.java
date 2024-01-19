@@ -51,7 +51,9 @@ public class ChessBoard {
             squares[1][i] = new ChessPiece(ChessGame.TeamColor.WHITE,ChessPiece.PieceType.PAWN);
             squares[6][i] = new ChessPiece(ChessGame.TeamColor.BLACK,ChessPiece.PieceType.PAWN);
         }
-
+        //King for both teams
+        squares[0][3] = new ChessPiece(ChessGame.TeamColor.WHITE,ChessPiece.PieceType.KING);
+        squares[7][3] = new ChessPiece(ChessGame.TeamColor.BLACK,ChessPiece.PieceType.KING);
     }
 
     @Override
