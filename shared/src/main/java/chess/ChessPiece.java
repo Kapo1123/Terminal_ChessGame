@@ -49,6 +49,14 @@ public class ChessPiece {
     }
 
     @Override
+    public String toString() {
+        return "ChessPiece{" +
+                "pieceColor=" + pieceColor +
+                ", type=" + type +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -73,7 +81,6 @@ public class ChessPiece {
         if (this.getPieceType() == PieceType.BISHOP){
             Bishopcalculator cal = new Bishopcalculator();
             moves.addAll(cal.pieceMoves(board,myPosition,this.getTeamColor()));
-
         }
         else if(this.getPieceType() == PieceType.ROOK){
             RookCalculator cal = new RookCalculator();
