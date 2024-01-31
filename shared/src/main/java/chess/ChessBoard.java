@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -10,6 +11,12 @@ import java.util.Arrays;
  */
 public class ChessBoard {
     private ChessPiece[][] squares = new ChessPiece[8][8];
+    private ChessPosition White_king;
+    private ChessPosition Black_king;
+    private ArrayList<ChessPosition> Black_piece;
+    private ArrayList<ChessPosition> White_piece;
+
+
     public ChessBoard() {
         
     }
@@ -22,8 +29,23 @@ public class ChessBoard {
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
         squares[position.getRow()-1][position.getColumn()-1] = piece;
+        if(piece.getPieceType() == ChessPiece.PieceType.KING){
+            if (piece.getTeamColor() == ChessGame.TeamColor.WHITE){
+                White_king = position;
+            }
+            else{
+                Black_king = position;
+            }
+        }
+        if(piece.getTeamColor() == ChessGame.TeamColor.WHITE){
+            White_piece.add(position);
+        }
+        else{
+            Black_piece.add(position);
+        }
 
     }
+    public ArrayList<ChessPosition> get_list()
 
     /**
      * Gets a chess piece on the chessboard
