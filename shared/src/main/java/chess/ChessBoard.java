@@ -13,8 +13,8 @@ public class ChessBoard {
     private ChessPiece[][] squares = new ChessPiece[8][8];
     private ChessPosition White_king;
     private ChessPosition Black_king;
-    private ArrayList<ChessPosition> Black_piece;
-    private ArrayList<ChessPosition> White_piece;
+    private ArrayList<ChessPosition> Black_pieces;
+    private ArrayList<ChessPosition> White_pieces;
 
 
     public ChessBoard() {
@@ -38,14 +38,25 @@ public class ChessBoard {
             }
         }
         if(piece.getTeamColor() == ChessGame.TeamColor.WHITE){
-            White_piece.add(position);
+            White_pieces.add(position);
         }
         else{
-            Black_piece.add(position);
+            Black_pieces.add(position);
         }
 
     }
-    public ArrayList<ChessPosition> get_list()
+    public ArrayList<ChessPosition> get_list(ChessGame.TeamColor teamColor){
+        if(teamColor == ChessGame.TeamColor.WHITE){
+            return White_pieces;
+        }
+        return Black_pieces;
+    }
+    public ChessPosition get_king(ChessGame.TeamColor teamColor){
+        if(teamColor == ChessGame.TeamColor.WHITE){
+            return White_king;
+        }
+        return Black_king;
+    }
 
     /**
      * Gets a chess piece on the chessboard

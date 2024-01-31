@@ -53,6 +53,9 @@ private ChessBoard squares;
         ArrayList<ChessMove> moves = new ArrayList<>();
         ArrayList<ChessMove> valid_moves = new ArrayList<>();
         ChessPiece piece = squares.getPiece(startPosition);
+        if(piece ==null){
+            return null;
+        }
         moves.addAll(piece.pieceMoves(getBoard(),startPosition));
         for(ChessMove move : moves){
             squares.addPiece(startPosition,null);
@@ -82,9 +85,13 @@ private ChessBoard squares;
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        if (teamColor == TeamColor.BLACK){
-            for (squares.)
-        }
+       ArrayList<ChessPosition> pieces_position = squares.get_list(teamColor);
+       Collection<ChessMove> moves;
+       for (ChessPosition position : pieces_position){
+           ChessPiece piece = squares.getPiece(position);
+           moves = piece.pieceMoves(squares,position);
+
+       }
 
     }
 
