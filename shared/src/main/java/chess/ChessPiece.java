@@ -87,8 +87,10 @@ public class ChessPiece {
             moves.addAll(cal.pieceMoves(board,myPosition,this.getTeamColor()));
         }
         else if (this.getPieceType()==PieceType.QUEEN){
-            Queencalculator cal = new Queencalculator();
+            Bishopcalculator cal = new Bishopcalculator();
             moves.addAll(cal.pieceMoves(board,myPosition,this.getTeamColor()));
+            RookCalculator cal1 = new RookCalculator();
+            moves.addAll(cal1.pieceMoves(board,myPosition,this.getTeamColor()));
         }
         else if (this.getPieceType() == PieceType.KNIGHT){
             Knightcalculator cal = new Knightcalculator();
