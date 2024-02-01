@@ -13,8 +13,8 @@ public class ChessBoard {
     private ChessPiece[][] squares = new ChessPiece[8][8];
     private ChessPosition White_king;
     private ChessPosition Black_king;
-    private ArrayList<ChessPosition> Black_pieces;
-    private ArrayList<ChessPosition> White_pieces;
+    private ArrayList<ChessPosition> Black_pieces = new ArrayList<>();
+    private ArrayList<ChessPosition> White_pieces = new ArrayList<>();
 
 
     public ChessBoard() {
@@ -28,32 +28,39 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-        squares[position.getRow()-1][position.getColumn()-1] = piece;
-        if(piece.getPieceType() == ChessPiece.PieceType.KING){
-            if (piece.getTeamColor() == ChessGame.TeamColor.WHITE){
-                White_king = position;
+        squares[position.getRow() - 1][position.getColumn() - 1]=piece;
+        if (piece != null) {
+            if (piece.getPieceType().equals(ChessPiece.PieceType.KING)) {
+                if (piece.getTeamColor().equals(ChessGame.TeamColor.WHITE)){
+                    White_king=position;
+                }else {
+                    Black_king=position;
+                }
             }
-            else{
-                Black_king = position;
+            if (piece.getTeamColor().equals(ChessGame.TeamColor.WHITE)){
+                White_pieces.add(position);
+            }else {
+                Black_pieces.add(position);
             }
-        }
-        if(piece.getTeamColor() == ChessGame.TeamColor.WHITE){
-            White_pieces.add(position);
-        }
-        else{
-            Black_pieces.add(position);
-        }
 
+        }
     }
     public ArrayList<ChessPosition> get_list(ChessGame.TeamColor teamColor){
-        if(teamColor == ChessGame.TeamColor.WHITE){
-            return White_pieces;
+        if(teamColor.equals(ChessGame.TeamColor.WHITE)){
+            return Black_pieces;
         }
-        return Black_pieces;
+        return White_pieces;
     }
     public ChessPosition get_king(ChessGame.TeamColor teamColor){
+        if(White_king == null || Black_king ==null){
+            for (int i =0;i<8;i++){
+                for (int j =0;j<8;j++){
+
+                }
+            }
+        }
         if(teamColor == ChessGame.TeamColor.WHITE){
-            return White_king;
+
         }
         return Black_king;
     }
