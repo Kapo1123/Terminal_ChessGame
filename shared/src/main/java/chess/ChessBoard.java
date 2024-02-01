@@ -55,12 +55,23 @@ public class ChessBoard {
         if(White_king == null || Black_king ==null){
             for (int i =0;i<8;i++){
                 for (int j =0;j<8;j++){
-
+                    ChessPiece piece = squares[i][j];
+                    if(piece == null){
+                        continue;
+                    }
+                    if(piece.getPieceType() == ChessPiece.PieceType.KING){
+                        if(piece.getTeamColor() == ChessGame.TeamColor.WHITE){
+                            White_king = new ChessPosition(i+1,j+1);
+                        }
+                        else{
+                            Black_king = new ChessPosition(i+1,j+1);
+                        }
+                    }
                 }
             }
         }
         if(teamColor == ChessGame.TeamColor.WHITE){
-
+            return White_king;
         }
         return Black_king;
     }
