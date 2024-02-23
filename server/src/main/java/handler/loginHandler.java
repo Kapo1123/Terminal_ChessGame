@@ -19,6 +19,6 @@ public class loginHandler  implements Route {
     Registerresponse res = new Registerresponse(user.username(),auth);
     response.body(new Gson().toJson(res));
     response.status(200);
-    response.body(new Gson().toJson(res));
+    return new Gson().toJson(res);
   }
 }
