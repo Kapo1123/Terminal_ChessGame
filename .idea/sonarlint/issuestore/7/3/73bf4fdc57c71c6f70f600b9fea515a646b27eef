@@ -1,21 +1,21 @@
 
-r	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú›º“şÿÿÿÿ8¤Ãä”Ö1
-r	java:S117q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Æõùüÿÿÿÿ8¤Ãä”Ö1
-r	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íĞĞûøÿÿÿÿ8¥Ãä”Ö1
-n	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Ù­¥8¥Ãä”Ö1
-s	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë£Ùõÿÿÿÿÿ8¥Ãä”Ö1
-{	java:S116"_Rename this field "InvalidMoveException" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ë¶é8ÎÃä”Ö1
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚïÖÆûÿÿÿÿ8ÎÃä”Ö1
-H
-java:S1168:"+Return an empty collection instead of null.(¥¹ï8ÓÃä”Ö1
-I
-java:S1125A"'Remove the unnecessary boolean literal.(‡¶£íûÿÿÿÿ8ÔÃä”Ö1
-d
-java:S1126Š"AReplace this if-then-else statement by a single return statement.(óÒæÜúÿÿÿÿ8ÚÃä”Ö1
-J
-java:S1125Š"'Remove the unnecessary boolean literal.(óÒæÜúÿÿÿÿ8ÚÃä”Ö1
-J
-java:S1125Š"'Remove the unnecessary boolean literal.(óÒæÜúÿÿÿÿ8ÛÃä”Ö1
-d
-java:S1126«"AReplace this if-then-else statement by a single return statement.(‹î²Úûÿÿÿÿ8İÃä”Ö1
+k	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú›º“şÿÿÿÿ
+k	java:S117q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Æõùüÿÿÿÿ
+k	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íĞĞûøÿÿÿÿ
+g	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Ù­¥
+l	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë£Ùõÿÿÿÿÿ
+t	java:S116"_Rename this field "InvalidMoveException" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ë¶é
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚïÖÆûÿÿÿÿ
+A
+java:S1168:"+Return an empty collection instead of null.(¥¹ï
+B
+java:S1125A"'Remove the unnecessary boolean literal.(‡¶£íûÿÿÿÿ
+]
+java:S1126Š"AReplace this if-then-else statement by a single return statement.(óÒæÜúÿÿÿÿ
+C
+java:S1125Š"'Remove the unnecessary boolean literal.(óÒæÜúÿÿÿÿ
+C
+java:S1125Š"'Remove the unnecessary boolean literal.(óÒæÜúÿÿÿÿ
+]
+java:S1126«"AReplace this if-then-else statement by a single return statement.(‹î²Úûÿÿÿÿ
