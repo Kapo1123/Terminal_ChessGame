@@ -1,25 +1,17 @@
 package server;
 
 import spark.*;
-
+import handler.*;
 public class Server {
 
     public int run(int desiredPort) {
         Spark.port(desiredPort);
 
         Spark.staticFiles.location("web");
-        Spark.delete("/db", (req, res) ->
-                (new ClearHandler()).handleRequest(req,
-                        res));
-        Spark.post("/user", (req, res) ->
-                (new RegisterHandler()).handleRequest(req,
-                        res));
-        Spark.post("/session", (req, res) ->
-                (new LoginHandler()).handleRequest(req,
-                        res));
-        Spark.delete("/session", (req, res) ->
-                (new logoutHandler()).handleRequest(req,
-                        res));
+        Spark.delete("/db", new ClearHandler());
+        Spark.post("/user", new RegisterHandler());
+        Spark.post("/session", new loginHandler());
+        Spark.delete("/session", new LogoutHandler());
         Spark.get("/game", (req, res) ->
                 (new ListgameHandler()).handleRequest(req,
                         res));
