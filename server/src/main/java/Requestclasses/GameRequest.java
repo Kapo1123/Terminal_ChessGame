@@ -1,4 +1,4 @@
 package Requestclasses;
 
-public record GameRequest(String Gamename) {
+public record GameRequest(String gameName) {
 }

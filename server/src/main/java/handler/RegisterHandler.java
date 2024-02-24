@@ -14,10 +14,16 @@ public class RegisterHandler implements Route {
   @Override
   public Object handle(Request request, Response response) throws DataAccessException {
     var register = new Gson().fromJson(request.body(), Registerclass.class);
-    Authtoken Authtoken= UserService.register(register);
+    UserService userservice = new UserService();
+    Authtoken Authtoken;
+    try{
+      Authtoken= userservice.register(register);}
+    catch(DataAccessException e){
+      throw e;
+    }
     var res = new Registerresponse(register.username(), Authtoken);
     response.status(200);
     response.body(new Gson().toJson(res));
-    return new Gson().toJson(res);
+    return (new Gson().toJson(res));
   }
 }

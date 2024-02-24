@@ -1,8 +1,10 @@
 package service;
 
+import dataAccess.GameDAo;
 public class DbService {
-  public static boolean deleteAll(){
-    gameDAo.deleteall();
+  public  boolean deleteAll(){
+    GameDAo gamedao = new GameDAo();
+    gamedao.deleteall();
     return true;
   }
 }

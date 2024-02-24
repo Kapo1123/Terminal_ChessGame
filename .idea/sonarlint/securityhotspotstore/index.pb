@@ -71,3 +71,5 @@ V
 &src/main/java/service/UserService.java,f/2/f2bf6a3d9f14ae9a85e78a6ec1a3f81261e3329c
 V
 &src/main/java/service/GameService.java,9/f/9fb869ea241e6fca6054397a70142c04b4036d07
+[
++src/main/java/dataAccess/GameInterface.java,8/6/86c9a38c73ec00e70dd4349da924a0a8f51c0645

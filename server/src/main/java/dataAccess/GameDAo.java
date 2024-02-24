@@ -6,19 +6,20 @@ import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import Responseclass.newgameresponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class gameDAo  implements gameInterface{
+public class GameDAo implements GameInterface {
 
-  List<Games> gamedb;
+  static List<Games> gamedb = new ArrayList<Games>();
 
   @Override
-  public ListgameResponse getList(String username) {
+  public  ListgameResponse getList(String username) {
     return new ListgameResponse(gamedb);
   }
 
   @Override
-  public void joinGame(String username, joingamerequest body) throws DataAccessException {
+  public  void joinGame(String username, joingamerequest body) throws DataAccessException {
     String color = body.playerColor();
     Integer i =0;
     for (Games game : gamedb) {
@@ -52,8 +53,16 @@ public class gameDAo  implements gameInterface{
   @Override
   public newgameresponse createGame(String username, GameRequest body) {
     Integer game_ID = gamedb.size()+1;
-    Games game = new Games(game_ID, null,null,body.Gamename());
+    Games game = new Games(game_ID, null,null,body.gameName());
     gamedb.add(game);
     return new newgameresponse(game_ID);
+  }
+  @Override
+  public void deleteall(){
+    if(gamedb.isEmpty()){
+      return;
+    }
+    gamedb.clear();
+
   }
 }

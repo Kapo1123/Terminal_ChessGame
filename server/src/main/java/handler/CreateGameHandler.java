@@ -14,9 +14,10 @@ public class CreateGameHandler implements Route {
   @Override
   public Object handle(Request request, Response response) throws DataAccessException {
       var body = new Gson().fromJson(request.body(), GameRequest.class);
+      GameService gameservice = new GameService();
       Authtoken token = new Authtoken(request.headers("authorization"));
       try{
-      newgameresponse res = GameService.createGame(token,body);
+      newgameresponse res = gameservice.createGame(token,body);
         response.status(200);
         response.body(new Gson().toJson(res));
         return new Gson().toJson(res);}
