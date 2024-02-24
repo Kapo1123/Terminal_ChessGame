@@ -21,7 +21,7 @@ public class RegisterHandler implements Route {
     catch(DataAccessException e){
       throw e;
     }
-    var res = new Registerresponse(register.username(), Authtoken);
+    var res = new Registerresponse(register.username(), Authtoken.authtoken());
     response.status(200);
     response.body(new Gson().toJson(res));
     return (new Gson().toJson(res));

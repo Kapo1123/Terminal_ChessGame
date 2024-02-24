@@ -2,6 +2,6 @@ package Responseclass;
 
 import Requestclasses.Authtoken;
 
-public record Registerresponse(String username, Authtoken auth) {
+public record Registerresponse(String username, String authToken) {
 
 }

@@ -16,10 +16,15 @@ public class loginHandler  implements Route {
   public Object handle(Request request, Response response) throws DataAccessException {
     var user = new Gson().fromJson(request.body(), Userclass.class);
     UserService userservice = new UserService();
-    Authtoken auth = userservice.login(user);
-    Registerresponse res = new Registerresponse(user.username(),auth);
-    response.body(new Gson().toJson(res));
+    Authtoken auth=userservice.login(user);
+    try {
+     auth=userservice.login(user);
+    }catch(DataAccessException e){
+      throw e;
+    }
+    Registerresponse res = new Registerresponse(user.username(),auth.authtoken());
     response.status(200);
+    response.body(new Gson().toJson(res));
     return new Gson().toJson(res);
   }
 }
