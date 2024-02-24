@@ -23,7 +23,7 @@ public class userService {
   }
   public static Authtoken login(Userclass info) throws DataAccessException {
     try {
-      UserDAo.checkcredential(info.username(), info.Password());{
+      UserDAo.checkcredential(info);{
       }
     }
     catch(DataAccessException e){
