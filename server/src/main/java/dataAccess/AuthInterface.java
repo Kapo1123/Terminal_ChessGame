@@ -11,4 +11,7 @@ public interface AuthInterface {
  public boolean is_valid(Authtoken auth);
 
  public String getUserName(Authtoken auth);
+ public  void deleteall();
+
+ public Authtoken checkAuthExist(String username);
 }

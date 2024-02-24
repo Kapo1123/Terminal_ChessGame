@@ -1,6 +1,7 @@
 package handler;
 
 import Requestclasses.Authtoken;
+import Responseclass.Errorresponse;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import service.UserService;
@@ -17,7 +18,9 @@ public class LogoutHandler implements Route {
       userservice.logout(auth);}
     catch(DataAccessException e){
       response.status(401);
-      throw e;
+      Errorresponse error = new Errorresponse(e.getMessage());
+      response.body(new Gson().toJson(error));
+      return new Gson().toJson(error);
     }
     response.status(200);
     return "{}";

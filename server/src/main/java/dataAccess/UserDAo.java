@@ -33,4 +33,12 @@ public class UserDAo implements UserInterface{
     }
     return false;
   }
+  @Override
+  public void deleteall(){
+    if(userdb.isEmpty()){
+      return;
+    }
+    userdb.clear();
+
+  }
 }

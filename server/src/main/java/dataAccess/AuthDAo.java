@@ -8,35 +8,54 @@ import java.util.Map;
 import java.util.UUID;
 
 public class AuthDAo implements AuthInterface {
-  static Map<Authtoken,String> userdb = new HashMap<>();
+  static Map<Authtoken, String> authodb=new HashMap<>();
 
 
   @Override
-  public  Authtoken createAuth(String username) {
-   Authtoken authtoken = new Authtoken(UUID.randomUUID().toString());
-   userdb.put(authtoken,username);
-   return authtoken;
+  public Authtoken createAuth(String username) {
+    Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
+    authodb.put(authtoken, username);
+    return authtoken;
   }
 
   @Override
-  public  void deleteAuth(Authtoken auth) throws DataAccessException {
-    if (!userdb.isEmpty() && userdb.get(auth) != null) {
-      userdb.remove(auth);
-    }
-    else{
+  public void deleteAuth(Authtoken auth) throws DataAccessException {
+    if (!authodb.isEmpty() && authodb.get(auth) != null) {
+      authodb.remove(auth);
+    }else {
       throw new DataAccessException("Error: unauthorized");
     }
   }
+
   @Override
-  public  boolean is_valid(Authtoken auth)  {
-    if(userdb.isEmpty()||userdb.get(auth) == null ){
+  public boolean is_valid(Authtoken auth) {
+    if (authodb.isEmpty() || authodb.get(auth) == null) {
       return false;
     }
     return true;
   }
 
   @Override
-  public  String getUserName(Authtoken auth) {
-    return userdb.get(auth);
+  public String getUserName(Authtoken auth) {
+    return authodb.get(auth);
+  }
+
+  @Override
+  public void deleteall() {
+    if (authodb.isEmpty()) {
+      return;
+    }
+    authodb.clear();
+
+  }
+
+  @Override
+  public Authtoken checkAuthExist(String username) {
+    for (Map.Entry<Authtoken, String> entry : authodb.entrySet()) {
+      if (entry.getValue().equals(username)) {
+        return entry.getKey();
+      }
+    }
+    return null;
   }
 }

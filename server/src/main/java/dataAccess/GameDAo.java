@@ -15,11 +15,35 @@ public class GameDAo implements GameInterface {
 
   @Override
   public  ListgameResponse getList(String username) {
-    return new ListgameResponse(gamedb);
+    List<Games> list_ = new ArrayList<Games>();
+    for (Games game : gamedb){
+      if(game.whiteUsername() != null){
+        if (game.whiteUsername().equals(username)){
+          list_.add(game);
+        }
+      }
+      else if (game.blackUsername() != null){
+        if(game.blackUsername().equals(username)){
+          list_.add(game);
+        }
+      }
+
+    }
+    if(list_.size() == 0){
+      return new ListgameResponse(gamedb);
+    }
+    return new ListgameResponse(list_);
   }
 
   @Override
   public  void joinGame(String username, joingamerequest body) throws DataAccessException {
+    if(body.playerColor() ==null){
+      for (Games game : gamedb) {
+        if (game.gameID().equals(body.gameID())) {
+        return;}
+      }
+      throw new DataAccessException( "Error: bad request");
+    }
     String color = body.playerColor();
     Integer i =0;
     for (Games game : gamedb) {
@@ -27,13 +51,13 @@ public class GameDAo implements GameInterface {
         // Found the game with the specified gameID
         if (color.equals("BLACK") && game.blackUsername() == null) {
           Games temp = new Games(game.gameID(), game.whiteUsername(), username, game.gameName());
-           gamedb.remove(i);
+           gamedb.remove(gamedb.get(i));
            gamedb.add(i,temp);
            return;
           // Perform any additional actions needed for joining as black
         } else if (color.equals("WHITE") && game.whiteUsername() == null) {
           Games temp = new Games(game.gameID(), username, game.blackUsername(), game.gameName());
-          gamedb.remove(i);
+          gamedb.remove(gamedb.get(i));
           gamedb.add(i,temp);
           return;
           // Perform any additional actions needed for joining as white

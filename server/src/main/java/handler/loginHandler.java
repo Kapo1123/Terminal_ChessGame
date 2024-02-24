@@ -2,8 +2,10 @@ package handler;
 
 import Requestclasses.Authtoken;
 import Requestclasses.Userclass;
+import Responseclass.Errorresponse;
 import Responseclass.Registerresponse;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import dataAccess.DataAccessException;
 import service.UserService;
 import spark.Request;
@@ -16,11 +18,14 @@ public class loginHandler  implements Route {
   public Object handle(Request request, Response response) throws DataAccessException {
     var user = new Gson().fromJson(request.body(), Userclass.class);
     UserService userservice = new UserService();
-    Authtoken auth=userservice.login(user);
+    Authtoken auth=null;
     try {
      auth=userservice.login(user);
     }catch(DataAccessException e){
-      throw e;
+      response.status(401);
+      Errorresponse error = new Errorresponse(e.getMessage());
+      response.body(new Gson().toJson(error));
+      return (new Gson().toJson(error));
     }
     Registerresponse res = new Registerresponse(user.username(),auth.authtoken());
     response.status(200);

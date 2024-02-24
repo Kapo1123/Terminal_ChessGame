@@ -30,7 +30,12 @@ public class UserService {
       throw new DataAccessException("Error: unauthorized");
     }
     AuthDAo authdao = new AuthDAo();
-    Authtoken Auth =  authdao.createAuth(info.username());
+    Authtoken Auth = null;
+//    if(authdao.checkAuthExist(info.username())!=null){
+//      Auth = authdao.checkAuthExist(info.username());
+//      authdao.deleteAuth(Auth);
+//    }
+     Auth =  authdao.createAuth(info.username());
     return Auth;
 
   }

@@ -1,8 +1,6 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ø¯…ıÿÿÿÿ8³Ö®Ñİ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù¬Ëÿ8¹ñ“äİ1
 H
-java:S2440"+Remove this instantiation of "UserService".(ßã«à8¾Ö®Ñİ1
-t
-java:S2737"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8¿Ö®Ñİ1
+java:S2440"+Remove this instantiation of "UserService".(ßã«à8Æñ“äİ1
 W
-java:S2209"5Change this instance-reference to a static reference.(ÛÁé–úÿÿÿÿ8¿Ö®Ñİ1
+java:S2209"5Change this instance-reference to a static reference.(ÛÁé–úÿÿÿÿ8Çñ“äİ1
