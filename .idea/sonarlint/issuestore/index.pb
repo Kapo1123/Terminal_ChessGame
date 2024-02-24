@@ -47,3 +47,13 @@ T
 $src/main/java/service/dbService.java,e/5/e5fc7be234339afca82743e31e4a052c9ec44675
 U
 %src/main/java/dataAccess/AuthDAo.java,7/c/7c6b8c2f824d4b8ebee774265b2fafc26605f2a5
+U
+%src/main/java/dataAccess/GameDAo.java,c/3/c38ce1099f45bf325b002c323060855cc368405d
+U
+%src/main/java/dataAccess/gameDAo.java,0/7/07494d9436a5abfd2007868c741ec4e5a401fb72
+U
+%src/main/java/dataAccess/gameDAO.java,2/6/26c5b0ea1c9f55f99ca98f7bc5972b3761fe2183
+U
+%src/main/java/dataAccess/UserDAo.java,0/5/05a4f8529ee77d2036c80b8d7230f2db0e714c79
+G
+src/main/java/Main.java,e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10

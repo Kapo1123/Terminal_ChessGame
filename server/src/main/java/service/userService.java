@@ -13,7 +13,7 @@ public class userService {
       }
 
       try {
-        UserDAo.createuser(info.username(),info.password(),info.email());
+        UserDAo.createuser(info);
         Authtoken Auth =  AuthDAo.createauth(info.username());
         return Auth;
     }

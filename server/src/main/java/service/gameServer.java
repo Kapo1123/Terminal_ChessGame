@@ -17,7 +17,7 @@ public class gameServer {
       throw e;
     }
     String username=AuthDAo.getusername(auth);
-    ListgameResponse res=gameDAO.getlist(username);
+    ListgameResponse res=gameDAo.getlist(username);
     return res;
   }
 
