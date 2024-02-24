@@ -43,3 +43,7 @@ a
 1src/main/java/Requestclasses/joingamerequest.java,d/4/d4fe492e29cf954e4e645ee4af92d1ce64e5f4b9
 U
 %src/main/java/service/gameServer.java,f/f/ffd970ff0f1b544fd8603884999527458431be17
+T
+$src/main/java/service/dbService.java,e/5/e5fc7be234339afca82743e31e4a052c9ec44675
+U
+%src/main/java/dataAccess/AuthDAo.java,7/c/7c6b8c2f824d4b8ebee774265b2fafc26605f2a5

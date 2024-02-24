@@ -14,7 +14,7 @@ public class userService {
 
       try {
         UserDAo.createuser(info.username(),info.password(),info.email());
-        Authtoken Auth =  UserDAo.createauth(info.username());
+        Authtoken Auth =  AuthDAo.createauth(info.username());
         return Auth;
     }
       catch(DataAccessException e){
@@ -23,17 +23,19 @@ public class userService {
   }
   public static Authtoken login(Userclass info) throws DataAccessException {
     try {
-      UserDAo.checkcredential(info.username(), info.Password());
-      Authtoken Auth =  UserDAo.createauth(info.username());
-      return Auth;
+      UserDAo.checkcredential(info.username(), info.Password());{
+      }
     }
     catch(DataAccessException e){
       throw e;
     }
+    Authtoken Auth =  AuthDAo.createauth(info.username());
+    return Auth;
+
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {
     try {
-      UserDAo.logout(auth);
+      AuthDAo.logout(auth);
       return true;
     }
     catch(DataAccessException e){
