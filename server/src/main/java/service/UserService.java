@@ -5,6 +5,7 @@ import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
 import dataAccess.DataAccessException;
 import dataAccess.AuthDAo;
+import dataAccess.UserDAo;
 
 public class UserService {
 
@@ -12,10 +13,11 @@ public class UserService {
       if (info.username()==null||info.password()==null||info.email()==null){
         throw new DataAccessException("Error: bad request");
       }
-
+    UserDAo userdao = new UserDAo();
+      AuthDAo authdao = new AuthDAo();
       try {
-        UserDAo.createuser(info);
-        Authtoken Auth =  AuthDAo.createAuth(info.username());
+        userdao.createUser(info);
+        Authtoken Auth =  authdao.createAuth(info.username());
         return Auth;
     }
       catch(DataAccessException e){
@@ -23,17 +25,19 @@ public class UserService {
     }
   }
   public static Authtoken login(Userclass info) throws DataAccessException {
-    if(! UserDAo.checkCredential(info)){
+    UserDAo userdao = new UserDAo();
+    if(! userdao.checkCredential(info)){
       throw new DataAccessException("Error: unauthorized");
     }
-
-    Authtoken Auth =  AuthDAo.createAuth(info.username());
+    AuthDAo authdao = new AuthDAo();
+    Authtoken Auth =  authdao.createAuth(info.username());
     return Auth;
 
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {
+    AuthDAo authdao = new AuthDAo();
     try {
-      AuthDAo.logout(auth);
+      authdao.deleteAuth(auth);
       return true;
     }
     catch(DataAccessException e){
