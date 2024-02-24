@@ -12,11 +12,10 @@ public class ClearHandler implements Route{
 
   @Override
   public Object handle(Request request, Response response) {
-    System.out.println("I am at headler");
     DbService dbService = new DbService();
     dbService.deleteAll();
       response.status(200);
-      response.body("");
+//      response.body("");
       return "{}";
   }
 }
