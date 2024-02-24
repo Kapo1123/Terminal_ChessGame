@@ -2,24 +2,38 @@ package dataAccess;
 
 import Requestclasses.Authtoken;
 
+import java.util.Dictionary;
+import java.util.UUID;
+
 public class AuthDAo implements AuthInterface {
+  static Dictionary<Authtoken,String> userdb;
+
   @Override
-  public Authtoken createauth(String username) {
-    return null;
+  public Authtoken createAuth(String username) {
+   Authtoken authtoken = new Authtoken(UUID.randomUUID().toString());
+   userdb.put(authtoken,username);
+   return authtoken;
   }
 
   @Override
-  public void logout(Authtoken auth) throws DataAccessException {
-
+  public void deleteAuth(Authtoken auth) throws DataAccessException {
+    if (!userdb.isEmpty() && userdb.get(auth) != null) {
+      userdb.remove(auth);
+    }
+    else{
+      throw new DataAccessException("Error: unauthorized");
+    }
   }
-
-  @Override
-  public void is_valid(Authtoken auth) throws DataAccessException {
-
+  
+  public static boolean is_valid(Authtoken auth)  {
+    if(userdb.isEmpty()||userdb.get(auth) == null ){
+      return false;
+    }
+    return true;
   }
 
   @Override
   public String getusername(Authtoken auth) {
-    return null;
+    return userdb.get(auth);
   }
 }

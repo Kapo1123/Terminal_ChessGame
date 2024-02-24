@@ -57,3 +57,17 @@ U
 %src/main/java/dataAccess/UserDAo.java,0/5/05a4f8529ee77d2036c80b8d7230f2db0e714c79
 G
 src/main/java/Main.java,e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
+[
++src/main/java/dataAccess/AuthInterface.java,0/7/0744de2a9c5c5dff40711b97d944d392abecd5b3
+[
++src/main/java/dataAccess/gameInterface.java,6/0/60e626fa7871a2df8c35e85b5c11b9f21922848c
+[
++src/main/java/dataAccess/UserInterface.java,9/4/94813735f66106d037d37135e3ab249bfa48b790
+T
+$src/main/java/service/DbService.java,f/6/f64af91bb31dd3967bac5c30f53afbffd7d3e50d
+U
+%src/main/java/service/GameServer.java,9/6/967be1a6ced38855d923cfced530cafe1e908d7e
+V
+&src/main/java/service/UserService.java,f/2/f2bf6a3d9f14ae9a85e78a6ec1a3f81261e3329c
+V
+&src/main/java/service/GameService.java,9/f/9fb869ea241e6fca6054397a70142c04b4036d07

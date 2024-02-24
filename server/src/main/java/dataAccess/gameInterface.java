@@ -6,7 +6,7 @@ import Responseclass.ListgameResponse;
 import Responseclass.newgameresponse;
 
 public interface gameInterface {
-  public ListgameResponse getlist(String username);
-  public  void joingame(String username, joingamerequest body) throws DataAccessException;
-  public newgameresponse creategame(String username, GameRequest body);
+  public ListgameResponse getList(String username);
+  public  void joinGame(String username, joingamerequest body) throws DataAccessException;
+  public newgameresponse createGame(String username, GameRequest body);
 }

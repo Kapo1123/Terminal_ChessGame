@@ -4,8 +4,9 @@ import Requestclasses.Authtoken;
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
 import dataAccess.DataAccessException;
+import dataAccess.AuthDAo;
 
-public class userService {
+public class UserService {
 
   public static Authtoken register(Registerclass info) throws DataAccessException {
       if (info.username()==null||info.password()==null||info.email()==null){
@@ -14,7 +15,7 @@ public class userService {
 
       try {
         UserDAo.createuser(info);
-        Authtoken Auth =  AuthDAo.createauth(info.username());
+        Authtoken Auth =  AuthDAo.createAuth(info.username());
         return Auth;
     }
       catch(DataAccessException e){
@@ -22,14 +23,11 @@ public class userService {
     }
   }
   public static Authtoken login(Userclass info) throws DataAccessException {
-    try {
-      UserDAo.checkcredential(info);{
-      }
+    if(! UserDAo.checkCredential(info)){
+      throw new DataAccessException("Error: unauthorized");
     }
-    catch(DataAccessException e){
-      throw e;
-    }
-    Authtoken Auth =  AuthDAo.createauth(info.username());
+
+    Authtoken Auth =  AuthDAo.createAuth(info.username());
     return Auth;
 
   }
