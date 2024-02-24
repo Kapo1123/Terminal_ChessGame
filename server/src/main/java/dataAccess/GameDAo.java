@@ -31,7 +31,7 @@ public class GameDAo implements GameInterface {
            gamedb.add(i,temp);
            return;
           // Perform any additional actions needed for joining as black
-        } else if (color.equals("white") && game.whiteUsername() == null) {
+        } else if (color.equals("WHITE") && game.whiteUsername() == null) {
           Games temp = new Games(game.gameID(), username, game.blackUsername(), game.gameName());
           gamedb.remove(i);
           gamedb.add(i,temp);
