@@ -131,3 +131,13 @@ server.iml,8/2/8223cc95a68355bfb31e8c65de12cb67ce74a18a
 0src/test/java/passoffTests/StandardAPITests.java,9/1/91e466978b81589ed505cc24de2d6d689953cebb
 l
 <src/test/java/passoffTests/serverTests/StandardAPITests.java,2/3/230d5c2bddf1c1b38de512b86822f5fc87a9330d
+H
+src/main/java/model.java,9/b/9bddb16d605cc6eb429c33411537f531a0ececb3
+T
+$src/main/java/model/serverTests.java,9/7/971acf24525c344b767d4d2b46a7c4c941b6815a
+Q
+!src/main/java/model/UserData.java,3/8/38719670ec0261570896dcf7e398500f4b350234
+Q
+!src/main/java/model/GameData.java,6/7/67153312f42cfc25e918e7241d99ff3d32f0ce01
+Q
+!src/main/java/model/AuthData.java,7/b/7bcd29809a55527ca1777bd63a3d1e148c92b46e
