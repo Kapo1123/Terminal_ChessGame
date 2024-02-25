@@ -28,7 +28,7 @@ public class AuthDAo implements AuthInterface {
   }
 
   @Override
-  public boolean is_valid(Authtoken auth) {
+  public boolean isValid(Authtoken auth) {
     if (authodb.isEmpty() || authodb.get(auth) == null) {
       return false;
     }

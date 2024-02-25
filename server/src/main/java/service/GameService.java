@@ -2,9 +2,9 @@ package service;
 
 import Requestclasses.Authtoken;
 import Requestclasses.GameRequest;
-import Requestclasses.joingamerequest;
+import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
-import Responseclass.newgameresponse;
+import Responseclass.Newgameresponse;
 import dataAccess.DataAccessException;
 import dataAccess.AuthDAo;
 import dataAccess.GameDAo;
@@ -12,7 +12,7 @@ public class GameService {
 
   public ListgameResponse getGameList(Authtoken auth) throws DataAccessException {
     AuthDAo authdao = new AuthDAo();
-    if (!authdao.is_valid(auth)){
+    if (!authdao.isValid(auth)){
       throw new DataAccessException("Error: unauthorized");
     }
     GameDAo gamedao = new GameDAo();
@@ -21,12 +21,12 @@ public class GameService {
     return res;
   }
 
-  public Boolean joinGame(Authtoken auth, joingamerequest body) throws DataAccessException {
+  public Boolean joinGame(Authtoken auth, Joingamerequest body) throws DataAccessException {
     if (body.gameID() == null) {
       throw new DataAccessException("Error: bad request");
     }
     AuthDAo authdao = new AuthDAo();
-    if (!authdao.is_valid(auth)){
+    if (!authdao.isValid(auth)){
       throw new DataAccessException("Error: unauthorized");
     }
     String username=authdao.getUserName(auth);
@@ -39,17 +39,17 @@ public class GameService {
     return true;
   }
 
-  public newgameresponse createGame(Authtoken auth, GameRequest body) throws DataAccessException {
+  public Newgameresponse createGame(Authtoken auth, GameRequest body) throws DataAccessException {
     if (body.gameName() == null) {
       throw new DataAccessException("Error: bad request");
     }
     AuthDAo authdao = new AuthDAo();
-      if (!authdao.is_valid(auth)){
+      if (!authdao.isValid(auth)){
         throw new DataAccessException("Error: unauthorized");
       }
     GameDAo gamedao = new GameDAo();
     String username=authdao.getUserName(auth);
-    newgameresponse res = gamedao.createGame(username, body);
+    Newgameresponse res = gamedao.createGame(username, body);
     return res;
   }
 }

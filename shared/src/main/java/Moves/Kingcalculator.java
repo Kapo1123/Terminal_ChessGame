@@ -1,10 +1,9 @@
 package Moves;
 import chess.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-public class kingcalculator implements calculator {
+public class Kingcalculator implements Calculator {
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color) {
     ArrayList moves=new ArrayList<>();
     moves.addAll(helper(board, myPosition, color, 1, 0));

@@ -7,7 +7,7 @@ import chess.ChessPosition;
 
 import java.util.Collection;
 
-interface calculator {
+interface Calculator {
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color); // interface method (does not have a body)
 
 }

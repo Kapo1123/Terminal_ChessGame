@@ -17,8 +17,8 @@ public class UserService {
       AuthDAo authdao = new AuthDAo();
       try {
         userdao.createUser(info);
-        Authtoken Auth =  authdao.createAuth(info.username());
-        return Auth;
+        Authtoken auth =  authdao.createAuth(info.username());
+        return auth;
     }
       catch(DataAccessException e){
         throw e;
@@ -30,13 +30,9 @@ public class UserService {
       throw new DataAccessException("Error: unauthorized");
     }
     AuthDAo authdao = new AuthDAo();
-    Authtoken Auth = null;
-//    if(authdao.checkAuthExist(info.username())!=null){
-//      Auth = authdao.checkAuthExist(info.username());
-//      authdao.deleteAuth(Auth);
-//    }
-     Auth =  authdao.createAuth(info.username());
-    return Auth;
+    Authtoken auth = null;
+    auth =  authdao.createAuth(info.username());
+    return auth;
 
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {

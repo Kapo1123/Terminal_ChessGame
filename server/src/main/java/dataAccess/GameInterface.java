@@ -1,17 +1,17 @@
 package dataAccess;
 
 import Requestclasses.GameRequest;
-import Requestclasses.joingamerequest;
+import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
-import Responseclass.newgameresponse;
+import Responseclass.Newgameresponse;
 
 public interface GameInterface {
   public  ListgameResponse getList(String username);
 
 
-  public  void joinGame(String username, joingamerequest body) throws DataAccessException;
+  public  void joinGame(String username, Joingamerequest body) throws DataAccessException;
 
-  public  newgameresponse createGame(String username, GameRequest body);
+  public Newgameresponse createGame(String username, GameRequest body);
   public  void deleteall();
 }
 

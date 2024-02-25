@@ -5,7 +5,7 @@ import chess.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Queencalculator implements calculator {
+public class Queencalculator implements Calculator {
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color){
     ArrayList moves = new ArrayList<>();
     moves.addAll(helper(board,myPosition,color,1,0));

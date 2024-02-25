@@ -5,14 +5,13 @@ import chess.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Bishopcalculator implements calculator{
+public class Bishopcalculator implements Calculator {
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color){
     ArrayList<ChessMove> moves = new ArrayList<>();
     moves.addAll(helper(board,myPosition,color,1,1));
     moves.addAll(helper(board,myPosition,color,1,-1));
     moves.addAll(helper(board,myPosition,color,-1,1));
     moves.addAll(helper(board,myPosition,color,-1,-1));
-
     return moves;
   }
   public Collection<ChessMove> helper(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color,int first, int second){

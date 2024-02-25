@@ -1,7 +1,7 @@
 package handler;
 
 import Requestclasses.Authtoken;
-import Requestclasses.joingamerequest;
+import Requestclasses.Joingamerequest;
 import Responseclass.Errorresponse;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
@@ -13,7 +13,7 @@ import spark.Route;
 public class JoingameHandler implements Route {
   @Override
   public Object handle(Request request, Response response) throws DataAccessException {
-    var body = new Gson().fromJson(request.body(), joingamerequest.class);
+    var body = new Gson().fromJson(request.body(), Joingamerequest.class);
     Authtoken token = new Authtoken(request.headers("authorization"));
     GameService gameservice = new GameService();
     try {

@@ -8,10 +8,9 @@ public interface AuthInterface {
  public void deleteAuth(Authtoken auth) throws DataAccessException;
 
 
- public boolean is_valid(Authtoken auth);
+ public boolean isValid(Authtoken auth);
 
  public String getUserName(Authtoken auth);
  public  void deleteall();
 
- public Authtoken checkAuthExist(String username);
 }

@@ -3,7 +3,7 @@ package handler;
 import Requestclasses.Authtoken;
 import Requestclasses.GameRequest;
 import Responseclass.Errorresponse;
-import Responseclass.newgameresponse;
+import Responseclass.Newgameresponse;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import service.GameService;
@@ -17,7 +17,7 @@ public class CreateGameHandler implements Route {
       var body = new Gson().fromJson(request.body(), GameRequest.class);
       GameService gameservice = new GameService();
       Authtoken token = new Authtoken(request.headers("authorization"));
-      newgameresponse res =null;
+      Newgameresponse res =null;
       try{
       res = gameservice.createGame(token,body);
         response.status(200);

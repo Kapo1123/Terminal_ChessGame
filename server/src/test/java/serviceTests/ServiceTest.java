@@ -2,7 +2,7 @@ package serviceTests;
 
 import Requestclasses.*;
 import Responseclass.ListgameResponse;
-import Responseclass.newgameresponse;
+import Responseclass.Newgameresponse;
 import dataAccess.DataAccessException;
 import org.junit.jupiter.api.*;
 import service.DbService;
@@ -16,7 +16,7 @@ class ServiceTest {
   private String email = "HEllothere@yahoo.com";
 
   static Authtoken auth;
-  static newgameresponse id;
+  static Newgameresponse id;
   UserService user = new UserService();
   GameService game = new GameService();
   DbService db = new DbService();
@@ -75,7 +75,7 @@ class ServiceTest {
     auth = authtoken;
     GameRequest game_body = new GameRequest("HelloWorld");
     id = game.createGame(auth,game_body);
-    Assertions.assertSame( id.getClass(), newgameresponse.class, "Types should be the same");
+    Assertions.assertSame( id.getClass(), Newgameresponse.class, "Types should be the same");
 
   }
   @Order(8)
@@ -89,14 +89,14 @@ class ServiceTest {
   @Order(9)
   @Test
   public void joingame_positive() throws DataAccessException {
-    joingamerequest req = new joingamerequest("WHITE", id.gameID());
+    Joingamerequest req = new Joingamerequest("WHITE", id.gameID());
     var ans = game.joinGame(auth,req);
     Assertions.assertTrue(ans,"The function should return True");
   }
   @Order(10)
   @Test
   public void joingame_negative() throws DataAccessException {
-    joingamerequest req = new joingamerequest("WHITE", 0);
+    Joingamerequest req = new Joingamerequest("WHITE", 0);
     Assertions.assertThrows(DataAccessException.class, () -> {
       game.joinGame(auth,req);
     }, "id 0 should never be a game ID");
@@ -110,7 +110,7 @@ class ServiceTest {
     var id3 = game.createGame(auth,game_body2);
     GameRequest game_body3 = new GameRequest("SkyWalker");
     var id4 = game.createGame(auth,game_body3);
-    joingamerequest req = new joingamerequest("WHITE", id4.gameID());
+    Joingamerequest req = new Joingamerequest("WHITE", id4.gameID());
     game.joinGame(auth,req);
     ListgameResponse list_ = game.getGameList(auth);
     Assertions.assertEquals(2, list_.games().size());

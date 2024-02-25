@@ -4,7 +4,7 @@ import chess.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RookCalculator implements calculator{
+public class RookCalculator implements Calculator {
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color){
     ArrayList<ChessMove> moves = new ArrayList<>();
     moves.addAll(helper(board,myPosition,color,1,0));

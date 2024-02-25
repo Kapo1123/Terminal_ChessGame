@@ -1,10 +1,10 @@
 package dataAccess;
 
 import Requestclasses.GameRequest;
-import Requestclasses.joingamerequest;
+import Requestclasses.Joingamerequest;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
-import Responseclass.newgameresponse;
+import Responseclass.Newgameresponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,28 +15,28 @@ public class GameDAo implements GameInterface {
 
   @Override
   public  ListgameResponse getList(String username) {
-    List<Games> list_ = new ArrayList<Games>();
+    List<Games> list = new ArrayList<Games>();
     for (Games game : gamedb){
       if(game.whiteUsername() != null){
         if (game.whiteUsername().equals(username)){
-          list_.add(game);
+          list.add(game);
         }
       }
       else if (game.blackUsername() != null){
         if(game.blackUsername().equals(username)){
-          list_.add(game);
+          list.add(game);
         }
       }
 
     }
-    if(list_.size() == 0){
+    if(list.size() == 0){
       return new ListgameResponse(gamedb);
     }
-    return new ListgameResponse(list_);
+    return new ListgameResponse(list);
   }
 
   @Override
-  public  void joinGame(String username, joingamerequest body) throws DataAccessException {
+  public  void joinGame(String username, Joingamerequest body) throws DataAccessException {
     if(body.playerColor() ==null){
       for (Games game : gamedb) {
         if (game.gameID().equals(body.gameID())) {
@@ -75,11 +75,11 @@ public class GameDAo implements GameInterface {
   }
 
   @Override
-  public newgameresponse createGame(String username, GameRequest body) {
-    Integer game_ID = gamedb.size()+1;
-    Games game = new Games(game_ID, null,null,body.gameName());
+  public Newgameresponse createGame(String username, GameRequest body) {
+    Integer gameId = gamedb.size()+1;
+    Games game = new Games(gameId, null,null,body.gameName());
     gamedb.add(game);
-    return new newgameresponse(game_ID);
+    return new Newgameresponse(gameId);
   }
   @Override
   public void deleteall(){

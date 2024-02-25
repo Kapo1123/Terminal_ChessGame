@@ -5,14 +5,13 @@ import Requestclasses.Userclass;
 import Responseclass.Errorresponse;
 import Responseclass.Registerresponse;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import dataAccess.DataAccessException;
 import service.UserService;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class loginHandler  implements Route {
+public class LoginHandler implements Route {
 
   @Override
   public Object handle(Request request, Response response) throws DataAccessException {

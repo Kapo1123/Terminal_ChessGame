@@ -16,9 +16,9 @@ public class RegisterHandler implements Route {
   public Object handle(Request request, Response response) throws DataAccessException {
     var register = new Gson().fromJson(request.body(), Registerclass.class);
     UserService userservice = new UserService();
-    Authtoken Authtoken =null;
+    Authtoken authtoken =null;
     try{
-      Authtoken= userservice.register(register);}
+      authtoken= userservice.register(register);}
     catch(DataAccessException e){
       if(e.getMessage().equals("Error: unauthorized" )){
         response.status(401);
@@ -31,7 +31,7 @@ public class RegisterHandler implements Route {
       response.body(new Gson().toJson(error));
       return new Gson().toJson(error);
     }
-    Registerresponse res = new Registerresponse(register.username(), Authtoken.authtoken());
+    Registerresponse res = new Registerresponse(register.username(), authtoken.authtoken());
     response.status(200);
     response.body(new Gson().toJson(res));
     return (new Gson().toJson(res));

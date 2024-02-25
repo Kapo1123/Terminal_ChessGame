@@ -13,8 +13,8 @@ public class UserDAo implements UserInterface{
   @Override
   public void createUser(Registerclass info) throws DataAccessException {
     if (userdb.isEmpty() || userdb.get(info.username()) == null) {
-      List<String> list_ = new ArrayList<>(Arrays.asList(info.password(), info.email()));
-      userdb.put(info.username(), list_);
+      List<String> list = new ArrayList<>(Arrays.asList(info.password(), info.email()));
+      userdb.put(info.username(), list);
       return;
     }
     else {
