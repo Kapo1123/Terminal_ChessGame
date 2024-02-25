@@ -21,9 +21,8 @@ public class RegisterHandler implements Route {
       authtoken= userservice.register(register);}
      catch(DataAccessException e){
       response.status(e.getErrorCode());
-      Errorresponse error = new Errorresponse(e.getMessage());
-      response.body(new Gson().toJson(error));
-      return new Gson().toJson(error);
+      response.body(new Gson().toJson(new Errorresponse(e.getMessage())));
+      return new Gson().toJson(new Errorresponse(e.getMessage()));
     }
     Registerresponse res = new Registerresponse(register.username(), authtoken.authtoken());
     response.status(200);
