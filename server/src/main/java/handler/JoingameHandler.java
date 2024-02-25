@@ -20,13 +20,7 @@ public class JoingameHandler implements Route {
       gameservice.joinGame(token, body);
     }
     catch(DataAccessException e){
-      if(e.getMessage().equals("Error: unauthorized" )){
-        response.status(401);
-      }else if (e.getMessage().equals("Error: bad request" )) {
-        response.status(400);
-
-      }
-      else if(e.getMessage().equals("Error: already taken" )){response.status(403);}
+      response.status(e.getErrorCode());
       Errorresponse error = new Errorresponse(e.getMessage());
       response.body(new Gson().toJson(error));
       return new Gson().toJson(error);

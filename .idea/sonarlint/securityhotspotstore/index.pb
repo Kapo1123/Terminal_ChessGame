@@ -122,3 +122,5 @@ X
 (src/main/java/Moves/Queencalculator.java,e/5/e5d2bdc4d8361d3b5f7bc2929a3eab141355a4c5
 Y
 )src/main/java/Moves/Knightcalculator.java,e/f/efcb30d72533c7599d4b019735ad1813adcf7e91
+X
+(src/main/java/handler/Handlerhelper.java,f/d/fd3507851d9b6d6adee86868b55ff0565c26f351

@@ -52,7 +52,7 @@ public class ChessGame {
    */
   public Collection<ChessMove> validMoves(ChessPosition startPosition) {
     ArrayList<ChessMove> moves=new ArrayList<>();
-    ArrayList<ChessMove> valid_Moves=new ArrayList<>();
+    ArrayList<ChessMove> validMoves=new ArrayList<>();
     ChessPiece piece=squares.getPiece(startPosition);
     if (piece == null) {
       return null;
@@ -63,12 +63,12 @@ public class ChessGame {
       squares.addPiece(startPosition, null);
       squares.addPiece(move.getEndPosition(), piece);
       if (isInCheck(piece.getTeamColor()) == false) {
-        valid_Moves.add(move);
+        validMoves.add(move);
       }
       squares.addPiece(move.getEndPosition(), endpiece);
       squares.addPiece(startPosition, piece);
     }
-    return valid_Moves;
+    return validMoves;
   }
 
   /**
