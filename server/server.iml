@@ -18,6 +18,7 @@
     <orderEntry type="library" name="google.code.gson" level="project" />
     <orderEntry type="library" name="sparkjava.spark.core" level="project" />
     <orderEntry type="library" name="net.enilink.komma.slf4j.logback" level="project" />
+    <orderEntry type="library" name="junit.jupiter1" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="db59742d-d8cf-415c-858b-473f27efbab7" />
