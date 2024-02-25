@@ -12,7 +12,6 @@ public class Server {
         Spark.post("/user", new RegisterHandler());
         Spark.post("/session", new loginHandler());
         Spark.delete("/session", new LogoutHandler());
-        Spark.get("/game", (req, res) -> new ListGameHandler().handle(req, res));
         Spark.get("/game",new ListGameHandler());
         Spark.post("/game", new CreateGameHandler());
         Spark.put("/game", new JoingameHandler());
