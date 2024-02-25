@@ -15,6 +15,10 @@ public class Bishopcalculator implements Calculator {
     return moves;
   }
   public Collection<ChessMove> helper(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color,int first, int second){
+    return getChessMoves(board, myPosition, color, first, second);
+  }
+
+  static Collection<ChessMove> getChessMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color, int first, int second) {
     ArrayList<ChessMove> moves = new ArrayList<>();
     int row = myPosition.getRow()+first;
     int col =myPosition.getColumn() +second;

@@ -19,6 +19,10 @@ public class Kingcalculator implements Calculator {
 
   public Collection<ChessMove> helper(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color, int first, int second) {
     ArrayList moves=new ArrayList<>();
+    return getChessMoves(board, myPosition, color, first, second, moves);
+  }
+
+  static Collection<ChessMove> getChessMoves(ChessBoard board, ChessPosition myPosition, ChessGame.TeamColor color, int first, int second, ArrayList moves) {
     int col=myPosition.getColumn() + second;
     int row=myPosition.getRow() + first;
     if (col <= 8 && row <= 8 && col >= 1 && row >= 1) {
