@@ -49,13 +49,6 @@ public class AuthDAo implements AuthInterface {
 
   }
 
-  @Override
-  public Authtoken checkAuthExist(String username) {
-    for (Map.Entry<Authtoken, String> entry : authodb.entrySet()) {
-      if (entry.getValue().equals(username)) {
-        return entry.getKey();
-      }
-    }
-    return null;
-  }
+
+
 }
