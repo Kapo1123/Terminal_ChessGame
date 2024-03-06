@@ -1,7 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8ø¡ÁËİ1
-r	java:S114"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¬Äÿ„üÿÿÿÿ8ù¡ÁËİ1
-L
-java:S1172	"/Remove this unused method parameter "username".(¬à’®8ü¡ÁËİ1
-[
-java:S1172"9Remove these unused method parameters "username", "body".(…±òøÿÿÿÿ8ãºĞËİ1

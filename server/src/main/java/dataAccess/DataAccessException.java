@@ -24,6 +24,9 @@ public class DataAccessException extends Exception {
         } else if (errorMessage.equals("Error: already taken")) {
             code = 403;
         }
+        else{
+            code = 500;
+        }
         return code;
     }
 }
