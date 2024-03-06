@@ -12,10 +12,9 @@ public class AuthDAo implements AuthInterface {
 
 
   @Override
-  public Authtoken createAuth(String username) {
-    Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
+  public void createAuth(Authtoken authtoken,String username) {
     authodb.put(authtoken, username);
-    return authtoken;
+
   }
 
   @Override

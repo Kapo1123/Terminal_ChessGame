@@ -3,7 +3,7 @@ package dataAccess;
 import Requestclasses.Authtoken;
 
 public interface AuthInterface {
- public  Authtoken createAuth(String username) throws DataAccessException;
+ public  void createAuth(Authtoken authtoken,String username) throws DataAccessException;
 
  public void deleteAuth(Authtoken auth) throws DataAccessException;
 

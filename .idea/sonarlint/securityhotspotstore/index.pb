@@ -35,3 +35,9 @@ T
 $src/main/java/service/DbService.java,f/6/f64af91bb31dd3967bac5c30f53afbffd7d3e50d
 `
 0src/test/java/serviceTests/PersistenceTests.java,a/0/a05877597f43006ed054979696f0c37f1b42b612
+[
++src/main/java/Requestclasses/Authtoken.java,b/2/b2405f23bf6960b69c16925f4571a785f1b846e5
+V
+&src/main/java/Responseclass/Games.java,b/e/becd1f2b0513326deeb81826aff9790d07eaba77
+Z
+*src/main/java/dataAccess/MysqlGameDao.java,e/4/e4180308a169b585373862d4b22cb60770937926

@@ -7,6 +7,8 @@ import dataAccess.DataAccessException;
 import dataAccess.AuthDAo;
 import dataAccess.UserDAo;
 
+import java.util.UUID;
+
 public class UserService {
 
   public static Authtoken register(Registerclass info) throws DataAccessException {
@@ -17,8 +19,9 @@ public class UserService {
       AuthDAo authdao = new AuthDAo();
       try {
         userdao.createUser(info);
-        Authtoken auth =  authdao.createAuth(info.username());
-        return auth;
+        Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
+        authdao.createAuth(authtoken,info.username());
+        return authtoken;
     }
       catch(DataAccessException e){
         throw e;
@@ -30,9 +33,9 @@ public class UserService {
       throw new DataAccessException("Error: unauthorized");
     }
     AuthDAo authdao = new AuthDAo();
-    Authtoken auth = null;
-    auth =  authdao.createAuth(info.username());
-    return auth;
+    Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
+    authdao.createAuth(authtoken,info.username());
+    return authtoken;
 
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {

@@ -2,47 +2,84 @@ package dataAccess;
 
 import Requestclasses.Authtoken;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MysqlAuthDao  implements AuthInterface{
-  public MysqlAuthDao() throws DataAccessException {
-    configureDatabase();
-  }
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
+public class MysqlAuthDao  implements AuthInterface {
 
   @Override
-  public Authtoken createAuth(String username) throws DataAccessException{
-    return null;
+  public void createAuth(Authtoken authToken, String username) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("INSERT INTO auth (authToken, username) VALUES(?, ?)")) {
+        preparedStatement.setString(1, authToken.toString());
+        preparedStatement.setString(2, username);
+
+        preparedStatement.executeUpdate();
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
   }
 
   @Override
   public void deleteAuth(Authtoken auth) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("DELETE FROM auth WHERE authToken=?")) {
+        preparedStatement.setString(1, auth.toString());
+        preparedStatement.executeUpdate();
+      }
 
+    } catch (SQLException e) {
+      throw new DataAccessException("Error: unauthorized");
+    }
   }
 
   @Override
-  public boolean isValid(Authtoken auth) throws DataAccessException{
+  public boolean isValid(Authtoken auth) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("SELECT * FROM auth WHERE authToken=?")) {
+        preparedStatement.setString(1, auth.toString());
+        try (var rs=preparedStatement.executeQuery()) {
+          if (rs.next()) {
+            return true;
+          }
+        }
+      }
+    } catch (SQLException e) {
+      return false;
+    }
     return false;
+
   }
 
+
   @Override
-  public String getUserName(Authtoken auth) throws DataAccessException{
+  public String getUserName(Authtoken auth) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("SELECT username FROM auth WHERE authToken=?")) {
+        preparedStatement.setString(1, auth.toString());
+        try (var rs=preparedStatement.executeQuery()) {
+          if (rs.next()) {
+            return rs.getString("username");
+          }
+        }
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
     return null;
   }
 
   @Override
-  public void deleteall() throws DataAccessException{
-
-  }
-  private void configureDatabase() throws  DataAccessException {
-    DatabaseManager.createDatabase();
-    try (var conn = DatabaseManager.getConnection()) {
-      for (var statement : createStatements) {
-        try (var preparedStatement = conn.prepareStatement(statement)) {
-          preparedStatement.executeUpdate();
-        }
+  public void deleteall() throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("TRUNCATE auth")) {
+        preparedStatement.executeUpdate();
       }
-    } catch (SQLException ex) {
-      throw new DataAccessException(String.format("Unable to configure database: %s", ex.getMessage()));
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
     }
   }
 }
