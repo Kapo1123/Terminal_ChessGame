@@ -1,6 +1,6 @@
 package service;
 
-import dataAccess.*;
+import dataAccessTests.*;
 
 public class DbService {
   public  boolean deleteAll() throws DataAccessException {

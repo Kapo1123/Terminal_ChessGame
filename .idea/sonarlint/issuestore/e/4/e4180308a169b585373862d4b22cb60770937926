@@ -1,0 +1,10 @@
+
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(®ΗϋΖ8Υ—εΊα1
+m	java:S117h"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ‰γα8Ω—εΊα1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(δεσ8δ—εΊα1
+8
+java:S36265"Remove this redundant jump.(ϋΑέ…8•―εΊα1
+N
+java:S1128
+"1Remove this unused import 'com.google.gson.Gson'.(–§8ΜεΊα1

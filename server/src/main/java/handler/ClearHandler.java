@@ -1,12 +1,9 @@
 package handler;
-import dataAccess.DataAccessException;
+import dataAccessTests.DataAccessException;
 import service.DbService;
 import spark.Request;
 import spark.Response;
 import spark.Route;
-
-
-import java.io.FileDescriptor;
 
 public class ClearHandler implements Route{
 

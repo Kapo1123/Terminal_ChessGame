@@ -1,0 +1,5 @@
+package dataAccessTests;
+
+class MysqlGameDaoTest {
+
+}
