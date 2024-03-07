@@ -72,3 +72,7 @@ a
 1src/main/java/Requestclasses/Joingamerequest.java,8/0/808d55705df0d7ca872dc56372506c51ecad454b
 ]
 -src/main/java/Requestclasses/GameRequest.java,f/3/f3524f2231aa7e425ebab1cc0258f914be115036
+Z
+*src/main/java/handler/ListGameHandler.java,8/0/80ed9a652f7ecd718e079b5e5a022cbd648c9cba
+R
+"src/test/java/dataAccessTests.java,2/a/2a5949b8bf82e036189b2da1ba2be0fe444cf6bc
