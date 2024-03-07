@@ -4,7 +4,7 @@ import dataAccess.*;
 
 public class DbService {
   public  boolean deleteAll() throws DataAccessException {
-    GameDAo gamedao = new GameDAo();
+    MysqlGameDao gamedao = new MysqlGameDao();
     gamedao.deleteall();
     MysqlAuthDao auth = new MysqlAuthDao();
     auth.deleteall();

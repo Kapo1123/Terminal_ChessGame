@@ -66,3 +66,9 @@ R
 "src/main/java/chess/ChessGame.java,7/3/73bf4fdc57c71c6f70f600b9fea515a646b27eef
 S
 #src/main/java/chess/ChessBoard.java,1/3/139d0d4bb2b8e11a4e03dbed5b694452387fb52a
+`
+0src/main/java/Responseclass/Newgameresponse.java,c/0/c0f9f1b9e86aa17806121473d16861ea17582f32
+a
+1src/main/java/Requestclasses/Joingamerequest.java,8/0/808d55705df0d7ca872dc56372506c51ecad454b
+]
+-src/main/java/Requestclasses/GameRequest.java,f/3/f3524f2231aa7e425ebab1cc0258f914be115036

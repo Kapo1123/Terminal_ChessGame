@@ -5,10 +5,7 @@ import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
-import dataAccess.DataAccessException;
-import dataAccess.AuthDAo;
-import dataAccess.GameDAo;
-import dataAccess.MysqlAuthDao;
+import dataAccess.*;
 
 public class GameService {
 
@@ -18,7 +15,7 @@ public class GameService {
     if (!authdao.isValid(auth)){
       throw new DataAccessException("Error: unauthorized");
     }
-    GameDAo gamedao = new GameDAo();
+    MysqlGameDao gamedao = new MysqlGameDao();
     String username=authdao.getUserName(auth);
     ListgameResponse res=gamedao.getList(username);
     return res;
@@ -33,7 +30,7 @@ public class GameService {
       throw new DataAccessException("Error: unauthorized");
     }
     String username=authdao.getUserName(auth);
-    GameDAo gamedao = new GameDAo();
+    MysqlGameDao gamedao = new MysqlGameDao();
     try {
       gamedao.joinGame(username, body);
     } catch (DataAccessException e) {
