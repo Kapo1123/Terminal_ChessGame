@@ -10,6 +10,7 @@ import dataAccess.AuthDAo;
 import dataAccess.GameDAo;
 public class GameService {
 
+
   public ListgameResponse getGameList(Authtoken auth) throws DataAccessException {
     AuthDAo authdao = new AuthDAo();
     if (!authdao.isValid(auth)){

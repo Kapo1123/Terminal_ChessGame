@@ -41,3 +41,9 @@ V
 &src/main/java/Responseclass/Games.java,b/e/becd1f2b0513326deeb81826aff9790d07eaba77
 Z
 *src/main/java/dataAccess/MysqlGameDao.java,e/4/e4180308a169b585373862d4b22cb60770937926
+a
+1src/main/java/Responseclass/ListgameResponse.java,c/f/cfab4623d5b3c384d7fac7eece29aac8ddeabe7e
+[
++src/main/java/dataAccess/UserInterface.java,9/4/94813735f66106d037d37135e3ab249bfa48b790
+Z
+*src/main/java/dataAccess/MysqlUserDao.java,7/3/73c8022259384f4c76a049766d89d75c9c1e1de0

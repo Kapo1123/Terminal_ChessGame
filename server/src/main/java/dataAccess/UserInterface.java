@@ -9,6 +9,6 @@ import java.util.Map;
 
 public interface UserInterface {
   public  void createUser(Registerclass info) throws DataAccessException;
-  public boolean checkCredential(Userclass info) ;
-  public  void deleteall();
+  public boolean checkCredential(Userclass info) throws DataAccessException;
+  public  void deleteall() throws DataAccessException;
 }
