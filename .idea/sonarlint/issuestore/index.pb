@@ -47,3 +47,16 @@ a
 +src/main/java/dataAccess/UserInterface.java,9/4/94813735f66106d037d37135e3ab249bfa48b790
 Z
 *src/main/java/dataAccess/MysqlUserDao.java,7/3/73c8022259384f4c76a049766d89d75c9c1e1de0
+[
++src/main/java/dataAccess/GameInterface.java,8/6/86c9a38c73ec00e70dd4349da924a0a8f51c0645
+l
+<src/test/java/passoffTests/serverTests/StandardAPITests.java,2/3/230d5c2bddf1c1b38de512b86822f5fc87a9330d
+W
+'src/main/java/handler/ClearHandler.java,4/a/4ada5fe153a6bff3c91693a66c2927688a5e762b
+Z
+*src/main/java/handler/RegisterHandler.java,c/c/cc586a38f5a4e5647b731c6fb2c3f026a22d7b3f
+W
+'src/main/java/handler/LoginHandler.java,9/9/994cb57cb5e431c6e5c58ddf632cdfec542c5821
+:
+
+server.iml,8/2/8223cc95a68355bfb31e8c65de12cb67ce74a18a

@@ -1,2 +1,6 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8‰Ãìá1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8…İı´á1
+P
+java:S1128"3Remove this unused import 'java.sql.DriverManager'.(“£°8ãÎ‘µá1
+g
+java:S1128"ERemove this unused import 'java.sql.Statement.RETURN_GENERATED_KEYS'.(¼áÛúÿÿÿÿ8åÎ‘µá1

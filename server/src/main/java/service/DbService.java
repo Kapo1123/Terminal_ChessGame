@@ -1,17 +1,15 @@
 package service;
 
-import dataAccess.AuthDAo;
-import dataAccess.GameDAo;
-import dataAccess.UserDAo;
+import dataAccess.*;
 
 public class DbService {
-  public  boolean deleteAll(){
+  public  boolean deleteAll() throws DataAccessException {
     GameDAo gamedao = new GameDAo();
     gamedao.deleteall();
-    AuthDAo authdao = new AuthDAo();
-    authdao.deleteall();
-    UserDAo userdao = new UserDAo();
-    userdao.deleteall();
+    MysqlAuthDao auth = new MysqlAuthDao();
+    auth.deleteall();
+    MysqlUserDao userDao= new MysqlUserDao();
+    userDao.deleteall();
     return true;
   }
 }

@@ -8,11 +8,13 @@ import Responseclass.Newgameresponse;
 import dataAccess.DataAccessException;
 import dataAccess.AuthDAo;
 import dataAccess.GameDAo;
+import dataAccess.MysqlAuthDao;
+
 public class GameService {
 
 
   public ListgameResponse getGameList(Authtoken auth) throws DataAccessException {
-    AuthDAo authdao = new AuthDAo();
+    MysqlAuthDao authdao = new MysqlAuthDao();
     if (!authdao.isValid(auth)){
       throw new DataAccessException("Error: unauthorized");
     }
@@ -26,7 +28,7 @@ public class GameService {
     if (body.gameID() == null) {
       throw new DataAccessException("Error: bad request");
     }
-    AuthDAo authdao = new AuthDAo();
+    MysqlAuthDao authdao = new MysqlAuthDao();
     if (!authdao.isValid(auth)){
       throw new DataAccessException("Error: unauthorized");
     }
@@ -44,7 +46,7 @@ public class GameService {
     if (body.gameName() == null) {
       throw new DataAccessException("Error: bad request");
     }
-    AuthDAo authdao = new AuthDAo();
+    MysqlAuthDao authdao = new MysqlAuthDao();
       if (!authdao.isValid(auth)){
         throw new DataAccessException("Error: unauthorized");
       }

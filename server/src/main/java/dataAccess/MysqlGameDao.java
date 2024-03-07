@@ -5,7 +5,9 @@ import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 
-public class MysqlGameDao implements GameInterface{
+import java.sql.SQLException;
+
+public class MysqlGameDao implements GameInterface {
   @Override
   public ListgameResponse getList(String username) {
     return null;
@@ -22,7 +24,15 @@ public class MysqlGameDao implements GameInterface{
   }
 
   @Override
-  public void deleteall() {
+  public void deleteall() throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("TRUNCATE game")) {
+        preparedStatement.executeUpdate();
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
+
 
   }
 }

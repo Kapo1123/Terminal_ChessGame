@@ -6,12 +6,12 @@ import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 
 public interface GameInterface {
-  public  ListgameResponse getList(String username);
+  public  ListgameResponse getList(String username) throws DataAccessException;
 
 
   public  void joinGame(String username, Joingamerequest body) throws DataAccessException;
 
-  public Newgameresponse createGame(String username, GameRequest body);
-  public  void deleteall();
+  public Newgameresponse createGame(String username, GameRequest body) throws DataAccessException;
+  public  void deleteall() throws DataAccessException;
 }
 

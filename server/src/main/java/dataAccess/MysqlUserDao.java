@@ -23,11 +23,12 @@ public class MysqlUserDao implements UserInterface {
   @Override
   public boolean checkCredential(Userclass info) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
-      try (var preparedStatement=conn.prepareStatement("SELECT * FROM user WHERE authToken=?")) {
+      try (var preparedStatement=conn.prepareStatement("SELECT * FROM user WHERE username=?")) {
         preparedStatement.setString(1, info.username());
         try (var rs=preparedStatement.executeQuery()) {
           if (rs.next()) {
-            return true;
+            String Password = rs.getString("password");
+            return Password.equals(info.password());
           }
         }
       }

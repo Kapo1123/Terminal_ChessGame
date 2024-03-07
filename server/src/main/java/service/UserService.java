@@ -3,9 +3,7 @@ package service;
 import Requestclasses.Authtoken;
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
-import dataAccess.DataAccessException;
-import dataAccess.AuthDAo;
-import dataAccess.UserDAo;
+import dataAccess.*;
 
 import java.util.UUID;
 
@@ -15,8 +13,8 @@ public class UserService {
       if (info.username()==null||info.password()==null||info.email()==null){
         throw new DataAccessException("Error: bad request");
       }
-    UserDAo userdao = new UserDAo();
-      AuthDAo authdao = new AuthDAo();
+      MysqlUserDao userdao = new MysqlUserDao();
+      MysqlAuthDao authdao = new MysqlAuthDao();
       try {
         userdao.createUser(info);
         Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
@@ -28,18 +26,18 @@ public class UserService {
     }
   }
   public static Authtoken login(Userclass info) throws DataAccessException {
-    UserDAo userdao = new UserDAo();
+    MysqlUserDao userdao = new MysqlUserDao();
     if(! userdao.checkCredential(info)){
       throw new DataAccessException("Error: unauthorized");
     }
-    AuthDAo authdao = new AuthDAo();
+    MysqlAuthDao authdao = new MysqlAuthDao();
     Authtoken authtoken=new Authtoken(UUID.randomUUID().toString());
     authdao.createAuth(authtoken,info.username());
     return authtoken;
 
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {
-    AuthDAo authdao = new AuthDAo();
+    MysqlAuthDao authdao = new MysqlAuthDao();
     try {
       authdao.deleteAuth(auth);
       return true;

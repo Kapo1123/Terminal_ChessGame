@@ -1,4 +1,5 @@
 package handler;
+import dataAccess.DataAccessException;
 import service.DbService;
 import spark.Request;
 import spark.Response;
@@ -11,7 +12,7 @@ public class ClearHandler implements Route{
 
 
   @Override
-  public Object handle(Request request, Response response) {
+  public Object handle(Request request, Response response) throws DataAccessException {
     DbService dbService = new DbService();
     dbService.deleteAll();
       response.status(200);

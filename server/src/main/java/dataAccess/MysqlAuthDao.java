@@ -13,9 +13,8 @@ public class MysqlAuthDao  implements AuthInterface {
   public void createAuth(Authtoken authToken, String username) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement=conn.prepareStatement("INSERT INTO auth (authToken, username) VALUES(?, ?)")) {
-        preparedStatement.setString(1, authToken.toString());
+        preparedStatement.setString(1, authToken.authtoken());
         preparedStatement.setString(2, username);
-
         preparedStatement.executeUpdate();
       }
     } catch (SQLException e) {
@@ -27,7 +26,7 @@ public class MysqlAuthDao  implements AuthInterface {
   public void deleteAuth(Authtoken auth) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement=conn.prepareStatement("DELETE FROM auth WHERE authToken=?")) {
-        preparedStatement.setString(1, auth.toString());
+        preparedStatement.setString(1, auth.authtoken());
         preparedStatement.executeUpdate();
       }
 
@@ -40,7 +39,7 @@ public class MysqlAuthDao  implements AuthInterface {
   public boolean isValid(Authtoken auth) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement=conn.prepareStatement("SELECT * FROM auth WHERE authToken=?")) {
-        preparedStatement.setString(1, auth.toString());
+        preparedStatement.setString(1, auth.authtoken());
         try (var rs=preparedStatement.executeQuery()) {
           if (rs.next()) {
             return true;
@@ -48,10 +47,9 @@ public class MysqlAuthDao  implements AuthInterface {
         }
       }
     } catch (SQLException e) {
-      return false;
+      throw new DataAccessException(e.getMessage());
     }
     return false;
-
   }
 
 
@@ -59,7 +57,7 @@ public class MysqlAuthDao  implements AuthInterface {
   public String getUserName(Authtoken auth) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement=conn.prepareStatement("SELECT username FROM auth WHERE authToken=?")) {
-        preparedStatement.setString(1, auth.toString());
+        preparedStatement.setString(1, auth.authtoken());
         try (var rs=preparedStatement.executeQuery()) {
           if (rs.next()) {
             return rs.getString("username");
