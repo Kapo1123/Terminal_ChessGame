@@ -38,6 +38,9 @@ public class UserService {
   }
   public static boolean logout(Authtoken auth) throws DataAccessException {
     MysqlAuthDao authdao = new MysqlAuthDao();
+    if (authdao.isValid(auth) == false){
+      throw new DataAccessException("Error: unauthorized");
+    }
     try {
       authdao.deleteAuth(auth);
       return true;

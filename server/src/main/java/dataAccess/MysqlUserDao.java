@@ -16,7 +16,7 @@ public class MysqlUserDao implements UserInterface {
         preparedStatement.executeUpdate();
       }
     } catch (SQLException e) {
-      throw new DataAccessException(e.getMessage());
+      throw new DataAccessException("Error: already taken");
     }
   }
 

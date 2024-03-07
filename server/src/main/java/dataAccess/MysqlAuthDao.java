@@ -29,7 +29,6 @@ public class MysqlAuthDao  implements AuthInterface {
         preparedStatement.setString(1, auth.authtoken());
         preparedStatement.executeUpdate();
       }
-
     } catch (SQLException e) {
       throw new DataAccessException("Error: unauthorized");
     }
