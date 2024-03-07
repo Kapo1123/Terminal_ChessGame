@@ -47,7 +47,7 @@ public class GameService {
       if (!authdao.isValid(auth)){
         throw new DataAccessException("Error: unauthorized");
       }
-    GameDAo gamedao = new GameDAo();
+    MysqlGameDao gamedao = new MysqlGameDao();
     String username=authdao.getUserName(auth);
     Newgameresponse res = gamedao.createGame(username, body);
     return res;

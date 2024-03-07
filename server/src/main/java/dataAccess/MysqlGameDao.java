@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
 public class MysqlGameDao implements GameInterface {
   @Override
   public ListgameResponse getList(String username) throws DataAccessException {
@@ -47,7 +49,10 @@ public class MysqlGameDao implements GameInterface {
           if (rs.next()) {
             var whiteUsername=rs.getString("whiteUsername");
             var blackUsername=rs.getString("blackUsername");
-            if (body.playerColor() == "WHITE"){
+            if(body.playerColor() ==null){
+              return;
+            }
+            else if (body.playerColor().equals("WHITE")){
               if(whiteUsername != null){
                 throw new DataAccessException("Error: already taken");
               }
@@ -64,7 +69,7 @@ public class MysqlGameDao implements GameInterface {
                 throw new DataAccessException("Error: already taken");
               }
               else{
-                try (var preparedStatement3 = conn.prepareStatement("UPDATE game SET blackUsername=? WHERE id=?")) {
+                try (var preparedStatement3 = conn.prepareStatement("UPDATE game SET blackUsername=? WHERE gameID=?")) {
                   preparedStatement3.setString(1, username);
                   preparedStatement3.setInt(2, body.gameID());
                   preparedStatement3.executeUpdate();
@@ -86,13 +91,14 @@ public class MysqlGameDao implements GameInterface {
   @Override
   public Newgameresponse createGame(String username, GameRequest body) throws DataAccessException{
     try (var conn=DatabaseManager.getConnection()) {
-      try (var preparedStatement=conn.prepareStatement("INSERT INTO game (gameName,chess ) VALUES(?, ?)")) {
+      try (var preparedStatement=conn.prepareStatement("INSERT INTO game (gameName,chess ) VALUES(?, ?)",RETURN_GENERATED_KEYS)) {
         preparedStatement.setString(1, body.gameName());
         ChessBoard board = new ChessBoard();
         board.resetBoard();
         ChessGame game = new ChessGame();
         game.setBoard(board);
-        preparedStatement.setString(2, new Gson().toJson(game));
+        String jsonGame = "testing";
+        preparedStatement.setString(2, jsonGame);
         preparedStatement.executeUpdate();
         var resultSet = preparedStatement.getGeneratedKeys();
         var ID = 0;
