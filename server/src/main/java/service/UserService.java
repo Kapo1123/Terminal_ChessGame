@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class UserService {
 
-  public static Authtoken register(Registerclass info) throws DataAccessException {
+  public  Authtoken register(Registerclass info) throws DataAccessException {
       if (info.username()==null||info.password()==null||info.email()==null){
         throw new DataAccessException("Error: bad request");
       }
@@ -25,7 +25,7 @@ public class UserService {
         throw e;
     }
   }
-  public static Authtoken login(Userclass info) throws DataAccessException {
+  public  Authtoken login(Userclass info) throws DataAccessException {
     MysqlUserDao userdao = new MysqlUserDao();
     if(! userdao.checkCredential(info)){
       throw new DataAccessException("Error: unauthorized");
@@ -36,7 +36,7 @@ public class UserService {
     return authtoken;
 
   }
-  public static boolean logout(Authtoken auth) throws DataAccessException {
+  public  boolean logout(Authtoken auth) throws DataAccessException {
     MysqlAuthDao authdao = new MysqlAuthDao();
     if (authdao.isValid(auth) == false){
       throw new DataAccessException("Error: unauthorized");

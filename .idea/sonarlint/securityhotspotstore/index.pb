@@ -60,3 +60,9 @@ W
 :
 
 server.iml,8/2/8223cc95a68355bfb31e8c65de12cb67ce74a18a
+G
+src/main/java/Main.java,e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
+R
+"src/main/java/chess/ChessGame.java,7/3/73bf4fdc57c71c6f70f600b9fea515a646b27eef
+S
+#src/main/java/chess/ChessBoard.java,1/3/139d0d4bb2b8e11a4e03dbed5b694452387fb52a

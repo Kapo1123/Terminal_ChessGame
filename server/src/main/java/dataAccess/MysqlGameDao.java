@@ -4,6 +4,9 @@ import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
+import chess.ChessBoard;
+import chess.ChessGame;
+import com.google.gson.Gson;
 
 import java.sql.SQLException;
 
@@ -19,8 +22,21 @@ public class MysqlGameDao implements GameInterface {
   }
 
   @Override
-  public Newgameresponse createGame(String username, GameRequest body) {
-    return null;
+  public Newgameresponse createGame(String username, GameRequest body) throws DataAccessException{
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("INSERT INTO auth (gameName,chess ) VALUES(?, ?, ?)")) {
+        preparedStatement.setString(1, body.gameName());
+        ChessBoard board = new ChessBoard();
+        board.resetBoard();
+        ChessGame game = new ChessGame();
+        game.setBoard(board);
+        preparedStatement.setString(2, new Gson().toJson(game));
+        preparedStatement.executeUpdate();
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
+
   }
 
   @Override
