@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class MysqlGameDao implements GameInterface {
   @Override
   public ListgameResponse getList(String username) {
-    return null;
+
   }
 
   @Override
@@ -24,7 +24,7 @@ public class MysqlGameDao implements GameInterface {
   @Override
   public Newgameresponse createGame(String username, GameRequest body) throws DataAccessException{
     try (var conn=DatabaseManager.getConnection()) {
-      try (var preparedStatement=conn.prepareStatement("INSERT INTO auth (gameName,chess ) VALUES(?, ?, ?)")) {
+      try (var preparedStatement=conn.prepareStatement("INSERT INTO auth (gameName,chess ) VALUES(?, ?)")) {
         preparedStatement.setString(1, body.gameName());
         ChessBoard board = new ChessBoard();
         board.resetBoard();
@@ -32,6 +32,12 @@ public class MysqlGameDao implements GameInterface {
         game.setBoard(board);
         preparedStatement.setString(2, new Gson().toJson(game));
         preparedStatement.executeUpdate();
+        var resultSet = preparedStatement.getGeneratedKeys();
+        var ID = 0;
+        if (resultSet.next()) {
+          ID = resultSet.getInt(1);
+        }
+        return new Newgameresponse(ID);
       }
     } catch (SQLException e) {
       throw new DataAccessException(e.getMessage());
