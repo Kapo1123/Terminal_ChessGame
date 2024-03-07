@@ -1,8 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8ÀçìŒá1
-^
-java:S1126"AReplace this if-then-else statement by a single return statement.(èç®8®èìŒá1
-N
-java:S1128"1Remove this unused import 'java.util.Dictionary'.(¸Ûãó8“­ø´á1
-M
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8“­ø´á1
