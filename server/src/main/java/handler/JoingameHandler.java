@@ -4,7 +4,7 @@ import Requestclasses.Authtoken;
 import Requestclasses.Joingamerequest;
 import Responseclass.Errorresponse;
 import com.google.gson.Gson;
-import dataAccessTests.DataAccessException;
+import dataAccess.DataAccessException;
 import service.GameService;
 import spark.Request;
 import spark.Response;

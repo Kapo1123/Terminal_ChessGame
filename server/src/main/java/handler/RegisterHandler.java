@@ -5,7 +5,7 @@ import Requestclasses.Registerclass;
 import Responseclass.Errorresponse;
 import Responseclass.Registerresponse;
 import com.google.gson.Gson;
-import dataAccessTests.DataAccessException;
+import dataAccess.DataAccessException;
 import spark.Request;
 import spark.Response;
 import spark.Route;

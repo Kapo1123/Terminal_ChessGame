@@ -1,5 +1,5 @@
 package handler;
-import dataAccessTests.DataAccessException;
+import dataAccess.DataAccessException;
 import service.DbService;
 import spark.Request;
 import spark.Response;

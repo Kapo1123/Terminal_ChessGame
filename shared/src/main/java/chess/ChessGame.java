@@ -13,7 +13,7 @@ import java.util.Objects;
 public class ChessGame {
   private TeamColor turn;
   private ChessBoard squares;
-  private chess.InvalidMoveException invalidMoveException=new InvalidMoveException();
+//  private static chess.InvalidMoveException invalidMoveException=new InvalidMoveException();
 
   public ChessGame() {
 
@@ -81,12 +81,12 @@ public class ChessGame {
     Collection<ChessMove> validMoves=validMoves(move.getStartPosition());
     ChessPiece piece=squares.getPiece(move.getStartPosition());
     if (piece.getTeamColor() != turn) {
-      throw invalidMoveException;
+      throw new InvalidMoveException();
     }
     if (validMoves == null) {
-      throw invalidMoveException;
+      throw new InvalidMoveException();
     }else if (!validMoves.contains(move)) {
-      throw invalidMoveException;
+      throw new InvalidMoveException();
     }else {
       if (move.getPromotionPiece() != null) {
         piece=new ChessPiece(piece.getTeamColor(), move.getPromotionPiece());
@@ -195,12 +195,12 @@ public class ChessGame {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ChessGame chessGame=(ChessGame) o;
-    return turn == chessGame.turn && Objects.equals(squares, chessGame.squares) && Objects.equals(invalidMoveException, chessGame.invalidMoveException);
+    return turn == chessGame.turn && Objects.equals(squares, chessGame.squares);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(turn, squares, invalidMoveException);
+    return Objects.hash(turn, squares);
   }
 
   @Override
@@ -208,7 +208,6 @@ public class ChessGame {
     return "ChessGame{" +
             "turn=" + turn +
             ", squares=" + squares +
-            ", InvalidMoveException=" + invalidMoveException +
             '}';
   }
 }

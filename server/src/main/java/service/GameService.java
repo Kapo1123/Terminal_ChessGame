@@ -5,7 +5,10 @@ import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
-import dataAccessTests.*;
+import dataAccess.DataAccessException;
+import dataAccess.MysqlAuthDao;
+import dataAccess.MysqlGameDao;
+
 
 public class GameService {
 

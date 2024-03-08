@@ -1,4 +1,4 @@
-package dataAccessTests;
+package dataAccess;
 
 import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
@@ -7,6 +7,7 @@ import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 import chess.ChessBoard;
 import chess.ChessGame;
+import com.google.gson.Gson;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +42,6 @@ public class MysqlGameDao implements GameInterface {
   @Override
   public void joinGame(String username, Joingamerequest body) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
-
       try (var preparedStatement=conn.prepareStatement("SELECT whiteUsername,blackUsername FROM game WHERE gameID=?")) {
         preparedStatement.setInt(1, body.gameID());
         try (var rs=preparedStatement.executeQuery()) {
@@ -96,7 +96,7 @@ public class MysqlGameDao implements GameInterface {
         board.resetBoard();
         ChessGame game = new ChessGame();
         game.setBoard(board);
-        String jsonGame = "testing";
+        String jsonGame = new Gson().toJson(game);
         preparedStatement.setString(2, jsonGame);
         preparedStatement.executeUpdate();
         var resultSet = preparedStatement.getGeneratedKeys();

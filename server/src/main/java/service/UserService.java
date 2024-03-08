@@ -3,7 +3,10 @@ package service;
 import Requestclasses.Authtoken;
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
-import dataAccessTests.*;
+import dataAccess.DataAccessException;
+import dataAccess.MysqlAuthDao;
+import dataAccess.MysqlUserDao;
+
 
 import java.util.UUID;
 
