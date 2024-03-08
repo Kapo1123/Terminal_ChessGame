@@ -67,4 +67,8 @@ class MysqlGameDaoTest {
 
 
   }
+  @Test
+  public void delete_positive() throws DataAccessException {
+   game.deleteall();
+  }
 }
