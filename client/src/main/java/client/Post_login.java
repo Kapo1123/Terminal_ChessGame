@@ -5,7 +5,7 @@ import dataAccess.DataAccessException;
 import java.util.Arrays;
 
 public class Post_login {
-  public String URL;
+  public String url;
   public String eval(String input, String url) {
     try {
       var tokens = input.toLowerCase().split(" ");
@@ -13,9 +13,9 @@ public class Post_login {
       var params = Arrays.copyOfRange(tokens, 1, tokens.length);
       return switch (cmd) {
         case "create" -> create(params);
-        case "list" -> listPets();
+        case "list" -> listGame();
         case "join" -> join(params);
-        case "observe" -> listPets(params);
+        case "observe" -> observe(params);
         case "logout" -> logout();
         case "quit" -> "quit";
         default -> help();
@@ -36,4 +36,54 @@ public class Post_login {
                     """;
     return help_text;
   }
+  public String create(String[] params) throws DataAccessException{
+    try{
+      ServerFacade server = new ServerFacade(url);
+      var response = server.creategame(params);
+      return response;
+    }
+    catch(DataAccessException ex){
+      throw ex;
+    }
+
+  }
+  public String listGame(String[] params) throws DataAccessException{
+    try{
+      ServerFacade server = new ServerFacade(url);
+      var response = server.listGame(params);
+      return response;
+    }
+    catch(DataAccessException ex){
+      throw ex;
+    }
+
+  }
+  public String join(String[] params) throws DataAccessException{
+    try{
+      ServerFacade server = new ServerFacade(url);
+      var response = server.joinGame(params);
+      return response;
+    }
+    catch(DataAccessException ex){
+      throw ex;
+    }
+
+  }
+  public String observe(String[] params) throws DataAccessException{
+    return "";
+
+  }
+  public String logout() throws DataAccessException{
+    try{
+      ServerFacade server = new ServerFacade(url);
+      var response = server.logout();
+      return response;
+    }
+    catch(DataAccessException ex){
+      throw ex;
+    }
+
+  }
+
+
 }

@@ -34,14 +34,25 @@ public class Pre_login {
   public String register(String[] params) throws DataAccessException{
   try{
     ServerFacade server = new ServerFacade(url);
-    server.register(params);
-
+    var response = server.register(params);
+    return response.username() + " your authtoken is: " + response.authToken();
+  }
+  catch(DataAccessException ex){
+    throw ex;
   }
 
 
   }
 
   public String login(String[] params) throws DataAccessException{
+    try{
+      ServerFacade server = new ServerFacade(url);
+      var response = server.login(params);
+      return response;
+    }
+    catch(DataAccessException ex){
+      throw ex;
+    }
 
   }
 
