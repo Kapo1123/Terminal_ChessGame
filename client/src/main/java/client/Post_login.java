@@ -5,8 +5,8 @@ import dataAccess.DataAccessException;
 import java.util.Arrays;
 
 public class Post_login {
-  public String url;
-  public String eval(String input, String url) {
+  ServerFacade server = new ServerFacade(Repl.url);
+  public String eval(String input) {
     try {
       var tokens = input.toLowerCase().split(" ");
       var cmd = (tokens.length > 0) ? tokens[0] : "help";
@@ -17,6 +17,7 @@ public class Post_login {
         case "join" -> join(params);
         case "observe" -> observe(params);
         case "logout" -> logout();
+        case "clear" -> clear();
         case "quit" -> "quit";
         default -> help();
       };
@@ -38,20 +39,18 @@ public class Post_login {
   }
   public String create(String[] params) throws DataAccessException{
     try{
-      ServerFacade server = new ServerFacade(url);
       var response = server.creategame(params);
-      return response;
+      return "Your GameID is " + response.gameID();
     }
     catch(DataAccessException ex){
       throw ex;
     }
 
   }
-  public String listGame(String[] params) throws DataAccessException{
+  public String listGame() throws DataAccessException{
     try{
-      ServerFacade server = new ServerFacade(url);
-      var response = server.listGame(params);
-      return response;
+      var response = server.listGame();
+      return "List of game";
     }
     catch(DataAccessException ex){
       throw ex;
@@ -60,9 +59,9 @@ public class Post_login {
   }
   public String join(String[] params) throws DataAccessException{
     try{
-      ServerFacade server = new ServerFacade(url);
-      var response = server.joinGame(params);
-      return response;
+
+       server.joinGame(params);
+      return "You joined a game";
     }
     catch(DataAccessException ex){
       throw ex;
@@ -73,11 +72,22 @@ public class Post_login {
     return "";
 
   }
-  public String logout() throws DataAccessException{
+  public String logout() {
     try{
-      ServerFacade server = new ServerFacade(url);
-      var response = server.logout();
-      return response;
+
+       server.logout();
+       Repl.state = state.Pre_login;
+      return "logout successfully";
+    }
+    catch(DataAccessException ex){
+      return ex.getMessage();
+    }
+
+  }
+  public String clear() throws DataAccessException{
+    try{
+       server.clear();
+      return "clear DB";
     }
     catch(DataAccessException ex){
       throw ex;

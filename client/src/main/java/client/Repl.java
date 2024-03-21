@@ -7,7 +7,7 @@ import static ui.EscapeSequences.*;
 
 public class Repl {
   static  state state;
-  String url;
+  static String  url;
   Pre_login preLogin = new Pre_login();
   Post_login postLogin = new Post_login();
   Game_UI gameui = new Game_UI();
@@ -27,16 +27,19 @@ public class Repl {
 
       try {
         if (state == client.state.Pre_login) {
-          result=preLogin.eval(line,url);
+          result=preLogin.eval(line);
         }
         else if (state == client.state.Post_login ){
-          result=postLogin.eval(line,url);
+          result=postLogin.eval(line);
         }
-        else if (state == client.state.Game_UI) {
-          result = gameui.eval(line,url);
+//        else if (state == client.state.Game_UI) {
+//          result = gameui.eval(line,url);
+//        }
+        if (result.equals("quit")){
+          break;
         }
 
-        System.out.print(SET_BG_COLOR_BLUE + result);
+        System.out.print(  result);
       } catch (Throwable e) {
         var msg = e.toString();
         System.out.print(msg);
@@ -46,7 +49,7 @@ public class Repl {
   }
 
   private void printPrompt() {
-    System.out.print("\n" + SET_TEXT_BOLD + ">>> " + SET_BG_COLOR_GREEN);
+    System.out.print("\n" + SET_TEXT_BOLD + ">>>");
   }
 
 

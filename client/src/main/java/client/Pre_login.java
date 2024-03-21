@@ -5,10 +5,9 @@ import dataAccess.DataAccessException;
 import java.util.Arrays;
 
 public class Pre_login {
-  String url;
-  public String eval(String input, String url) {
+  ServerFacade server = new ServerFacade(Repl.url);
+  public String eval(String input) {
     try {
-      url = url;
       var tokens = input.toLowerCase().split(" ");
       var cmd = (tokens.length > 0) ? tokens[0] : "help";
       var params = Arrays.copyOfRange(tokens, 1, tokens.length);
@@ -33,7 +32,7 @@ public class Pre_login {
   }
   public String register(String[] params) throws DataAccessException{
   try{
-    ServerFacade server = new ServerFacade(url);
+
     var response = server.register(params);
     return response.username() + " your authtoken is: " + response.authToken();
   }
@@ -46,9 +45,9 @@ public class Pre_login {
 
   public String login(String[] params) throws DataAccessException{
     try{
-      ServerFacade server = new ServerFacade(url);
+
       var response = server.login(params);
-      return response;
+      return "Hello " + response.username() +" welcome to Chess Game";
     }
     catch(DataAccessException ex){
       throw ex;

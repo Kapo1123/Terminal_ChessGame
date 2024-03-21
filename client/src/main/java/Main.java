@@ -1,5 +1,6 @@
 import chess.*;
 import client.Repl;
+import ui.TicTacToe;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +12,4 @@ public class Main {
         new Repl(serverUrl).run();
     }
 
-}
 }

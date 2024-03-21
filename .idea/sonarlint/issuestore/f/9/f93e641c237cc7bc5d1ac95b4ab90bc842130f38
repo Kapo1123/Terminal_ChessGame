@@ -1,3 +1,28 @@
 
+h
+java:S1192/"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ8²Õ¿ôå1
+}
+java:S1488N"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï8¸Õ¿ôå1
+|
+java:S1488m"_Immediately throw this expression instead of assigning it to the temporary variable "response".(ˆµİ‡8½Õ¿ôå1
+u	java:S116"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ê”şÿÿÿÿ8Ø¿ôå1
+c
+java:S1075 "ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8æØ¿ôå1
+]
+java:S1075'"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8ïØ¿ôå1
+c
+java:S1075/"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8ñØ¿ôå1
+c
+java:S10754"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8óØ¿ôå1
+]
+java:S10758"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8öØ¿ôå1
+c
+java:S1075<"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8şØ¿ôå1
+c
+java:S1075A"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ8Š†Àôå1
+X
+java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8Ë“Âôå1
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ë“Âôå1
 J
-java:S1068"-Remove this unused "serverUrl" private field.(ú¯³†8¦›ÊÎå1
+java:S1068"-Remove this unused "serverUrl" private field.(ú¯³†8£Ù¿ôå1
