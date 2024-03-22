@@ -5,8 +5,8 @@ import dataAccess.DataAccessException;
 import org.junit.jupiter.api.*;
 import server.Server;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static com.google.gson.JsonParser.parseString;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -85,12 +85,46 @@ public class ServerFacadeTests {
         }, "Should be Error: unauthorized");
     }
     @Test
-    @Order(5)
+    @Order(6)
     public void JoinGame_True() throws DataAccessException {
-        String[] params={"HelloThere"};
-        var response=serverFacade.createGame(params);
-        ID=response.gameID();
-        assertNotNull(response);
+        String[] params={Integer.toString(ID),"WHITE"};
+        serverFacade.joinGame(params);
+        Assertions.assertTrue(true);
+    }
+    @Test
+    @Order(7)
+    public void JoinGame_False() throws DataAccessException {
+        String[] params={Integer.toString(ID),"WHITE"};
+        Assertions.assertThrows(DataAccessException.class, () -> {
+            serverFacade.joinGame(params);
+        }, "Should be Error: Already taken");
+    }
+    @Test
+    @Order(8)
+    public void List_True() throws DataAccessException {
+      var response = serverFacade.listGame();
+        assertEquals(1,response.games().size());
+    }
+    @Test
+    @Order(8)
+    public void List_False() throws DataAccessException {
+        var response = serverFacade.listGame();
+        assertNotEquals(0,response.games().size());
+    }
+    @Test
+    @Order(9)
+    public void Logout_True() throws DataAccessException {
+        String[] params={};
+        serverFacade.logout();
+        Assertions.assertTrue(true);
+    }
+    @Test
+    @Order(10)
+    public void Logout_True2() throws DataAccessException {
+        String[] params={"username", "password"};
+        serverFacade.login(params);
+        serverFacade.logout();
+        Assertions.assertTrue(true);
     }
 
 

@@ -1,36 +1,30 @@
 
-h
-java:S11920"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ8Ğ…ºæ1
-}
-java:S1488Q"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï8Ú…ºæ1
-c
-java:S2259$"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8´‡ºæ1
-c
-java:S2259+"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8´‡ºæ1
+a
+java:S1192."FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ
 v
-java:S3008"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ı¦ëøÿÿÿÿ8½‡ºæ1
+java:S1488O"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï
 c
-java:S1075!"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8ˆºæ1
-S
-java:S2696$"6Make the enclosing method "static" or remove this set.(Û™¨8²ˆºæ1
-]
-java:S1075("ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8»ˆºæ1
-S
-java:S2696+"6Make the enclosing method "static" or remove this set.(Û™¨8¾ˆºæ1
+java:S2259)"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8íãËÀæ1
 c
-java:S10750"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Àˆºæ1
-c
-java:S10755"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Äˆºæ1
-]
-java:S10759"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8Èˆºæ1
-c
-java:S1075="ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Êˆºæ1
-c
-java:S1075B"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ8Îˆºæ1
-]	java:S125H"<This block of commented-out lines of code should be removed.(˜‘ñüùÿÿÿÿ8èˆºæ1
-X
-java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8û‰ºæ1
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8û‰ºæ1
-J
-java:S1068"-Remove this unused "serverUrl" private field.(ú¯³†8€Šºæ1
+java:S2259""FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8îãËÀæ1
+o
+java:S3008"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ı¦ëøÿÿÿÿ
+\
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ
+L
+java:S2696""6Make the enclosing method "static" or remove this set.(Û™¨
+V
+java:S1075&"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+L
+java:S2696)"6Make the enclosing method "static" or remove this set.(Û™¨
+\
+java:S1075."ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+\
+java:S10753"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+V
+java:S10757"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+\
+java:S1075;"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+\
+java:S1075@"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ
+V	java:S125F"<This block of commented-out lines of code should be removed.(˜‘ñüùÿÿÿÿ
