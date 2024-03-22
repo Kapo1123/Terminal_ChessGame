@@ -17,16 +17,22 @@ public class Repl {
   }
   public void run(){
     System.out.println("\uD83D\uDC36 Welcome to the chess game. Sign in to start.");
-    System.out.print(preLogin.help());
 
     Scanner scanner = new Scanner(System.in);
     var result = "";
     while (!result.equals("quit")) {
+
+      if (state == client.state.Pre_login){
+        System.out.print(preLogin.help());
+      }
+      else if (state == client.state.Post_login){
+        System.out.print(postLogin.help());
+      }
       printPrompt();
       String line = scanner.nextLine();
-
       try {
         if (state == client.state.Pre_login) {
+
           result=preLogin.eval(line);
         }
         else if (state == client.state.Post_login ){

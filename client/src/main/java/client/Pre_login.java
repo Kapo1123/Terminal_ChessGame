@@ -23,6 +23,7 @@ public class Pre_login {
   }
   public String help(){
     String help_text = """
+                    
                     - register <USERNAME> <PASSWORD> <EMAIL> - to create an account
                     - login <USERNAME> <PASSWORD> - to play chess
                     - help
@@ -34,7 +35,8 @@ public class Pre_login {
   try{
 
     var response = server.register(params);
-    return response.username() + " your authtoken is: " + response.authToken();
+    Repl.state = state.Post_login;
+    return "Hello " + response.username() +" welcome to Chess Game";
   }
   catch(DataAccessException ex){
     throw ex;
@@ -45,7 +47,7 @@ public class Pre_login {
 
   public String login(String[] params) throws DataAccessException{
     try{
-
+      Repl.state = state.Post_login;
       var response = server.login(params);
       return "Hello " + response.username() +" welcome to Chess Game";
     }

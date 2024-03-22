@@ -1,28 +1,36 @@
 
 h
-java:S1192/"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ8²Õ¿ôå1
+java:S11920"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ8Ğ…ºæ1
 }
-java:S1488N"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï8¸Õ¿ôå1
-|
-java:S1488m"_Immediately throw this expression instead of assigning it to the temporary variable "response".(ˆµİ‡8½Õ¿ôå1
-u	java:S116"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ê”şÿÿÿÿ8Ø¿ôå1
+java:S1488Q"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï8Ú…ºæ1
 c
-java:S1075 "ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8æØ¿ôå1
+java:S2259$"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8´‡ºæ1
+c
+java:S2259+"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨8´‡ºæ1
+v
+java:S3008"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ı¦ëøÿÿÿÿ8½‡ºæ1
+c
+java:S1075!"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8ˆºæ1
+S
+java:S2696$"6Make the enclosing method "static" or remove this set.(Û™¨8²ˆºæ1
 ]
-java:S1075'"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8ïØ¿ôå1
+java:S1075("ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8»ˆºæ1
+S
+java:S2696+"6Make the enclosing method "static" or remove this set.(Û™¨8¾ˆºæ1
 c
-java:S1075/"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8ñØ¿ôå1
+java:S10750"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Àˆºæ1
 c
-java:S10754"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8óØ¿ôå1
+java:S10755"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Äˆºæ1
 ]
-java:S10758"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8öØ¿ôå1
+java:S10759"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8Èˆºæ1
 c
-java:S1075<"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8şØ¿ôå1
+java:S1075="ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Êˆºæ1
 c
-java:S1075A"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ8Š†Àôå1
+java:S1075B"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ8Îˆºæ1
+]	java:S125H"<This block of commented-out lines of code should be removed.(˜‘ñüùÿÿÿÿ8èˆºæ1
 X
-java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8Ë“Âôå1
+java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8û‰ºæ1
 O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ë“Âôå1
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8û‰ºæ1
 J
-java:S1068"-Remove this unused "serverUrl" private field.(ú¯³†8£Ù¿ôå1
+java:S1068"-Remove this unused "serverUrl" private field.(ú¯³†8€Šºæ1

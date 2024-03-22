@@ -1,5 +1,7 @@
 package client;
 
+import Responseclass.Games;
+import Responseclass.ListgameResponse;
 import dataAccess.DataAccessException;
 
 import java.util.Arrays;
@@ -27,6 +29,7 @@ public class Post_login {
   }
   public String help(){
     String help_text = """
+                    
                     - create <NAME> -a game
                     - list -games
                     - join <ID> [WHITE|BLACK|<empty>] -a game
@@ -48,9 +51,14 @@ public class Post_login {
 
   }
   public String listGame() throws DataAccessException{
+    String output="\n";
     try{
-      var response = server.listGame();
-      return "List of game";
+      ListgameResponse response = server.listGame();
+      for (Games game : response.games()){
+        output+= ("Name: "+ game.gameName() +" ID: " + game.gameID()+ " WhitePlayer: " + game.whiteUsername() + " BlackPlayer: " + game.blackUsername());
+        output +="\n";
+      }
+      return output;
     }
     catch(DataAccessException ex){
       throw ex;

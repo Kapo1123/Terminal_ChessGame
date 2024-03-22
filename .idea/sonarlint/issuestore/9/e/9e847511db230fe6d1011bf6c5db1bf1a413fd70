@@ -1,9 +1,13 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8Ö‹˜ôå1
-ƒ
-java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8Ş‹˜ôå1
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(å­»8ß‹˜ôå1
-y
-java:S2737("WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8ƒ˜ôå1
-y
-java:S27375"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8„˜ôå1
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ
+|
+java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(å­»
+r
+java:S2737*"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+Q
+java:S2696&"6Make the enclosing method "static" or remove this set.(„šÔäüÿÿÿÿ
+r
+java:S27377"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+Q
+java:S26962"6Make the enclosing method "static" or remove this set.(„šÔäüÿÿÿÿ

@@ -18,11 +18,12 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Map;
 
 import static java.lang.Integer.parseInt;
 
 public class ServerFacade {
-  private String Authtoken;
+  static String Authtoken;
   private final String serverUrl;
 
   public ServerFacade(String url) {
@@ -58,7 +59,7 @@ public class ServerFacade {
   }
   public void  joinGame(String[] params) throws DataAccessException {
     var path = "/game";
-    Joingamerequest request = new Joingamerequest(params[0], parseInt(params[1]));
+    Joingamerequest request = new Joingamerequest(params[1],parseInt(params[0]));
     this.makeRequest("PUT", path, request, null);
   }
   public void clear() throws DataAccessException{
@@ -68,13 +69,15 @@ public class ServerFacade {
   private <T> T makeRequest(String method, String path, Object request , Class<T> responseClass) throws DataAccessException {
     try{
     URI uri = new URI(Repl.url+path);
+//      URI uri = new URI("http://localhost:8080/game");
     HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
     http.setRequestMethod(method);
-    http.setDoOutput(true);
+      if (Authtoken != null){
+        http.addRequestProperty("authorization", Authtoken);
+      }
     writeRequestBody(request, http);
-    if (Authtoken != null){
-    http.addRequestProperty("authorization", Authtoken);
-    }
+    http.connect();
+
     T response =  readResponseBody(http,responseClass);
     return response;
     }
@@ -85,6 +88,7 @@ public class ServerFacade {
   }
   private static void writeRequestBody(Object request, HttpURLConnection http) throws IOException {
     if (request != null) {
+      http.setDoOutput(true);
       var jsonBody = new Gson().toJson(request);
       try (var outputStream = http.getOutputStream()) {
         outputStream.write(jsonBody.getBytes());
@@ -99,15 +103,20 @@ public class ServerFacade {
 
       InputStream respBody=http.getInputStream();
         InputStreamReader inputStreamReader=new InputStreamReader(respBody);
-        responseBody=new Gson().fromJson(inputStreamReader, responseClass);
+        if(responseClass != null) {
+          responseBody=new Gson().fromJson(inputStreamReader, responseClass);
+        }else{
+          return null;
+        }
+
 
       return responseBody;
     }
     else{
        InputStream respBody=http.getErrorStream();
         InputStreamReader inputStreamReader=new InputStreamReader(respBody);
-        var response=new Gson().fromJson(inputStreamReader, DataAccessException.class);
-        throw response;
+        var response=new Gson().fromJson(inputStreamReader, Map.class);
+        throw new DataAccessException((String) response.get("message"));
       }
     }
     catch(IOException ex){
