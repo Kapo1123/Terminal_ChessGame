@@ -3,6 +3,7 @@ package client;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import dataAccess.DataAccessException;
+import ui.chess_board;
 
 import java.util.Arrays;
 
@@ -67,16 +68,19 @@ public class Post_login {
   }
   public String join(String[] params) throws DataAccessException{
     try{
-
-       server.joinGame(params);
-      return "You joined a game";
+        server.joinGame(params);
+        chess_board board = new chess_board();
+        board.main();
+        return "You joined a game";
     }
     catch(DataAccessException ex){
-      throw ex;
+        throw ex;
     }
 
   }
   public String observe(String[] params) throws DataAccessException{
+    chess_board board = new chess_board();
+    board.main();
     return "";
 
   }

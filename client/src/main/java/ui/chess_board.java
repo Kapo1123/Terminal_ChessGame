@@ -25,7 +25,7 @@ public class chess_board {
 
   static ArrayList<String> letters;
 
-  public static void main(String[] args) {
+  public static void main() {
 
     var out=new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
@@ -43,6 +43,8 @@ public class chess_board {
 
     drawWhite(out);
     drawBlack(out);
+    out.print(RESET_BG_COLOR);
+    out.print(SET_TEXT_COLOR_WHITE);
 
 //    drawTicTacToeBoard(out);
 //
