@@ -51,7 +51,7 @@ public class MysqlGameDao implements GameInterface {
             if(body.playerColor() ==null){
               return;
             }
-            else if (body.playerColor().equals("WHITE")){
+            else if (body.playerColor().equalsIgnoreCase("WHITE")){
               if(whiteUsername != null){
                 throw new DataAccessException("Error: already taken");
               }

@@ -14,10 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.Map;
 
 import static java.lang.Integer.parseInt;
@@ -44,7 +42,7 @@ public class ServerFacade {
     return response;
   }
 
-  public Newgameresponse creategame(String[] params) throws DataAccessException {
+  public Newgameresponse createGame(String[] params) throws DataAccessException {
     var path = "/game";
     GameRequest request = new GameRequest(params[0]);
     return this.makeRequest("POST", path, request, Newgameresponse.class);
@@ -68,7 +66,7 @@ public class ServerFacade {
   }
   private <T> T makeRequest(String method, String path, Object request , Class<T> responseClass) throws DataAccessException {
     try{
-    URI uri = new URI(Repl.url+path);
+    URI uri = new URI(serverUrl+path);
 //      URI uri = new URI("http://localhost:8080/game");
     HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
     http.setRequestMethod(method);

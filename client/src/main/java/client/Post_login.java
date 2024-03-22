@@ -43,7 +43,7 @@ public class Post_login {
   }
   public String create(String[] params) throws DataAccessException{
     try{
-      var response = server.creategame(params);
+      var response = server.createGame(params);
       return "Your GameID is " + response.gameID();
     }
     catch(DataAccessException ex){
