@@ -47,8 +47,8 @@ public class Pre_login {
 
   public String login(String[] params) throws DataAccessException{
     try{
-      Repl.state = state.Post_login;
       var response = server.login(params);
+      Repl.state = state.Post_login;
       return "Hello " + response.username() +" welcome to Chess Game";
     }
     catch(DataAccessException ex){

@@ -99,6 +99,7 @@ public class Post_login {
   public String clear() throws DataAccessException{
     try{
        server.clear();
+      Repl.state = state.Pre_login;
       return "clear DB";
     }
     catch(DataAccessException ex){

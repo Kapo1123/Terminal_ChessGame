@@ -8,12 +8,14 @@ import static ui.EscapeSequences.*;
 public class Repl {
   static  state state;
   static String  url;
-  Pre_login preLogin = new Pre_login();
-  Post_login postLogin = new Post_login();
+  Pre_login preLogin;
+  Post_login postLogin;
   Game_UI gameui = new Game_UI();
   public Repl(String serverUrl) {
     state = client.state.Pre_login;
     url = serverUrl;
+    preLogin = new Pre_login();
+    postLogin = new Post_login();
   }
   public void run(){
     System.out.println("\uD83D\uDC36 Welcome to the chess game. Sign in to start.");

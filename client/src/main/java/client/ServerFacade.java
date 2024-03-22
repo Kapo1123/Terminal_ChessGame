@@ -22,7 +22,7 @@ import static java.lang.Integer.parseInt;
 
 public class ServerFacade {
   static String Authtoken;
-  private final String serverUrl;
+  static String serverUrl;
 
   public ServerFacade(String url) {
     serverUrl = url;
