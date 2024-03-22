@@ -1,21 +1,21 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8¿ˆ–ôå1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8ú»Ûžæ1
+>
+java:S1643:"Use a StringBuilder instead.(ÄÍÊœÿÿÿÿÿ8¼Ûžæ1
+>
+java:S1643;"Use a StringBuilder instead.(¿òêÜþÿÿÿÿ8ô²Ýžæ1
 ƒ
-java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8Æˆ–ôå1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ð‰ïøÿÿÿÿ8Çˆ–ôå1
+java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8…¼Ûžæ1
+n	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ð‰ïøÿÿÿÿ8‰¼Ûžæ1
 y
-java:S2737."WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8ã‰–ôå1
-Y
-java:S18544"<Remove this useless assignment to local variable "response".(ØîÆú8ä‰–ôå1
+java:S27371"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8Þ½Ûžæ1
 y
-java:S27378"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8å‰–ôå1
-J
-java:S14814"-Remove this unused "response" local variable.(ØîÆú8å‰–ôå1
+java:S2737@"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8ùÎÛžæ1
 y
-java:S2737C"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8æ‰–ôå1
+java:S2737K"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8üÎÛžæ1
 O
-java:S1172G"-Remove this unused method parameter "params".(¸Š¦Áþÿÿÿÿ8è‰–ôå1
+java:S1172O"-Remove this unused method parameter "params".(¸Š¦Áþÿÿÿÿ8ýÎÛžæ1
 X
-java:S2696O"6Make the enclosing method "static" or remove this set.(ê€˜Ïýÿÿÿÿ8ƒŽ­ôå1
+java:S2696W"6Make the enclosing method "static" or remove this set.(ê€˜Ïýÿÿÿÿ8þÎÛžæ1
 y
-java:S2737]"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8Ò»®ôå1
+java:S2737e"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îþÿÿÿÿ8€ÏÛžæ1

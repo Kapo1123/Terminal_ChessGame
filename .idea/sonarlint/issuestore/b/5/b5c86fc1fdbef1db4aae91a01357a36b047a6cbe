@@ -1,4 +1,4 @@
 
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ê¡÷†8ò˚°ÕÂ1
-_
-java:S2094"BRemove this empty class, write its code or make it an "interface".(ê¡÷†8ô˚°ÕÂ1
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ê¡÷†
+X
+java:S2094"BRemove this empty class, write its code or make it an "interface".(ê¡÷†

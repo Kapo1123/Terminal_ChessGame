@@ -1,6 +1,14 @@
 
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–ΐμ΅ώÿÿÿÿ8φιτνε1
-L	java:S106
-"+Replace this use of System.out by a logger.(ΜρÒάÿÿÿÿÿ8Εκτνε1
-X	java:S125"<This block of commented-out lines of code should be removed.(ήθυ·8Γϋÿνε1
-]	java:S125"<This block of commented-out lines of code should be removed.(©Ήτήώÿÿÿÿ8ωέÿνε1
+e
+java:S1192G"HDefine a constant instead of duplicating this literal "\u2006" 12 times.( ¨ƒ8Φμώζ1
+i
+java:S1192<"GDefine a constant instead of duplicating this literal "\u2003" 8 times.(ρ„®†ϊÿÿÿÿ8ήτυζ1
+s
+java:S1104"QMake board a static final constant or non-public and provide accessors if needed.(ΛνΊύÿÿÿÿ8ετυζ1
+M
+java:S1444"+Make this "public static board" field final(ΛνΊύÿÿÿÿ8ετυζ1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–ΐμ΅ώÿÿÿÿ8ζτυζ1
+L	java:S106"+Replace this use of System.out by a logger.(ΜρÒάÿÿÿÿÿ8Ρφυζ1
+]	java:S125/"<This block of commented-out lines of code should be removed.(©Ήτήώÿÿÿÿ8βφυζ1
+u
+java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( ιΣÿώÿÿÿÿ8Ιξώζ1

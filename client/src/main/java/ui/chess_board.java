@@ -8,6 +8,9 @@ import chess.ChessPosition;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static ui.EscapeSequences.*;
 
 import static ui.EscapeSequences.ERASE_SCREEN;
@@ -83,29 +86,30 @@ public class chess_board {
         out.println();
       }
   public static void drawBlack(PrintStream out) {
+    List<String> letters = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
     for (int i=9; i >= 0; i--) {
       if (i == 0 || i == 9) {
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print(EscapeSequences.EMPTY);
-        for (int d = letters.size() - 1; d >= 0; d-- ){
+        for (String letter : letters){
           out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
           out.print("\u2003");
           out.print("\u2003");
           out.print(EscapeSequences.SET_TEXT_COLOR_BLACK);
-          out.print(letters.get(i));
+          out.print(letter);
           out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
           out.print("\u2003");
           out.print("\u2003");
         }
         out.print(EscapeSequences.EMPTY);
-        out.println();
+
       }else {
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print("\u2006");
         out.print(i);
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print("\u2006");
-        for (int k=1; k < 9; k++) {
+        for (int k=8; k >0; k--) {
           drawpiece(out, i, k);
         }
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
@@ -124,13 +128,14 @@ public class chess_board {
 
   public static void drawpiece(PrintStream out, int row, int col) {
     var piece=board.getPiece(new ChessPosition(row, col));
-    if (col % 2 == 1) { //white color piece
+    int doc = col + row;
+    if (doc % 2 == 0) { //white color piece
       out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
       out.print("\u2006");
       out.print(selectpiece(piece,out));
       out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
       out.print("\u2006");
-    }else if (col % 2 == 0) {
+    }else if (doc % 2 == 1) {
       out.print(SET_BG_COLOR_BLACK);
       out.print("\u2006");
       out.print(selectpiece(piece,out));
