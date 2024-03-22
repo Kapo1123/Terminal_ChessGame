@@ -1,21 +1,32 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8ú»Ûæ1
+r	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8ˆæêŸæ1
 >
-java:S1643:"Use a StringBuilder instead.(ÄÍÊœÿÿÿÿÿ8¼Ûæ1
+java:S1643;"Use a StringBuilder instead.(ÄÍÊœÿÿÿÿÿ8ŒæêŸæ1
 >
-java:S1643;"Use a StringBuilder instead.(¿òêÜşÿÿÿÿ8ô²İæ1
+java:S1643<"Use a StringBuilder instead.(¿òêÜşÿÿÿÿ8ŒæêŸæ1
 ƒ
-java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8…¼Ûæ1
-n	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ğ‰ïøÿÿÿÿ8‰¼Ûæ1
+java:S1488 "aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8æêŸæ1
+n	java:S101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ğ‰ïøÿÿÿÿ8æêŸæ1
 y
-java:S27371"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8Ş½Ûæ1
+java:S27372"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8¢çêŸæ1
 y
-java:S2737@"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8ùÎÛæ1
+java:S2737A"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8£çêŸæ1
 y
-java:S2737K"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8üÎÛæ1
+java:S2737M"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8¦çêŸæ1
+M
+java:S2440H"+Remove this instantiation of "chess_board".(şÈãÅùÿÿÿÿ8ªçêŸæ1
+R
+java:S2209I"5Change this instance-reference to a static reference.(õÀ8¼çêŸæ1
+™
+java:S1130Q"wRemove the declaration of thrown exception 'dataAccess.DataAccessException', as it cannot be thrown from method's body.(¸Š¦Áşÿÿÿÿ8§çêŸæ1
 O
-java:S1172O"-Remove this unused method parameter "params".(¸Š¦Áşÿÿÿÿ8ıÎÛæ1
+java:S1172Q"-Remove this unused method parameter "params".(¸Š¦Áşÿÿÿÿ8¨çêŸæ1
+M
+java:S2440R"+Remove this instantiation of "chess_board".(şÈãÅùÿÿÿÿ8Ô¨íŸæ1
+R
+java:S2209S"5Change this instance-reference to a static reference.(õÀ8Ô¨íŸæ1
 X
-java:S2696W"6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ8şÎÛæ1
+java:S2696["6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ8¾çêŸæ1
 y
-java:S2737e"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8€ÏÛæ1
+java:S2737i"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8¿çêŸæ1

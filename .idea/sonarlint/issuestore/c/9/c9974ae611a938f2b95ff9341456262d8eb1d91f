@@ -1,14 +1,16 @@
 
 e
-java:S1192G"HDefine a constant instead of duplicating this literal "\u2006" 12 times.( ¨ƒ8Öìşæ1
+java:S1192I"HDefine a constant instead of duplicating this literal "\u2006" 12 times.( ¨ƒ8œÔğŸæ1
 i
-java:S1192<"GDefine a constant instead of duplicating this literal "\u2003" 8 times.(ñ„®†úÿÿÿÿ8Şôõæ1
+java:S1192>"GDefine a constant instead of duplicating this literal "\u2003" 8 times.(ñ„®†úÿÿÿÿ8ŸÔğŸæ1
 s
-java:S1104"QMake board a static final constant or non-public and provide accessors if needed.(Ëíºıÿÿÿÿ8åôõæ1
+java:S1104"QMake board a static final constant or non-public and provide accessors if needed.(Ëíºıÿÿÿÿ8§ÔğŸæ1
 M
-java:S1444"+Make this "public static board" field final(Ëíºıÿÿÿÿ8åôõæ1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–Àì¡şÿÿÿÿ8æôõæ1
-L	java:S106"+Replace this use of System.out by a logger.(ÌñÒÜÿÿÿÿÿ8Ñöõæ1
-]	java:S125/"<This block of commented-out lines of code should be removed.(©¹ôŞşÿÿÿÿ8âöõæ1
+java:S1444"+Make this "public static board" field final(Ëíºıÿÿÿÿ8¨ÔğŸæ1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–Àì¡şÿÿÿÿ8©ÔğŸæ1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(–Àì¡şÿÿÿÿ8ôÖğŸæ1
+L	java:S106"+Replace this use of System.out by a logger.(ÌñÒÜÿÿÿÿÿ8ØğŸæ1
+]	java:S1251"<This block of commented-out lines of code should be removed.(©¹ôŞşÿÿÿÿ8®ØğŸæ1
 u
-java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( éÓÿşÿÿÿÿ8Éîşæ1
+java:S3776–"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( éÓÿşÿÿÿÿ8¸ÙğŸæ1
