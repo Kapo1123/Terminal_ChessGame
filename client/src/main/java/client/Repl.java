@@ -1,6 +1,5 @@
 package client;
 
-import java.net.URL;
 import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
@@ -55,6 +54,13 @@ public class Repl {
     }
     System.out.println();
   }
+
+  public void notify(String notification) {
+    System.out.println( notification);
+    printPrompt();
+  }
+
+
 
   private void printPrompt() {
     System.out.print("\n" + SET_TEXT_BOLD + ">>>");
