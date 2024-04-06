@@ -46,3 +46,19 @@ a
 :
 
 client.iml,8/1/81276a78d81379d1349e1ff0f16babcbe4db95cc
+f
+6src/main/java/serverMessages_classes/Notification.java,6/1/61a3ff9f0bde312e10e2fa85af548ed5f5cf199e
+c
+3src/main/java/serverMessages_classes/Load_Game.java,d/2/d294924e5123050b836d4c12e5382dcc864e3872
+g
+7src/main/java/serverMessages_classes/Error_message.java,f/2/f289423cece69a31a1824f333f7e549e8e0d5f8c
+R
+"src/main/java/chess/ChessGame.java,7/3/73bf4fdc57c71c6f70f600b9fea515a646b27eef
+U
+%src/main/java/dataAccess/GameDAo.java,c/3/c38ce1099f45bf325b002c323060855cc368405d
+Z
+*src/main/java/dataAccess/MysqlGameDao.java,e/4/e4180308a169b585373862d4b22cb60770937926
+Q
+!src/main/java/client/Game_UI.java,b/5/b5c86fc1fdbef1db4aae91a01357a36b047a6cbe
+S
+#src/main/java/client/Pre_login.java,9/e/9e847511db230fe6d1011bf6c5db1bf1a413fd70

@@ -17,6 +17,7 @@ import static ui.EscapeSequences.ERASE_SCREEN;
 import static ui.EscapeSequences.SET_BG_COLOR_BLACK;
 
 public class chess_board {
+  public static PrintStream out=new PrintStream(System.out, true, StandardCharsets.UTF_8);
   public static ChessBoard board=new ChessBoard();
 
   static {
@@ -27,7 +28,6 @@ public class chess_board {
 
   public static void main() {
 
-    var out=new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
     out.print(ERASE_SCREEN);
 
@@ -41,8 +41,8 @@ public class chess_board {
     letters.add("g");
     letters.add("h");
 
-    drawWhite(out);
-    drawBlack(out);
+//    drawWhite(out);
+//    drawBlack(out);
     out.print(RESET_BG_COLOR);
     out.print(SET_TEXT_COLOR_WHITE);
 
@@ -86,6 +86,8 @@ public class chess_board {
         out.println();
         }
         out.println();
+        out.print(RESET_BG_COLOR);
+        out.print(SET_TEXT_COLOR_WHITE);
       }
   public static void drawBlack(PrintStream out) {
     List<String> letters = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
@@ -123,6 +125,8 @@ public class chess_board {
       out.println();
     }
     out.println();
+    out.print(RESET_BG_COLOR);
+    out.print(SET_TEXT_COLOR_WHITE);
   }
 
 

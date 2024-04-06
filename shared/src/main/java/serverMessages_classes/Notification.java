@@ -1,12 +1,12 @@
-package serverMessages;
+package serverMessages_classes;
 
 import webSocketMessages.serverMessages.ServerMessage;
 
-public class Load_Game extends ServerMessage {
+public class Notification extends ServerMessage {
   private String messageContent; // Additional field for notification message content
 
-  public Load_Game(String messageContent) {
-    super(ServerMessageType.ERROR); // Call superclass constructor
+  public Notification(String messageContent) {
+    super(ServerMessageType.NOTIFICATION); // Call superclass constructor
     this.messageContent = messageContent;
   }
 
@@ -19,3 +19,4 @@ public class Load_Game extends ServerMessage {
     this.messageContent = messageContent;
   }
 }
+
