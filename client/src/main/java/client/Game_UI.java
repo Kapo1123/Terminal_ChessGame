@@ -3,15 +3,23 @@ package client;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import chess.ChessGame;
+import chess.ChessMove;
+import chess.ChessPosition;
+import chess.InvalidMoveException;
 import dataAccess.DataAccessException;
 import ui.chess_board;
 
 import java.util.Arrays;
+import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
 
 public class Game_UI {
   websocket.WebSocketFacade server;
   ChessGame.TeamColor color;
+  Integer GameId;
   chess_board board = new chess_board();
+  ChessGame game = new ChessGame();
   public String eval(String input) {
 
     try {
@@ -19,11 +27,11 @@ public class Game_UI {
       var cmd = (tokens.length > 0) ? tokens[0] : "help";
       var params = Arrays.copyOfRange(tokens, 1, tokens.length);
       return switch (cmd) {
-        case "redraw" -> redraw(params);
-        case "leave" -> Leave();
+        case "redraw" -> redraw();
+        case "leave" -> Leave(params);
         case "makeMove" -> MakeMove(params);
         case "resign" -> Resign(params);
-        case "valid_moves" -> Valid_moves();
+        case "valid_moves" -> Valid_moves(params);
         default -> help();
       };
     } catch (DataAccessException ex) {
@@ -37,12 +45,12 @@ public class Game_UI {
                     - Leave -return to main meau
                     - MakeMove rowcol rowcol  ex: 74 47
                     - Resign 
-                    - Valid_moves
+                    - Valid_moves rowcol ex 13
                     - Help 
                     """;
     return help_text;
   }
-  public void redraw(String[] params) throws DataAccessException{
+  public String redraw() throws DataAccessException{
 
     if (color.equals( ChessGame.TeamColor.BLACK)) {
       chess_board.drawBlack(board.out);
@@ -50,19 +58,17 @@ public class Game_UI {
     else {
       chess_board.drawWhite(board.out);
     }
+    return "";
     }
 
 
 
-  public String Leave() throws DataAccessException{
+  public String Leave(String[] params) throws DataAccessException{
     String output="\n";
     try{
-      ListgameResponse response = server.listGame();
-      for (Games game : response.games()){
-        output+= ("Name: "+ game.gameName() +" ID: " + game.gameID()+ " WhitePlayer: " + game.whiteUsername() + " BlackPlayer: " + game.blackUsername());
-        output +="\n";
-      }
-      return output;
+      ListgameResponse response = server.leave(GameId);
+      Repl.state = state.Post_login;
+      return "You have successfully left the game";
     }
     catch(DataAccessException ex){
       throw ex;
@@ -71,10 +77,17 @@ public class Game_UI {
   }
   public String MakeMove(String[] params) throws DataAccessException{
     try{
-      server.joinGame(params);
-      chess_board board = new chess_board();
-      board.main();
-      return "You joined a game";
+      var start = params[0].toLowerCase().split("");
+      var end = params[1].toLowerCase().split("");
+      try{
+
+        game.makeMove(new ChessMove(new ChessPosition(parseInt(start[0]),parseInt(start[1])),(new ChessPosition(parseInt(end[0]),parseInt(end[1]))),null));
+
+      } catch (InvalidMoveException e) {
+        return e.getMessage();
+      }
+      server.MakeMove(GameId,start,end);
+      return redraw();
     }
     catch(DataAccessException ex){
       throw ex;
@@ -82,35 +95,29 @@ public class Game_UI {
 
   }
   public String Resign(String[] params) throws DataAccessException{
-    chess_board board = new chess_board();
-    board.main();
+
+    while (true) {
+      System.out.println("You are resigning the game  \"yes\" to continue and \"no\" to return");
+      Scanner scanner=new Scanner(System.in);
+      String line=scanner.nextLine();
+      if (line.toLowerCase() != "yes") {
+        server.resign(GameId);
+        Repl.state = state.Post_login;
+        return "You have successfully left the game";
+      }else if (line.toLowerCase() != "no") {
+        return "";
+      }
+    }
+
+  }
+  public String Valid_moves(String[] params) {
+    var start = params[0].toLowerCase().split("");
+    var list = game.validMoves(new ChessPosition(parseInt(start[0]),parseInt(start[1])));
     return "";
 
   }
-  public String Valid_moves() {
-    try{
 
-      server.logout();
-      Repl.state = state.Pre_login;
-      return "logout successfully";
-    }
-    catch(DataAccessException ex){
-      return ex.getMessage();
-    }
-
-  }
-  public String clear() throws DataAccessException{
-    try{
-      server.clear();
-      Repl.state = state.Pre_login;
-      return "clear DB";
-    }
-    catch(DataAccessException ex){
-      throw ex;
-    }
-
-  }
 
 
 }
-}
+

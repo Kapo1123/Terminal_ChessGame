@@ -23,6 +23,9 @@ public class chess_board {
   static {
     board.resetBoard();
   }
+  public  chess_board (ChessGame game){
+    board = game.getBoard();
+  }
 
   static ArrayList<String> letters;
 

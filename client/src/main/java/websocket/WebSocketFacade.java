@@ -44,14 +44,14 @@ public class WebSocketFacade extends Endpoint {
     public void onOpen(Session session, EndpointConfig endpointConfig) {
     }
 
-//    public void enterPetShop(String visitorName) throws DataAccessException {
-//        try {
-//            var action = new UserGameCommand(UserGameCommand.Type.ENTER, visitorName);
-//            this.session.getBasicRemote().sendText(new Gson().toJson(action));
-//        } catch (IOException ex) {
-//            throw new ResponseException(500, ex.getMessage());
-//        }
-//    }
+    public void leave(Integer GameID) throws DataAccessException {
+        try {
+            var action = new UserGameCommand(UserGameCommand.CommandType.LEAVE, GameID);
+            this.session.getBasicRemote().sendText(new Gson().toJson(action));
+        } catch (IOException ex) {
+            throw new ResponseException(500, ex.getMessage());
+        }
+    }
 //
 //    public void leavePetShop(String visitorName) throws ResponseException {
 //        try {
