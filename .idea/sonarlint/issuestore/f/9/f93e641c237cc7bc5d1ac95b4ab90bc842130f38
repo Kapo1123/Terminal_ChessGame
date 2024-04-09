@@ -1,0 +1,32 @@
+
+a
+java:S1192."FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿ
+v
+java:S1488O"`Immediately return this expression instead of assigning it to the temporary variable "response".(Ø†»ï
+\
+java:S2259)"FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨
+\
+java:S2259""FA "NullPointerException" could be thrown; "response" is nullable here.(Û™¨
+o
+java:S3008"TRename this field "Authtoken" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ı¦ëøÿÿÿÿ
+<
+java:S3010"&Remove this assignment of "serverUrl".(µÂá
+\
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ
+L
+java:S2696""6Make the enclosing method "static" or remove this set.(Û™¨
+V
+java:S1075&"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+L
+java:S2696)"6Make the enclosing method "static" or remove this set.(Û™¨
+\
+java:S1075."ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+\
+java:S10753"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+V
+java:S10757"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+\
+java:S1075;"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ
+\
+java:S1075@"ARefactor your code to get this URI from a customizable parameter.(¥íËÎÿÿÿÿÿ
+V	java:S125F"<This block of commented-out lines of code should be removed.(˜‘ñüùÿÿÿÿ

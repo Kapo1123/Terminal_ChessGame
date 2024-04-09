@@ -1,0 +1,44 @@
+
+W
+java:S1141U"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¿½°€ì1
+r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8Å½°€ì1
+r	java:S117Q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑÚ™©øÿÿÿÿ8È½°€ì1
+r	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”´ø¦úÿÿÿÿ8Ê½°€ì1
+ƒ
+java:S1488*"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8Ö½°€ì1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÁÖ 8Ù½°€ì1
+^
+java:S4973j"<Strings and Boxed types should be compared using "equals()".(†ßÜ øÿÿÿÿ8æ½°€ì1
+Y
+java:S4973n"<Strings and Boxed types should be compared using "equals()".(Ÿè…Â8ç½°€ì1
+n
+java:S3008"QRename this field "GameId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï¯ë©8øã€ì1
+H
+java:S2440"+Remove this instantiation of "chess_board".(²²8ÅòÊ€ì1
+™
+java:S11305"wRemove the declaration of thrown exception 'dataAccess.DataAccessException', as it cannot be thrown from method's body.(¦¡²Çşÿÿÿÿ8µ¿°€ì1
+o	java:S100B"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë…×Öøÿÿÿÿ8¹¿°€ì1
+W
+java:S1854C":Remove this useless assignment to local variable "output".(î…éò8¹¿°€ì1
+O
+java:S1172B"-Remove this unused method parameter "params".(Ë…×Öøÿÿÿÿ8»¿°€ì1
+H
+java:S1481C"+Remove this unused "output" local variable.(î…éò8¼¿°€ì1
+y
+java:S2737J"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8¼¿°€ì1
+X
+java:S2696F"6Make the enclosing method "static" or remove this set.(„šÔäüÿÿÿÿ8¼¿°€ì1
+o	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë™Êøıÿÿÿÿ8½¿°€ì1
+y
+java:S2737`"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8¿¿°€ì1
+j	java:S100d"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à£‚8Ã¿°€ì1
+J
+java:S1172d"-Remove this unused method parameter "params".(à£‚8Ä¿°€ì1
+G	java:S106g"+Replace this use of System.out by a logger.(åä”¥8Ä¿°€ì1
+X
+java:S2696l"6Make the enclosing method "static" or remove this set.(„šÔäüÿÿÿÿ8Ê¿°€ì1
+j	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»á¿’8Ê¿°€ì1
+U
+java:S1854v"8Remove this useless assignment to local variable "list".(¥ ñ÷8Ê¿°€ì1
+F
+java:S1481v")Remove this unused "list" local variable.(¥ ñ÷8Ì¿°€ì1
