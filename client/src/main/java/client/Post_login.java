@@ -2,12 +2,23 @@ package client;
 
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
+import chess.ChessGame;
 import dataAccess.DataAccessException;
 import ui.chess_board;
+import websocket.NotificationHandler;
+import websocket.WebSocketFacade;
 
 import java.util.Arrays;
 
+import static client.ServerFacade.Authtoken;
+import static java.lang.Integer.parseInt;
+
 public class Post_login {
+  private NotificationHandler notificationHandler;
+
+  public Post_login(NotificationHandler notificationHandler){
+    this.notificationHandler = notificationHandler;
+  }
   ServerFacade server = new ServerFacade(Repl.url);
   public String eval(String input) {
     try {
@@ -69,8 +80,22 @@ public class Post_login {
   public String join(String[] params) throws DataAccessException{
     try{
         server.joinGame(params);
-        chess_board board = new chess_board();
-        board.main();
+//        chess_board board = new chess_board();
+//        board.main();
+        Integer GameID = parseInt(params[0]);
+        ChessGame.TeamColor player_color =null;
+        if (params[1].equalsIgnoreCase("white")) {
+           player_color=(ChessGame.TeamColor.WHITE);
+        }
+        else{
+           player_color =(ChessGame.TeamColor.BLACK);
+        }
+      WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler,Authtoken);
+      webserver.Join_Player(GameID,player_color);
+      Repl.gameUi.color = player_color;
+      Repl.gameUi.GameId = GameID;
+      Repl.gameUi.server = webserver;
+
         return "You joined a game";
     }
     catch(DataAccessException ex){
@@ -79,8 +104,14 @@ public class Post_login {
 
   }
   public String observe(String[] params) throws DataAccessException{
-    chess_board board = new chess_board();
-    board.main();
+    try {
+      Integer GameID=parseInt(params[0]);
+      ChessGame.TeamColor player_color=ChessGame.TeamColor.WHITE;
+      WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, Authtoken);
+      webserver.Join_Observer(GameID);
+    } catch(DataAccessException ex){
+      throw ex;
+    }
     return "";
 
   }

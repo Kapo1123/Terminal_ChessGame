@@ -1,21 +1,27 @@
 package client;
 
+import webSocketMessages.serverMessages.ServerMessage;
+import websocket.NotificationHandler;
+
 import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
 
-public class Repl {
+public class Repl implements NotificationHandler{
   static  state state;
   static String  url;
   Pre_login preLogin;
   Post_login postLogin;
-  Game_UI gameui = new Game_UI();
-  public Repl(String serverUrl) {
-    state = client.state.Pre_login;
-    url = serverUrl;
-    preLogin = new Pre_login();
-    postLogin = new Post_login();
-  }
+  static Game_UI gameUi = new Game_UI();
+
+    public Repl(String serverUrl)
+    {
+      state=client.state.Pre_login;
+      url=serverUrl;
+      preLogin=new Pre_login();
+      postLogin=new Post_login(this);
+    }
+
   public void run(){
     System.out.println("\uD83D\uDC36 Welcome to the chess game. Sign in to start.");
 
@@ -55,10 +61,6 @@ public class Repl {
     System.out.println();
   }
 
-  public void notify(String notification) {
-    System.out.println( notification);
-    printPrompt();
-  }
 
 
 
@@ -67,4 +69,9 @@ public class Repl {
   }
 
 
+  @Override
+  public void notify(ServerMessage notification) {
+    System.out.println( notification);
+    printPrompt();
+  }
 }

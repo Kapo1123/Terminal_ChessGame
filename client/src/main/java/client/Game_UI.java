@@ -15,11 +15,11 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Game_UI {
-  websocket.WebSocketFacade server;
-  ChessGame.TeamColor color;
-  Integer GameId;
-  chess_board board = new chess_board();
-  ChessGame game = new ChessGame();
+  static websocket.WebSocketFacade server;
+  static ChessGame.TeamColor color;
+  static Integer GameId;
+  static ChessGame game;
+  chess_board board = new chess_board(game);
   public String eval(String input) {
 
     try {
@@ -66,7 +66,7 @@ public class Game_UI {
   public String Leave(String[] params) throws DataAccessException{
     String output="\n";
     try{
-      ListgameResponse response = server.leave(GameId);
+      server.Leave(GameId);
       Repl.state = state.Post_login;
       return "You have successfully left the game";
     }
@@ -78,15 +78,18 @@ public class Game_UI {
   public String MakeMove(String[] params) throws DataAccessException{
     try{
       var start = params[0].toLowerCase().split("");
+      var start_position = new ChessPosition(parseInt(start[0]),parseInt(start[1]));
       var end = params[1].toLowerCase().split("");
+      var end_position = new ChessPosition(parseInt(end[0]),parseInt(end[1]));
+      var chesemove = new ChessMove(start_position,end_position,null);
       try{
 
-        game.makeMove(new ChessMove(new ChessPosition(parseInt(start[0]),parseInt(start[1])),(new ChessPosition(parseInt(end[0]),parseInt(end[1]))),null));
+        game.makeMove(chesemove);
 
       } catch (InvalidMoveException e) {
         return e.getMessage();
       }
-      server.MakeMove(GameId,start,end);
+      server.MakeMove(GameId,chesemove);
       return redraw();
     }
     catch(DataAccessException ex){
@@ -100,11 +103,11 @@ public class Game_UI {
       System.out.println("You are resigning the game  \"yes\" to continue and \"no\" to return");
       Scanner scanner=new Scanner(System.in);
       String line=scanner.nextLine();
-      if (line.toLowerCase() != "yes") {
-        server.resign(GameId);
+      if (line.toLowerCase() == "yes") {
+        server.Resign(GameId);
         Repl.state = state.Post_login;
         return "You have successfully left the game";
-      }else if (line.toLowerCase() != "no") {
+      }else if (line.toLowerCase() == "no") {
         return "";
       }
     }

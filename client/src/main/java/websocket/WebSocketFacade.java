@@ -1,5 +1,8 @@
 package websocket;
 
+import User_game_commands.*;
+import chess.ChessGame;
+import chess.ChessMove;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import webSocketMessages.userCommands.UserGameCommand;
@@ -12,16 +15,18 @@ import java.net.URISyntaxException;
 
 //need to extend Endpoint for websocket to work properly
 public class WebSocketFacade extends Endpoint {
+    static String Authtoken;
 
     Session session;
     NotificationHandler notificationHandler;
 
 
-    public WebSocketFacade(String url, NotificationHandler notificationHandler) throws DataAccessException {
+    public WebSocketFacade(String url, NotificationHandler notificationHandler, String Authtoken) throws DataAccessException {
         try {
             url = url.replace("http", "ws");
             URI socketURI = new URI(url + "/connect");
             this.notificationHandler = notificationHandler;
+            this.Authtoken = Authtoken;
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, socketURI);
@@ -43,25 +48,51 @@ public class WebSocketFacade extends Endpoint {
     @Override
     public void onOpen(Session session, EndpointConfig endpointConfig) {
     }
+    public void send(String msg) throws Exception {
+        this.session.getBasicRemote().sendText(msg);
+    }
 
-    public void leave(Integer GameID) throws DataAccessException {
+    public void Leave(Integer GameID) throws DataAccessException {
         try {
-            var action = new UserGameCommand(UserGameCommand.CommandType.LEAVE, GameID);
+            var action = new Leave(Authtoken, GameID);
             this.session.getBasicRemote().sendText(new Gson().toJson(action));
         } catch (IOException ex) {
-            throw new ResponseException(500, ex.getMessage());
+            throw new DataAccessException(ex.getMessage());
         }
     }
-//
-//    public void leavePetShop(String visitorName) throws ResponseException {
-//        try {
-//            var action = new Action(Action.Type.EXIT, visitorName);
-//            this.session.getBasicRemote().sendText(new Gson().toJson(action));
-//            this.session.close();
-//        } catch (IOException ex) {
-//            throw new ResponseException(500, ex.getMessage());
-//        }
-//    }
+    public void Resign(Integer GameID) throws DataAccessException {
+        try {
+            var action = new Resign(Authtoken, GameID);
+            this.session.getBasicRemote().sendText(new Gson().toJson(action));
+        } catch (IOException ex) {
+            throw new DataAccessException(ex.getMessage());
+        }
+    }
+    public void MakeMove(Integer GameID, ChessMove move) throws DataAccessException {
+        try {
+            var action = new Make_Move(Authtoken, GameID, move);
+            this.session.getBasicRemote().sendText(new Gson().toJson(action));
+        } catch (IOException ex) {
+            throw new DataAccessException(ex.getMessage());
+        }
+    }
+    public void Join_Observer(Integer GameID) throws DataAccessException {
+        try {
+            var action = new Join_Observer(Authtoken, GameID);
+            this.session.getBasicRemote().sendText(new Gson().toJson(action));
+        } catch (IOException ex) {
+            throw new DataAccessException(ex.getMessage());
+        }
+    }
+    public void Join_Player(Integer GameID, ChessGame.TeamColor playerColor) throws DataAccessException {
+        try {
+            var action = new Join_Player(Authtoken, GameID,playerColor);
+            this.session.getBasicRemote().sendText(new Gson().toJson(action));
+        } catch (IOException ex) {
+            throw new DataAccessException(ex.getMessage());
+        }
+    }
+
 
 }
 
