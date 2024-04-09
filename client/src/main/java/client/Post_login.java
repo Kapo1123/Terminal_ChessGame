@@ -109,6 +109,9 @@ public class Post_login {
       ChessGame.TeamColor player_color=ChessGame.TeamColor.WHITE;
       WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, Authtoken);
       webserver.Join_Observer(GameID);
+      Repl.gameUi.color = player_color;
+      Repl.gameUi.GameId = GameID;
+      Repl.gameUi.server = webserver;
     } catch(DataAccessException ex){
       throw ex;
     }
