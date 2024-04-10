@@ -1,12 +1,14 @@
 package server;
 
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import spark.*;
 import handler.*;
 public class Server {
-
+    webSocketHandler = new WebSocketHandler();
+    @WebSocket
     public int run(int desiredPort) {
         Spark.port(desiredPort);
-
+        Spark.webSocket("/connect", webSocketHandler);
         Spark.staticFiles.location("web");
         Spark.delete("/db", new ClearHandler());
         Spark.post("/user", new RegisterHandler());

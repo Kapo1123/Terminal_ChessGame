@@ -92,6 +92,7 @@ public class Post_login {
         }
       WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler,Authtoken);
       webserver.Join_Player(GameID,player_color);
+
       Repl.gameUi.color = player_color;
       Repl.gameUi.GameId = GameID;
       Repl.gameUi.server = webserver;

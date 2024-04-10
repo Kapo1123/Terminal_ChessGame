@@ -2,6 +2,7 @@ package dataAccess;
 
 import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
+import Requestclasses.Userclass;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
@@ -110,6 +111,26 @@ public class MysqlGameDao implements GameInterface {
       throw new DataAccessException(e.getMessage());
     }
 
+  }
+  @Override
+  public ChessGame getGame(Integer GameID) throws DataAccessException {
+    ChessGame chess_game=new ChessGame();
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement=conn.prepareStatement("SELECT chess FROM game WHERE gameID=?")) {
+        try (var rs=preparedStatement.executeQuery()) {
+          String game="";
+          if (rs.next()) {
+            game=rs.getString("chess");
+          }
+          ChessBoard board=new Gson().fromJson(game, ChessBoard.class);
+          chess_game.setBoard(board);
+          return chess_game;
+        }
+
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
   }
 
   @Override

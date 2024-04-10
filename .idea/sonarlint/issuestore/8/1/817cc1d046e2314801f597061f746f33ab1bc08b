@@ -1,32 +1,28 @@
 
-r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ8Ëäì1
-m	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Õù§8‘Ëäì1
-m	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û… ƒ8‘Ëäì1
-m	java:S117l"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Õù§8‘Ëäì1
-m	java:S117m"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë¯ÚÈ8‘Ëäì1
->
-java:S1643F"Use a StringBuilder instead.(ÄÍÊœÿÿÿÿÿ8”Ëäì1
->
-java:S1643G"Use a StringBuilder instead.(¿òêÜşÿÿÿÿ8”Ëäì1
-ƒ
-java:S1488+"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ8—Ëäì1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ğ‰ïøÿÿÿÿ8™Ëäì1
-y
-java:S2737="WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8ÚÌäì1
-y
-java:S2737L"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8ÛÌäì1
-y
-java:S2737f"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8àÌäì1
-]	java:S125S"<This block of commented-out lines of code should be removed.(ÛßÁúÿÿÿÿ8éÌäì1
-]
-java:S1854m"@Remove this useless assignment to local variable "player_color".(ë¯ÚÈ8îÌäì1
-y
-java:S2737q"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8ïÌäì1
-N
-java:S1481m"1Remove this unused "player_color" local variable.(ë¯ÚÈ8ğÌäì1
-X
-java:S2696z"6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ8òÌäì1
-z
-java:S2737‰"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ8óÌäì1
-Y
-java:S2696…"6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ8óÌäì1
+k	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÎ€÷øÿÿÿÿ
+f	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Õù§
+f	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û… ƒ
+f	java:S117m"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Õù§
+f	java:S117n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë¯ÚÈ
+7
+java:S1643F"Use a StringBuilder instead.(ÄÍÊœÿÿÿÿÿ
+7
+java:S1643G"Use a StringBuilder instead.(¿òêÜşÿÿÿÿ
+|
+java:S1488+"aImmediately return this expression instead of assigning it to the temporary variable "help_text".(ÉÎ€÷øÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(´ğ‰ïøÿÿÿÿ
+r
+java:S2737="WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+r
+java:S2737L"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+r
+java:S2737g"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+V	java:S125S"<This block of commented-out lines of code should be removed.(ÛßÁúÿÿÿÿ
+r
+java:S2737u"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+Q
+java:S2696~"6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ
+s
+java:S2737"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¤­—Îşÿÿÿÿ
+R
+java:S2696‰"6Make the enclosing method "static" or remove this set.(ê€˜Ïıÿÿÿÿ

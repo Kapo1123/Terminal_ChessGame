@@ -1,16 +1,14 @@
 
-D
-java:S3010""Remove this assignment of "state".(ƒª¨Šÿÿÿÿÿ8É› ì1
 =
-java:S3010" Remove this assignment of "url".(£®¬²8Ë› ì1
-L	java:S106"+Replace this use of System.out by a logger.(Éİªùÿÿÿÿ8ì› ì1
-L	java:S106!"+Replace this use of System.out by a logger.(™ÀÌ¹øÿÿÿÿ8ø› ì1
-L	java:S106$"+Replace this use of System.out by a logger.(†äâÿÿÿÿÿÿ8ù› ì1
-G
-java:S11818"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ8û› ì1
-]	java:S1250"<This block of commented-out lines of code should be removed.(‰•®êÿÿÿÿÿ8ÿ› ì1
-G	java:S1067"+Replace this use of System.out by a logger.(½„¤‡8€œ ì1
-G	java:S106:"+Replace this use of System.out by a logger.(¤«ºÑ8œ ì1
-L	java:S106="+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8œ ì1
-G	java:S106D"+Replace this use of System.out by a logger.(Ğİâø8ƒœ ì1
-G	java:S106J"+Replace this use of System.out by a logger.(£øÂ¢8Œœ ì1
+java:S3010""Remove this assignment of "state".(ƒª¨Šÿÿÿÿÿ
+6
+java:S3010" Remove this assignment of "url".(£®¬²
+E	java:S106"+Replace this use of System.out by a logger.(Éİªùÿÿÿÿ
+E	java:S106!"+Replace this use of System.out by a logger.(™ÀÌ¹øÿÿÿÿ
+E	java:S106$"+Replace this use of System.out by a logger.(†äâÿÿÿÿÿÿ
+V	java:S1250"<This block of commented-out lines of code should be removed.(‰•®êÿÿÿÿÿ
+@	java:S1067"+Replace this use of System.out by a logger.(½„¤‡
+@	java:S106:"+Replace this use of System.out by a logger.(¤«ºÑ
+E	java:S106="+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ
+@	java:S106D"+Replace this use of System.out by a logger.(Ğİâø
+@	java:S106J"+Replace this use of System.out by a logger.(£øÂ¢

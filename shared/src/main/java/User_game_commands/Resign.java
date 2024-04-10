@@ -4,7 +4,7 @@ import chess.ChessMove;
 import webSocketMessages.userCommands.UserGameCommand;
 
 public class Resign extends UserGameCommand{
-  Integer gameID;
+  public Integer gameID;
   public Resign(String authToken, Integer GameID) {
 //    super(CommandType.JOIN_PLAYER); // Call superclass constructor
     super(authToken);
