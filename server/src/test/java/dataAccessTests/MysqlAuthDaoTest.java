@@ -1,15 +1,9 @@
 package dataAccessTests;
 
 import Requestclasses.*;
-import Responseclass.ListgameResponse;
-import Responseclass.Newgameresponse;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlAuthDao;
-import dataAccess.MysqlGameDao;
 import org.junit.jupiter.api.*;
-import service.DbService;
-import service.GameService;
-import service.UserService;
 
 import java.util.UUID;
 

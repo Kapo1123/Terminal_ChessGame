@@ -5,7 +5,7 @@ import Requestclasses.GameRequest;
 import Responseclass.Errorresponse;
 import Responseclass.Newgameresponse;
 import com.google.gson.Gson;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import service.GameService;
 import spark.Request;
 import spark.Response;

@@ -5,6 +5,7 @@ import Requestclasses.Joingamerequest;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
+import dataAccessError.DataAccessException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,8 +3,7 @@ package client;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import chess.ChessGame;
-import dataAccess.DataAccessException;
-import ui.chess_board;
+import dataAccessError.DataAccessException;
 import websocket.NotificationHandler;
 import websocket.WebSocketFacade;
 

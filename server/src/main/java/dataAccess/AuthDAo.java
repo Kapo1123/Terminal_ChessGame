@@ -1,6 +1,7 @@
 package dataAccess;
 
 import Requestclasses.Authtoken;
+import dataAccessError.DataAccessException;
 
 import java.util.HashMap;
 import java.util.Map;

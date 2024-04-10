@@ -5,8 +5,7 @@ import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 import chess.ChessGame;
-
-import javax.xml.crypto.Data;
+import dataAccessError.DataAccessException;
 
 public interface GameInterface {
   public  ListgameResponse getList(String username) throws DataAccessException;

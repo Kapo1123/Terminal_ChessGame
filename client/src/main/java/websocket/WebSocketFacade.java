@@ -5,12 +5,10 @@ import chess.ChessGame;
 import chess.ChessMove;
 import client.Game_UI;
 import com.google.gson.Gson;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import serverMessages_classes.Error_message;
 import serverMessages_classes.Load_Game;
 import serverMessages_classes.Notification;
-import ui.chess_board;
-import webSocketMessages.userCommands.UserGameCommand;
 import webSocketMessages.serverMessages.ServerMessage;
 
 import javax.websocket.*;

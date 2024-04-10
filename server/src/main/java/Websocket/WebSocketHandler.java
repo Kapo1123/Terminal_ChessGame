@@ -1,14 +1,13 @@
 package server.websocket;
 
 import Requestclasses.Authtoken;
-import Requestclasses.Joingamerequest;
 import User_game_commands.*;
 import Websocket.Connection;
 import Websocket.ConnectionManager;
 import chess.ChessGame;
 import chess.InvalidMoveException;
 import com.google.gson.Gson;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlAuthDao;
 import dataAccess.MysqlGameDao;
 
@@ -21,9 +20,7 @@ import serverMessages_classes.Notification;
 
 import webSocketMessages.userCommands.UserGameCommand;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.Timer;
 
 
 @WebSocket

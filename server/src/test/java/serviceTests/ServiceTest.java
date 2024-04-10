@@ -3,7 +3,7 @@ package serviceTests;
 import Requestclasses.*;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import org.junit.jupiter.api.*;
 import service.DbService;
 import service.GameService;

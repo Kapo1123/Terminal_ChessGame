@@ -2,6 +2,7 @@ package dataAccess;
 
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
+import dataAccessError.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.SQLException;

@@ -1,19 +1,13 @@
 package dataAccessTests;
 
-import Requestclasses.Authtoken;
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
-import dataAccess.DataAccessException;
-import dataAccess.MysqlAuthDao;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlUserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MysqlUserDaoTest {
   MysqlUserDao user=new MysqlUserDao();

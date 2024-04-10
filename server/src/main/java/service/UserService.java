@@ -3,7 +3,7 @@ package service;
 import Requestclasses.Authtoken;
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlAuthDao;
 import dataAccess.MysqlUserDao;
 

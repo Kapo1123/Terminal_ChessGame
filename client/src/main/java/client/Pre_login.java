@@ -1,6 +1,6 @@
 package client;
 
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 
 import java.util.Arrays;
 

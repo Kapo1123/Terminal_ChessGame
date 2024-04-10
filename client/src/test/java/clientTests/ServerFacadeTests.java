@@ -1,11 +1,10 @@
 package clientTests;
 
 import client.ServerFacade;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import org.junit.jupiter.api.*;
 import server.Server;
 
-import static com.google.gson.JsonParser.parseString;
 import static org.junit.jupiter.api.Assertions.*;
 
 

@@ -2,13 +2,13 @@ package dataAccess;
 
 import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
-import Requestclasses.Userclass;
 import Responseclass.Games;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 import chess.ChessBoard;
 import chess.ChessGame;
 import com.google.gson.Gson;
+import dataAccessError.DataAccessException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

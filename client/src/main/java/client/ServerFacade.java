@@ -8,7 +8,7 @@ import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
 import Responseclass.Registerresponse;
 import com.google.gson.Gson;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -5,7 +5,7 @@ import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
 import Responseclass.ListgameResponse;
 import Responseclass.Newgameresponse;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlAuthDao;
 import dataAccess.MysqlGameDao;
 

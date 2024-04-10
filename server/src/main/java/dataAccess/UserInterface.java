@@ -2,6 +2,7 @@ package dataAccess;
 
 import Requestclasses.Registerclass;
 import Requestclasses.Userclass;
+import dataAccessError.DataAccessException;
 
 public interface UserInterface {
   public  void createUser(Registerclass info) throws DataAccessException;

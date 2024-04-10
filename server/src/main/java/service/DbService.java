@@ -1,10 +1,9 @@
 package service;
 
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlAuthDao;
 import dataAccess.MysqlGameDao;
 import dataAccess.MysqlUserDao;
-import dataAccess.*;
 
 public class DbService {
   public  boolean deleteAll() throws DataAccessException {

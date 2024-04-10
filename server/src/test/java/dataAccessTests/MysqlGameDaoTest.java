@@ -1,10 +1,8 @@
 package dataAccessTests;
 
-import Requestclasses.Authtoken;
 import Requestclasses.GameRequest;
 import Requestclasses.Joingamerequest;
-import Requestclasses.Registerclass;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import dataAccess.MysqlGameDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

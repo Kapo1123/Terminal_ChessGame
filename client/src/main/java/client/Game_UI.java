@@ -1,12 +1,10 @@
 package client;
 
-import Responseclass.Games;
-import Responseclass.ListgameResponse;
 import chess.ChessGame;
 import chess.ChessMove;
 import chess.ChessPosition;
 import chess.InvalidMoveException;
-import dataAccess.DataAccessException;
+import dataAccessError.DataAccessException;
 import ui.chess_board;
 
 import java.util.Arrays;
@@ -20,7 +18,7 @@ public class Game_UI {
   static Integer GameId;
   public static ChessGame game;
   public static chess_board board = new chess_board();
-  board.main();
+//  board.main();
   public String eval(String input) {
 
     try {
