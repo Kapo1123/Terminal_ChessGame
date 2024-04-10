@@ -22,6 +22,7 @@ public interface GameInterface {
   public  void deleteall() throws DataAccessException;
   public  void check_gameID(Integer GameID, ChessGame.TeamColor color,String username) throws DataAccessException;
   public  void delete_gameID(Integer GameID) throws DataAccessException;
-  public void getcolor(Integer GameID,String Username) throws DataAccessException;
+  public ChessGame.TeamColor getcolor(Integer GameID,String Username) throws DataAccessException;
+  public void update_game(Integer GameID,ChessGame game) throws DataAccessException;
 }
 

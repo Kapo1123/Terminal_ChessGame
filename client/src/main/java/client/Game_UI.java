@@ -16,10 +16,11 @@ import static java.lang.Integer.parseInt;
 
 public class Game_UI {
   static websocket.WebSocketFacade server;
-  static ChessGame.TeamColor color;
+  public static ChessGame.TeamColor color;
   static Integer GameId;
-  static ChessGame game;
-  chess_board board = new chess_board(game);
+  public static ChessGame game;
+  public static chess_board board = new chess_board();
+  board.main();
   public String eval(String input) {
 
     try {
@@ -103,11 +104,11 @@ public class Game_UI {
       System.out.println("You are resigning the game  \"yes\" to continue and \"no\" to return");
       Scanner scanner=new Scanner(System.in);
       String line=scanner.nextLine();
-      if (line.toLowerCase() == "yes") {
+      if (line.toLowerCase().equals( "yes")) {
         server.Resign(GameId);
         Repl.state = state.Post_login;
         return "You have successfully left the game";
-      }else if (line.toLowerCase() == "no") {
+      }else if (line.toLowerCase().equals( "no")) {
         return "";
       }
     }

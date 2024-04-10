@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import webSocketMessages.serverMessages.ServerMessage;
 
 public class Load_Game extends ServerMessage {
-  private ChessGame game; // Additional field for notification message content
+  public ChessGame game; // Additional field for notification message content
   public Load_Game(ChessGame game) {
     super(ServerMessageType.LOAD_GAME); // Call superclass constructor
     this.game = game;

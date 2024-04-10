@@ -20,14 +20,13 @@ public class chess_board {
   public static PrintStream out=new PrintStream(System.out, true, StandardCharsets.UTF_8);
   public static ChessBoard board=new ChessBoard();
 
+
   static {
     board.resetBoard();
   }
-  public  chess_board (ChessGame game){
-    board = game.getBoard();
-  }
 
   static ArrayList<String> letters;
+
 
   public static void main() {
 
@@ -46,8 +45,8 @@ public class chess_board {
 
 //    drawWhite(out);
 //    drawBlack(out);
-    out.print(RESET_BG_COLOR);
-    out.print(SET_TEXT_COLOR_WHITE);
+//    out.print(RESET_BG_COLOR);
+//    out.print(SET_TEXT_COLOR_WHITE);
 
 //    drawTicTacToeBoard(out);
 //
@@ -214,6 +213,9 @@ public class chess_board {
       }
     }
     return null;
+  }
+  public void updateboard(ChessGame game){
+    board = game.getBoard();
   }
 }
 

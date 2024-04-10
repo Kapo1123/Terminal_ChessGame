@@ -91,6 +91,7 @@ public class MysqlGameDao implements GameInterface {
         board.resetBoard();
         ChessGame game=new ChessGame();
         game.setBoard(board);
+        game.setTeamTurn(ChessGame.TeamColor.WHITE);
         String jsonGame=new Gson().toJson(game);
         preparedStatement.setString(2, jsonGame);
         preparedStatement.executeUpdate();
@@ -211,14 +212,13 @@ public class MysqlGameDao implements GameInterface {
           }
         }
       }
-    }
-    catch (SQLException e) {
+    } catch (SQLException e) {
       throw new DataAccessException(e.getMessage());
 
     }
 
 
-    }
+  }
 
 
   @Override
@@ -234,7 +234,7 @@ public class MysqlGameDao implements GameInterface {
     }
   }
 
-  public void getcolor(Integer GameID, String Username) throws DataAccessException {
+  public ChessGame.TeamColor getcolor(Integer GameID,String Username ) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement2=conn.prepareStatement("SELECT whiteUsername,blackUsername FROM game WHERE gameID=?")) {
         preparedStatement2.setInt(1, GameID);
@@ -243,17 +243,32 @@ public class MysqlGameDao implements GameInterface {
             var whiteUsername=rs.getString("whiteUsername");
             var blackUsername=rs.getString("blackUsername");
             if (whiteUsername.equalsIgnoreCase(Username)) {
+              return ChessGame.TeamColor.WHITE;
             }else if (blackUsername.equalsIgnoreCase(Username)) {
+              return ChessGame.TeamColor.BLACK;
             }else {
               throw new DataAccessException("Error: Observer cannot resign");
             }
-          }
-          else{
+          }else {
             throw new DataAccessException("Error: no chess game found");
           }
         }
       }
     } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
+
+  }
+
+  public void update_game(Integer GameID, ChessGame game) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement2=conn.prepareStatement("UPDATE game SET chess=? WHERE gameID=?")) {
+        preparedStatement2.setString(1, new Gson().toJson(game));
+        preparedStatement2.setInt(2, GameID);
+        preparedStatement2.executeUpdate();
+      }
+    }
+    catch (SQLException e) {
       throw new DataAccessException(e.getMessage());
     }
 

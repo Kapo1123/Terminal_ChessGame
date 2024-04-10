@@ -6,6 +6,7 @@ import User_game_commands.*;
 import Websocket.Connection;
 import Websocket.ConnectionManager;
 import chess.ChessGame;
+import chess.InvalidMoveException;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import dataAccess.MysqlAuthDao;
@@ -20,6 +21,7 @@ import serverMessages_classes.Notification;
 
 import webSocketMessages.userCommands.UserGameCommand;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.Timer;
 
@@ -71,7 +73,7 @@ public class WebSocketHandler {
     }
     catch (DataAccessException | IOException e) {
        Error_message error_message = new Error_message(e.getMessage());
-       connections.send_error(action.gameID,action.getAuthString(),error_message);
+       connections.send_error(action.gameID,connect,error_message);
     }
   }
 
@@ -94,23 +96,44 @@ public class WebSocketHandler {
     }
     catch (DataAccessException | IOException e) {
       Error_message error_message = new Error_message(e.getMessage());
-      connections.send_error(action.gameID,action.getAuthString(),error_message);
+      connections.send_error(action.gameID,connect,error_message);
     }
 
   }
 
-  public void Make_Move(Session session, String message) throws DataAccessException {
+  public void Make_Move(Session session, String message) throws DataAccessException, IOException {
     Make_Move action = new Gson().fromJson(message, Make_Move.class);
+    String visitorName;
+    Connection connect = new Connection(action.getAuthString(),session);
+    try {
+      if (!auth.isValid(new Authtoken(action.getAuthString()))) {
+        throw new DataAccessException("Error:not valid authtoken");
+      }
+      game.check_gameID(action.gameID, null, action.getAuthString());
+      visitorName= auth.getUserName(new Authtoken(action.getAuthString()));
+      ChessGame chess_game=game.getGame(action.gameID);
+      ChessGame.TeamColor color = game.getcolor(action.gameID, visitorName);
+      if (color != chess_game.getTeamTurn()){
+        throw new DataAccessException("Error:not valid team turn");
+      }
+      chess_game.makeMove(action.move);
+      game.update_game(action.gameID,chess_game);
+      var return_message = String.format("%s made a move from %s to %s", visitorName,action.move.getStartPosition().toString(),action.move.getEndPosition().toString());
+      var notification=new Notification(return_message);
+      connections.broadcast(action.gameID, action.getAuthString(), notification);
+      connections.send_game(action.gameID, null, new Load_Game(chess_game));
+    }
+    catch (DataAccessException | InvalidMoveException e) {
+      Error_message error_message =null;
+      if(e.getMessage() == null){
+       error_message=new Error_message("Error: Invalid move");
+      }
+      else {
+        error_message=new Error_message(e.getMessage());
+      }
+      connections.send_error(action.gameID,connect,error_message);
+    }
 
-
-
-//    try {
-//      var message = String.format("%s says %s", petName, sound);
-//      var notification = new Notification(Notification.Type.NOISE, message);
-//      connections.broadcast("", notification);
-//    } catch (Exception ex) {
-//      throw new ResponseException(500, ex.getMessage());
-//    }
   }
   private void Leave(Session session, String message) throws DataAccessException, IOException {
     Leave action = new Gson().fromJson(message, Leave.class);
@@ -131,12 +154,13 @@ public class WebSocketHandler {
       connections.broadcast(action.gameID, action.getAuthString(), notification);
     }catch (DataAccessException | IOException e) {
       Error_message error_message = new Error_message(e.getMessage());
-      connections.send_error(action.gameID,action.getAuthString(),error_message);
+      connections.send_error(action.gameID,connect,error_message);
     }
 
   }
   private void Resign(Session session, String message) throws DataAccessException, IOException {
     Resign action = new Gson().fromJson(message, Resign.class);
+    Connection connect = new Connection(action.getAuthString(),session);
     try {
       if(!auth.isValid(new Authtoken(action.getAuthString()))){
         throw new DataAccessException("Error:not valid authtoken");
@@ -144,13 +168,14 @@ public class WebSocketHandler {
       game.check_gameID(action.gameID, null, action.getAuthString());
       String visitorName=auth.getUserName(new Authtoken(action.getAuthString()));
       game.getcolor(action.gameID,visitorName);
+      game.delete_gameID(action.gameID);
       var return_message=String.format("%s has resigned the game", visitorName);
       var notification=new Notification(return_message);
       connections.broadcast(action.gameID, null, notification);
       connections.remove_gameid(action.gameID);
     }catch (DataAccessException | IOException e) {
       Error_message error_message = new Error_message(e.getMessage());
-      connections.send_error(action.gameID,action.getAuthString(),error_message);
+      connections.send_error(action.gameID,connect,error_message);
     }
 
 

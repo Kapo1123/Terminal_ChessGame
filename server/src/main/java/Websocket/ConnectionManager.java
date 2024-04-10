@@ -50,6 +50,17 @@ public class ConnectionManager {
 
     // Clean up any connections that were left open.
   }
+  public void send_game(Integer GameID, String excludeAuthtoken, Load_Game notification) throws IOException {
+    for (var c : connections.get(GameID)) {
+      if (c.session.isOpen()) {
+        if (!c.Authtoken.equals(excludeAuthtoken)) {
+          c.send(new Gson().toJson(notification));
+        }
+      }
+    }
+
+    // Clean up any connections that were left open.
+  }
 
   public void send_one(Integer GameID, String excludeAuthtoken, Load_Game notification) throws IOException {
     for (var c : connections.get(GameID)) {
@@ -63,10 +74,9 @@ public class ConnectionManager {
     // Clean up any connections that were left open.
   }
 
-  public void send_error(Integer GameID, String excludeAuthtoken, Error_message error) throws IOException {
-    for (var c : connections.get(GameID)) {
+  public void send_error(Integer GameID, Connection session, Error_message error) throws IOException {
+      var c = session;
       if (c.session.isOpen()) {
-        if (c.Authtoken.equals(excludeAuthtoken)) {
           c.send(new Gson().toJson(error));
         }
       }
@@ -74,5 +84,5 @@ public class ConnectionManager {
 
     // Clean up any connections that were left open.
 
-  }
-}
+
+

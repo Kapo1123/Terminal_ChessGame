@@ -45,9 +45,9 @@ public class Repl implements NotificationHandler{
         else if (state == client.state.Post_login ){
           result=postLogin.eval(line);
         }
-//        else if (state == client.state.Game_UI) {
-//          result = gameui.eval(line,url);
-//        }
+        else if (state == client.state.Game_UI) {
+          result = gameUi.eval(line);
+        }
         if (result.equals("quit")){
           break;
         }
@@ -70,8 +70,8 @@ public class Repl implements NotificationHandler{
 
 
   @Override
-  public void notify(ServerMessage notification) {
-    System.out.println( notification);
+  public void notify(String notification) {
+    System.out.println(notification);
     printPrompt();
   }
 }

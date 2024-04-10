@@ -3,8 +3,13 @@ package websocket;
 import User_game_commands.*;
 import chess.ChessGame;
 import chess.ChessMove;
+import client.Game_UI;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
+import serverMessages_classes.Error_message;
+import serverMessages_classes.Load_Game;
+import serverMessages_classes.Notification;
+import ui.chess_board;
 import webSocketMessages.userCommands.UserGameCommand;
 import webSocketMessages.serverMessages.ServerMessage;
 
@@ -35,8 +40,26 @@ public class WebSocketFacade extends Endpoint {
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
                 @Override
                 public void onMessage(String message) {
-                    ServerMessage notification = new Gson().fromJson(message, ServerMessage.class);
-                    notificationHandler.notify(notification);
+                    ServerMessage return_message = new Gson().fromJson(message, ServerMessage.class);
+                    if(return_message.getServerMessageType().equals(ServerMessage.ServerMessageType.NOTIFICATION)) {
+                        Notification notification = new Gson().fromJson(message, Notification.class);
+                        notificationHandler.notify(notification.getmessage());
+                    }
+                    else if (return_message.getServerMessageType().equals(ServerMessage.ServerMessageType.LOAD_GAME)){
+                        Load_Game game = new Gson().fromJson(message, Load_Game.class);
+                        Game_UI.game = game.game;
+                        Game_UI.board.updateboard(game.game);
+                        if (Game_UI.color.equals(ChessGame.TeamColor.WHITE)){
+                            Game_UI.board.drawWhite(Game_UI.board.out);
+                        }
+                        if (Game_UI.color.equals(ChessGame.TeamColor.BLACK)){
+                            Game_UI.board.drawBlack(Game_UI.board.out);
+                        }
+                    }
+                    else if (return_message.getServerMessageType().equals(ServerMessage.ServerMessageType.ERROR)){
+                        Error_message error = new Gson().fromJson(message, Error_message.class);
+                    }
+
                 }
             });
         } catch (DeploymentException | IOException | URISyntaxException ex) {

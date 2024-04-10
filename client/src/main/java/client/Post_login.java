@@ -96,7 +96,7 @@ public class Post_login {
       Repl.gameUi.color = player_color;
       Repl.gameUi.GameId = GameID;
       Repl.gameUi.server = webserver;
-
+      Repl.state = client.state.Game_UI;
         return "You joined a game";
     }
     catch(DataAccessException ex){
@@ -113,6 +113,7 @@ public class Post_login {
       Repl.gameUi.color = player_color;
       Repl.gameUi.GameId = GameID;
       Repl.gameUi.server = webserver;
+      Repl.state = client.state.Game_UI;
     } catch(DataAccessException ex){
       throw ex;
     }
