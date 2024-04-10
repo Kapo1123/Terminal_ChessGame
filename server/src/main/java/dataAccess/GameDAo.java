@@ -9,11 +9,11 @@ import Responseclass.Newgameresponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameDAo implements GameInterface {
+public class GameDAo  {
 
   static List<Games> gamedb = new ArrayList<Games>();
 
-  @Override
+
   public  ListgameResponse getList(String username) {
     List<Games> list = new ArrayList<Games>();
     for (Games game : gamedb){
@@ -35,7 +35,7 @@ public class GameDAo implements GameInterface {
     return new ListgameResponse(list);
   }
 
-  @Override
+
   public  void joinGame(String username, Joingamerequest body) throws DataAccessException {
     if(body.playerColor() ==null){
       for (Games game : gamedb) {
@@ -74,14 +74,14 @@ public class GameDAo implements GameInterface {
 
   }
 
-  @Override
+
   public Newgameresponse createGame(String username, GameRequest body) {
     Integer gameId = gamedb.size()+1;
     Games game = new Games(gameId, null,null,body.gameName());
     gamedb.add(game);
     return new Newgameresponse(gameId);
   }
-  @Override
+
   public void deleteall(){
     if(gamedb.isEmpty()){
       return;

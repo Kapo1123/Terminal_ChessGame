@@ -16,11 +16,23 @@ public class ConnectionManager {
   public final ConcurrentHashMap<Integer, List<Connection>> connections=new ConcurrentHashMap<>();
 
   public void add(Integer GameID, Connection connect) {
-    connections.get(GameID).add(connect);
+    if(connections.get(GameID) == (null)){
+      connections.put(GameID,new ArrayList<>());
+      connections.get(GameID).add(connect);
+    }
+    else{
+      connections.get(GameID).add(connect);
+    }
   }
 
   public void remove(Integer GameID, Connection connect) {
-    connections.get(GameID).remove(connect);
+    List<Connection> connectionList = connections.get(GameID);
+    if (connectionList != null) {
+      connectionList.remove(connect);
+      if (connectionList.isEmpty()) {
+        connections.remove(GameID); // Remove the entry if the list becomes empty
+      }
+    }
   }
 
   public void remove_gameid(Integer GameID) {

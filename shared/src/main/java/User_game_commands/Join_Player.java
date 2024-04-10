@@ -7,13 +7,13 @@ import webSocketMessages.userCommands.UserGameCommand;
 public class Join_Player extends UserGameCommand {
   private String messageContent; // Additional field for notification message content
   public Integer gameID;
-  public ChessGame.TeamColor color;
+  public ChessGame.TeamColor playerColor;
   public Join_Player(String authToken, Integer GameID, ChessGame.TeamColor color ) {
 //    super(CommandType.JOIN_PLAYER); // Call superclass constructor
     super(authToken);
     super.commandType = CommandType.JOIN_PLAYER;
     this.gameID = GameID;
-    this.color = color;
+    this.playerColor = color;
 
   }
 

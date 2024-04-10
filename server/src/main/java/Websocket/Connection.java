@@ -17,4 +17,16 @@ public class Connection {
   public void send(String msg) throws IOException {
     session.getRemote().sendString(msg);
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    Connection that = (Connection) obj;
+    return Authtoken.equals(that.Authtoken) && session.equals(that.session);
+  }
 }

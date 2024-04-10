@@ -2,21 +2,22 @@ package serverMessages_classes;
 
 import chess.ChessBoard;
 import chess.ChessGame;
+import com.google.gson.Gson;
 import webSocketMessages.serverMessages.ServerMessage;
 
 public class Load_Game extends ServerMessage {
-  private String game_board; // Additional field for notification message content
-  public Load_Game(String board) {
+  private ChessGame game; // Additional field for notification message content
+  public Load_Game(ChessGame game) {
     super(ServerMessageType.LOAD_GAME); // Call superclass constructor
-    this.game_board = board;
+    this.game = game;
   }
 
   // Additional methods if needed
   public String getmessage() {
-    return game_board;
+    return new Gson().toJson(game.getBoard());
   }
 
-  public void setMessageContent(String messageContent) {
-    this.game_board = messageContent;
-  }
+//  public void setMessageContent(String messageContent) {
+//    this.game_board = messageContent;
+//  }
 }

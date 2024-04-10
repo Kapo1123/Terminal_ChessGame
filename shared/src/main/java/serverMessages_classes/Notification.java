@@ -3,20 +3,20 @@ package serverMessages_classes;
 import webSocketMessages.serverMessages.ServerMessage;
 
 public class Notification extends ServerMessage {
-  private String messageContent; // Additional field for notification message content
+  private String message; // Additional field for notification message content
 
   public Notification(String messageContent) {
     super(ServerMessageType.NOTIFICATION); // Call superclass constructor
-    this.messageContent = messageContent;
+    this.message = messageContent;
   }
 
   // Additional methods if needed
   public String getmessage() {
-    return messageContent;
+    return message;
   }
 
   public void setMessageContent(String messageContent) {
-    this.messageContent = messageContent;
+    this.message = messageContent;
   }
 }
 

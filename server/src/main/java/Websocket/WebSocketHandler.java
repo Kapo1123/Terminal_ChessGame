@@ -1,6 +1,7 @@
 package server.websocket;
 
 import Requestclasses.Authtoken;
+import Requestclasses.Joingamerequest;
 import User_game_commands.*;
 import Websocket.Connection;
 import Websocket.ConnectionManager;
@@ -9,16 +10,14 @@ import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import dataAccess.MysqlAuthDao;
 import dataAccess.MysqlGameDao;
-import dataaccess.DataAccess;
-import exception.ResponseException;
+
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import serverMessages_classes.Error_message;
 import serverMessages_classes.Load_Game;
 import serverMessages_classes.Notification;
-import webSocketMessages.Action;
-import webSocketMessages.Notification;
+
 import webSocketMessages.userCommands.UserGameCommand;
 
 import java.io.IOException;
@@ -32,14 +31,14 @@ public class WebSocketHandler {
   private final ConnectionManager connections = new ConnectionManager();
 
   @OnWebSocketMessage
-  public void onMessage(Session session, String message) throws DataAccessException {
+  public void onMessage(Session session, String message) throws DataAccessException, IOException {
     UserGameCommand action = new Gson().fromJson(message, UserGameCommand.class);
     switch (action.getCommandType()) {
-      case JOIN_PLAYER -> Join_Player(session,message);
-      case JOIN_OBSERVER -> Join_Observer(session,message);
-      case MAKE_MOVE -> Make_Move(session,message);
-      case LEAVE -> Leave(session,message);
-      case RESIGN -> Resign(session,message);
+      case JOIN_PLAYER ->  Join_Player(session,message);
+      case JOIN_OBSERVER ->  Join_Observer(session,message);
+      case MAKE_MOVE ->  Make_Move(session,message);
+      case LEAVE ->  Leave(session,message);
+//      case RESIGN -> new Resign(session,message);
     }
   }
 
@@ -48,20 +47,27 @@ public class WebSocketHandler {
     Connection connect = new Connection(action.getAuthString(),session);
     connections.add(action.gameID, connect);
     String color ="";
-    if (action.color.equals(ChessGame.TeamColor.WHITE)){
+    if (action.playerColor == null){
+      throw new DataAccessException("color can't be empty");
+    }
+    if (action.playerColor.equals(ChessGame.TeamColor.WHITE)){
       color = "white";
     }
     else{
       color = "black";
     }
     try {
+      if(!auth.isValid(new Authtoken(action.getAuthString()))){
+        throw new DataAccessException("Error:not valid authtoken");
+      }
       String visitorName= auth.getUserName(new Authtoken(action.getAuthString()));
+      game.check_gameID(action.gameID,action.playerColor,visitorName);
       ChessGame chess_game = game.getGame(action.gameID);
       var return_message = String.format("%s has joined the game as %s player", visitorName,color);
       var notification = new Notification(return_message);
-      Load_Game load
+      Load_Game load = new Load_Game(chess_game);
       connections.broadcast(action.gameID,action.getAuthString(), notification);
-      connections.send_one(action.gameID,action.getAuthString(),);
+      connections.send_one(action.gameID,action.getAuthString(),load);
     }
     catch (DataAccessException | IOException e) {
        Error_message error_message = new Error_message(e.getMessage());
@@ -75,11 +81,16 @@ public class WebSocketHandler {
     connections.add(action.gameID, connect);
 //    connections.remove(visitorName);
     try {
+      if(!auth.isValid(new Authtoken(action.getAuthString()))){
+        throw new DataAccessException("Error:not valid authtoken");
+      }
       String visitorName= auth.getUserName(new Authtoken(action.getAuthString()));
       ChessGame chess_game = game.getGame(action.gameID);
       var return_message = String.format("%s has joined the game as ", visitorName);
       var notification = new Notification(return_message);
+      Load_Game load = new Load_Game(chess_game);
       connections.broadcast(action.gameID,action.getAuthString(), notification);
+      connections.send_one(action.gameID,action.getAuthString(),load);
     }
     catch (DataAccessException | IOException e) {
       Error_message error_message = new Error_message(e.getMessage());
@@ -101,22 +112,34 @@ public class WebSocketHandler {
 //      throw new ResponseException(500, ex.getMessage());
 //    }
   }
-  private void Leave(Session session, String message) throws DataAccessException {
+  private void Leave(Session session, String message) throws DataAccessException, IOException {
     Leave action = new Gson().fromJson(message, Leave.class);
     Connection connect = new Connection(action.getAuthString(),session);
     connections.remove(action.gameID, connect);
-    String visitorName = "";
-    var return_message = String.format("%s has left the game ", visitorName);
-    var notification = new Notification(return_message);
-    connections.broadcast(action.gameID,action.getAuthString(), notification);
+    try {
+      String visitorName=auth.getUserName(new Authtoken(action.getAuthString()));
+      if (action.color != null){
+        game.leave_player(action.gameID,action.color);
+      }
+      connections.remove(action.gameID,connect);
+      var return_message=String.format("%s has left the game ", visitorName);
+      var notification=new Notification(return_message);
+      connections.broadcast(action.gameID, action.getAuthString(), notification);
+    }catch (DataAccessException | IOException e) {
+      Error_message error_message = new Error_message(e.getMessage());
+      connections.send_error(action.gameID,action.getAuthString(),error_message);
+    }
+
   }
   private void Resign(Session session, String message) throws DataAccessException {
     Resign action = new Gson().fromJson(message, Resign.class);
-    String visitorName ="";
-    var return_message = String.format("%s has resigned the game", visitorName);
-    var notification = new Notification(return_message);
-    connections.broadcast(action.gameID,null, notification);
-    connections.remove_gameid(action.gameID);
+    try {
+      String visitorName=auth.getUserName(new Authtoken(action.getAuthString()));
+      var return_message=String.format("%s has resigned the game", visitorName);
+      var notification=new Notification(return_message);
+      connections.broadcast(action.gameID, null, notification);
+      connections.remove_gameid(action.gameID);
+    }
   }
 
 

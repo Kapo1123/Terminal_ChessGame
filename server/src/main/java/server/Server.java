@@ -4,8 +4,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import spark.*;
 import handler.*;
 public class Server {
-    webSocketHandler = new WebSocketHandler();
-    @WebSocket
+    server.websocket.WebSocketHandler webSocketHandler = new server.websocket.WebSocketHandler();
     public int run(int desiredPort) {
         Spark.port(desiredPort);
         Spark.webSocket("/connect", webSocketHandler);

@@ -66,7 +66,7 @@ public class Game_UI {
   public String Leave(String[] params) throws DataAccessException{
     String output="\n";
     try{
-      server.Leave(GameId);
+      server.Leave(GameId,color);
       Repl.state = state.Post_login;
       return "You have successfully left the game";
     }

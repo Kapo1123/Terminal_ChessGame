@@ -52,9 +52,9 @@ public class WebSocketFacade extends Endpoint {
         this.session.getBasicRemote().sendText(msg);
     }
 
-    public void Leave(Integer GameID) throws DataAccessException {
+    public void Leave(Integer GameID, ChessGame.TeamColor color ) throws DataAccessException {
         try {
-            var action = new Leave(Authtoken, GameID);
+            var action = new Leave(Authtoken, GameID,color);
             this.session.getBasicRemote().sendText(new Gson().toJson(action));
         } catch (IOException ex) {
             throw new DataAccessException(ex.getMessage());
