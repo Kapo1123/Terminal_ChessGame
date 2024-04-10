@@ -38,7 +38,7 @@ public class WebSocketHandler {
       case JOIN_OBSERVER ->  Join_Observer(session,message);
       case MAKE_MOVE ->  Make_Move(session,message);
       case LEAVE ->  Leave(session,message);
-//      case RESIGN -> new Resign(session,message);
+      case RESIGN -> Resign(session,message);
     }
   }
 
@@ -117,8 +117,12 @@ public class WebSocketHandler {
     Connection connect = new Connection(action.getAuthString(),session);
     connections.remove(action.gameID, connect);
     try {
+      if(!auth.isValid(new Authtoken(action.getAuthString()))){
+        throw new DataAccessException("Error:not valid authtoken");
+      }
       String visitorName=auth.getUserName(new Authtoken(action.getAuthString()));
       if (action.color != null){
+        game.check_gameID(action.gameID,action.color,visitorName);
         game.leave_player(action.gameID,action.color);
       }
       connections.remove(action.gameID,connect);
@@ -131,15 +135,25 @@ public class WebSocketHandler {
     }
 
   }
-  private void Resign(Session session, String message) throws DataAccessException {
+  private void Resign(Session session, String message) throws DataAccessException, IOException {
     Resign action = new Gson().fromJson(message, Resign.class);
     try {
+      if(!auth.isValid(new Authtoken(action.getAuthString()))){
+        throw new DataAccessException("Error:not valid authtoken");
+      }
+      game.check_gameID(action.gameID, null, action.getAuthString());
       String visitorName=auth.getUserName(new Authtoken(action.getAuthString()));
+      game.getcolor(action.gameID,visitorName);
       var return_message=String.format("%s has resigned the game", visitorName);
       var notification=new Notification(return_message);
       connections.broadcast(action.gameID, null, notification);
       connections.remove_gameid(action.gameID);
+    }catch (DataAccessException | IOException e) {
+      Error_message error_message = new Error_message(e.getMessage());
+      connections.send_error(action.gameID,action.getAuthString(),error_message);
     }
+
+
   }
 
 

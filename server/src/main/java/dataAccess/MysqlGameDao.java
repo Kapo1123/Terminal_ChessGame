@@ -117,12 +117,11 @@ public class MysqlGameDao implements GameInterface {
           String game="";
           if (rs.next()) {
             game=rs.getString("chess");
-          }
-          else{
+          }else {
             throw new DataAccessException("Error: no chess game found");
           }
           ChessGame board=new Gson().fromJson(game, ChessGame.class);
-          chess_game = board;
+          chess_game=board;
           return chess_game;
         }
 
@@ -154,8 +153,7 @@ public class MysqlGameDao implements GameInterface {
           preparedStatement2.setInt(2, GameID);
           preparedStatement2.executeUpdate();
         }
-      }
-      else if (color.toString().equalsIgnoreCase("black")){
+      }else if (color.toString().equalsIgnoreCase("black")) {
         try (var preparedStatement3=conn.prepareStatement("UPDATE game SET blackUsername=? WHERE gameID=?")) {
           preparedStatement3.setString(1, null);
           preparedStatement3.setInt(2, GameID);
@@ -167,57 +165,98 @@ public class MysqlGameDao implements GameInterface {
 
     }
   }
+
   @Override
-  public  void check_gameID(Integer GameID, ChessGame.TeamColor color,String username) throws DataAccessException{
+  public void check_gameID(Integer GameID, ChessGame.TeamColor color, String username) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
-      if (color.toString().equalsIgnoreCase("white")) {
+      if (color == null) {
+        try (var preparedStatement2=conn.prepareStatement("Select * From game WHERE gameID=?")) {
+          preparedStatement2.setInt(1, GameID);
+          try (var rs=preparedStatement2.executeQuery()) {
+            if (rs.next()) {
+              return;
+            }else {
+              throw new DataAccessException("Error: no chess game found");
+            }
+          }
+        }
+      }else if (color.toString().equalsIgnoreCase("white")) {
         try (var preparedStatement2=conn.prepareStatement("Select whiteUsername From game WHERE gameID=?")) {
           preparedStatement2.setInt(1, GameID);
           try (var rs=preparedStatement2.executeQuery()) {
             if (rs.next()) {
               String us_name=rs.getString("whiteUsername");
-              if (!username.equalsIgnoreCase(us_name)){
+              if (!username.equalsIgnoreCase(us_name)) {
                 throw new DataAccessException("Error: Username doesn't match");
               }
-            }
-            else{
+            }else {
               throw new DataAccessException("Error: no chess game found");
             }
           }
 
         }
-      }
-      else if (color.toString().equalsIgnoreCase("black")){
+      }else if (color.toString().equalsIgnoreCase("black")) {
         try (var preparedStatement2=conn.prepareStatement("Select blackUsername From game WHERE gameID=?")) {
           preparedStatement2.setInt(1, GameID);
           try (var rs=preparedStatement2.executeQuery()) {
             String game="";
             if (rs.next()) {
               String us_name=rs.getString("blackUsername");
-              if (!username.equalsIgnoreCase(us_name)){
+              if (!username.equalsIgnoreCase(us_name)) {
                 throw new DataAccessException("Error: Username doesn't match");
               }
-            }
-            else{
+            }else {
               throw new DataAccessException("Error: no chess game found");
             }
           }
         }
-
       }
-
-
-    } catch (SQLException e) {
+    }
+    catch (SQLException e) {
       throw new DataAccessException(e.getMessage());
 
     }
-  }
+
+
+    }
+
+
   @Override
-  public  void delete_gameID(Integer GameID) throws DataAccessException{
+  public void delete_gameID(Integer GameID) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
-      
+      try (var preparedStatement2=conn.prepareStatement("DELETE FROM game WHERE gameID = ?")) {
+        preparedStatement2.setInt(1, GameID);
+        preparedStatement2.executeUpdate();
+      }
+
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
+    }
+  }
+
+  public void getcolor(Integer GameID, String Username) throws DataAccessException {
+    try (var conn=DatabaseManager.getConnection()) {
+      try (var preparedStatement2=conn.prepareStatement("SELECT whiteUsername,blackUsername FROM game WHERE gameID=?")) {
+        preparedStatement2.setInt(1, GameID);
+        try (var rs=preparedStatement2.executeQuery()) {
+          if (rs.next()) {
+            var whiteUsername=rs.getString("whiteUsername");
+            var blackUsername=rs.getString("blackUsername");
+            if (whiteUsername.equalsIgnoreCase(Username)) {
+            }else if (blackUsername.equalsIgnoreCase(Username)) {
+            }else {
+              throw new DataAccessException("Error: Observer cannot resign");
+            }
+          }
+          else{
+            throw new DataAccessException("Error: no chess game found");
+          }
+        }
+      }
+    } catch (SQLException e) {
+      throw new DataAccessException(e.getMessage());
     }
 
   }
-
 }
+
