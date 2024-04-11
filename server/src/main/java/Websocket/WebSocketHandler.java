@@ -118,7 +118,7 @@ public class WebSocketHandler {
       var returnMessage = String.format("%s made a move from %s to %s", visitorName,action.move.getStartPosition().toString(),action.move.getEndPosition().toString());
       var notification=new Notification(returnMessage);
       connections.broadcast(action.gameID, action.getAuthString(), notification);
-      connections.sendGame(action.gameID, null, new LoadGame(chessGame));
+      connections.sendGame(action.gameID, new LoadGame(chessGame));
       String mycolor="";
       String othercolor="";
       if(color.equals(ChessGame.TeamColor.WHITE)){
@@ -139,7 +139,7 @@ public class WebSocketHandler {
       }
       if(chessGame.isInCheckmate(color)){
 
-        var returnMmessage2 = String.format("%sPlayer is isInStalemate. The game is now ended %sPlayer win",mycolor, othercolor );
+        var returnMmessage2 = String.format("%sPlayer is isInCheckMate. The game is now ended %sPlayer win",mycolor, othercolor );
         var notification2=new Notification(returnMmessage2);
         connections.broadcast(action.gameID, action.getAuthString(), notification2);
         game.checkGameID(action.gameID, null, action.getAuthString());

@@ -40,7 +40,7 @@ public class PostLogin {
     }
   }
   public String help(){
-    String help_text = """
+    String helpText = """
                     
                     - create <NAME> -a game
                     - list -games
@@ -50,7 +50,7 @@ public class PostLogin {
                     - quit - playing chess
                     - help - with possible commands
                     """;
-    return help_text;
+    return helpText;
   }
   public String create(String[] params) throws DataAccessException{
     try{
@@ -82,20 +82,20 @@ public class PostLogin {
         server.joinGame(params);
 //        chess_board board = new chess_board();
 //        board.main();
-        Integer GameID = parseInt(params[0]);
-        ChessGame.TeamColor player_color =null;
+        Integer gameID = parseInt(params[0]);
+        ChessGame.TeamColor playerColor =null;
         if (params[1].equalsIgnoreCase("white")) {
-           player_color=(ChessGame.TeamColor.WHITE);
+           playerColor=(ChessGame.TeamColor.WHITE);
         }
         else{
-           player_color =(ChessGame.TeamColor.BLACK);
+           playerColor =(ChessGame.TeamColor.BLACK);
         }
       gameUi.board.main();
       WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler, authtoken);
-      webserver.joinPlayer(GameID,player_color);
+      webserver.joinPlayer(gameID,playerColor);
 
-      gameUi.color = player_color;
-      gameUi.gameId= GameID;
+      gameUi.color = playerColor;
+      gameUi.gameId= gameID;
       gameUi.server = webserver;
       Repl.state = State.Game_UI;
         return "You joined a game";
@@ -107,12 +107,12 @@ public class PostLogin {
   }
   public String observe(String[] params) throws DataAccessException{
     try {
-      Integer GameID=parseInt(params[0]);
-      ChessGame.TeamColor player_color=null;
+      Integer gameID=parseInt(params[0]);
+      ChessGame.TeamColor playerColor=null;
       WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, authtoken);
-      webserver.joinObserver(GameID);
-      gameUi.color = player_color;
-      gameUi.gameId= GameID;
+      webserver.joinObserver(gameID);
+      gameUi.color = playerColor;
+      gameUi.gameId= gameID;
       gameUi.server = webserver;
       Repl.state = State.Game_UI;
     } catch(DataAccessException ex){

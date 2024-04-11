@@ -48,12 +48,11 @@ public class ConnectionManager {
 
     // Clean up any connections that were left open.
   }
-  public void sendGame(Integer gameID, String excludeAuthtoken, LoadGame notification) throws IOException {
+  public void sendGame(Integer gameID, LoadGame loadGame) throws IOException {
     for (var c : connections.get(gameID)) {
       if (c.session.isOpen()) {
-        if (!c.authtoken.equals(excludeAuthtoken)) {
-          c.send(new Gson().toJson(notification));
-        }
+          c.send(new Gson().toJson(loadGame));
+
       }
     }
 

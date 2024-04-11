@@ -22,14 +22,14 @@ public class PreLogin {
     }
   }
   public String help(){
-    String help_text = """
+    String helpText = """
                     
                     - register <USERNAME> <PASSWORD> <EMAIL> - to create an account
                     - login <USERNAME> <PASSWORD> - to play chess
                     - help
                     - quit
                     """;
-    return help_text;
+    return helpText;
   }
   public String register(String[] params) throws DataAccessException{
   try{

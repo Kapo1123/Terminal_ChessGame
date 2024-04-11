@@ -208,19 +208,19 @@ public class ChessBoard {
   }
 
   public void highlight(PrintStream out, ChessGame.TeamColor color, Collection<ChessMove> moves) {
-    ChessPosition start_position=new ChessPosition(0, 0);
-    ArrayList<ChessPosition> end_position=new ArrayList<>();
+    ChessPosition startPosition=new ChessPosition(0, 0);
+    ArrayList<ChessPosition> endPosition=new ArrayList<>();
     for (ChessMove move : moves) {
-      start_position=move.getStartPosition();
-      end_position.add(move.getEndPosition());
+      startPosition=move.getStartPosition();
+      endPosition.add(move.getEndPosition());
     }
     if (color== null){
-      drawWhite(out, start_position, end_position);
+      drawWhite(out, startPosition, endPosition);
     }
     else if (color.equals(ChessGame.TeamColor.WHITE)) {
-      drawWhite(out, start_position, end_position);
+      drawWhite(out, startPosition, endPosition);
     }else {
-      drawBlack(out, start_position, end_position);
+      drawBlack(out, startPosition, endPosition);
     }
 
   }
