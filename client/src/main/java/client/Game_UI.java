@@ -1,15 +1,13 @@
 package client;
 
-import chess.ChessGame;
-import chess.ChessMove;
-import chess.ChessPosition;
-import chess.InvalidMoveException;
+import chess.*;
 import dataAccessError.DataAccessException;
 import ui.chess_board;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static java.lang.Integer.TYPE;
 import static java.lang.Integer.parseInt;
 
 public class Game_UI {
@@ -28,7 +26,7 @@ public class Game_UI {
       return switch (cmd) {
         case "redraw" -> redraw();
         case "leave" -> Leave(params);
-        case "makeMove" -> MakeMove(params);
+        case "makemove" -> MakeMove(params);
         case "resign" -> Resign(params);
         case "valid_moves" -> Valid_moves(params);
         default -> help();
@@ -42,7 +40,7 @@ public class Game_UI {
                     
                     - redraw  -a board
                     - Leave -return to main meau
-                    - MakeMove rowcol rowcol  ex: 74 47
+                    - MakeMove rowcol rowcol type ex: 74 47 type
                     - Resign 
                     - Valid_moves rowcol ex 13
                     - Help 
@@ -51,11 +49,15 @@ public class Game_UI {
   }
   public String redraw() throws DataAccessException{
 
-    if (color.equals( ChessGame.TeamColor.BLACK)) {
-      chess_board.drawBlack(board.out);
+    if (color == null){
+      chess_board.drawWhite(board.out,null,null);
+    }
+
+    else if (color.equals( ChessGame.TeamColor.BLACK)) {
+      chess_board.drawBlack(board.out,null,null);
     }
     else {
-      chess_board.drawWhite(board.out);
+      chess_board.drawWhite(board.out,null,null);
     }
     return "";
     }
@@ -77,19 +79,31 @@ public class Game_UI {
   public String MakeMove(String[] params) throws DataAccessException{
     try{
       var start = params[0].toLowerCase().split("");
+      if (color == null) {
+        return "Observer can not make a move";
+      }
+      if (!color.equals(game.getTeamTurn())) {
+        return "It is not your turn";
+      }
       var start_position = new ChessPosition(parseInt(start[0]),parseInt(start[1]));
+      var color = game.getTeamTurn();
       var end = params[1].toLowerCase().split("");
       var end_position = new ChessPosition(parseInt(end[0]),parseInt(end[1]));
       var chesemove = new ChessMove(start_position,end_position,null);
+      if (params[2] == null) {}
+      else if (params[2].equalsIgnoreCase(ChessPiece.PieceType.BISHOP.toString())){chesemove = new ChessMove(start_position,end_position, ChessPiece.PieceType.BISHOP);}
+      else if (params[2].equalsIgnoreCase(ChessPiece.PieceType.QUEEN.toString())){chesemove = new ChessMove(start_position,end_position, ChessPiece.PieceType.QUEEN);}
+      else if (params[2].equalsIgnoreCase(ChessPiece.PieceType.KNIGHT.toString())){chesemove = new ChessMove(start_position,end_position, ChessPiece.PieceType.KNIGHT);}
+      else if (params[2].equalsIgnoreCase(ChessPiece.PieceType.ROOK.toString())){chesemove = new ChessMove(start_position,end_position, ChessPiece.PieceType.ROOK);}
       try{
 
         game.makeMove(chesemove);
 
       } catch (InvalidMoveException e) {
-        return e.getMessage();
+        return "You can not make move";
       }
       server.MakeMove(GameId,chesemove);
-      return redraw();
+      return "";
     }
     catch(DataAccessException ex){
       throw ex;
@@ -97,6 +111,10 @@ public class Game_UI {
 
   }
   public String Resign(String[] params) throws DataAccessException{
+
+    if (color == null) {
+      return "Observer can not resign";
+    }
 
     while (true) {
       System.out.println("You are resigning the game  \"yes\" to continue and \"no\" to return");
@@ -115,10 +133,9 @@ public class Game_UI {
   public String Valid_moves(String[] params) {
     var start = params[0].toLowerCase().split("");
     var list = game.validMoves(new ChessPosition(parseInt(start[0]),parseInt(start[1])));
+    board.highlight(board.out,color,list);
     return "";
-
   }
-
 
 
 }

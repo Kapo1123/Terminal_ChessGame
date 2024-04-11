@@ -4,6 +4,7 @@ import User_game_commands.*;
 import chess.ChessGame;
 import chess.ChessMove;
 import client.Game_UI;
+import client.Repl;
 import com.google.gson.Gson;
 import dataAccessError.DataAccessException;
 import serverMessages_classes.Error_message;
@@ -47,11 +48,17 @@ public class WebSocketFacade extends Endpoint {
                         Load_Game game = new Gson().fromJson(message, Load_Game.class);
                         Game_UI.game = game.game;
                         Game_UI.board.updateboard(game.game);
-                        if (Game_UI.color.equals(ChessGame.TeamColor.WHITE)){
-                            Game_UI.board.drawWhite(Game_UI.board.out);
+                        if (Game_UI.color == null){
+                            Game_UI.board.drawWhite(Game_UI.board.out,null,null);
+                            Repl.printPrompt();
                         }
-                        if (Game_UI.color.equals(ChessGame.TeamColor.BLACK)){
-                            Game_UI.board.drawBlack(Game_UI.board.out);
+                        else if (Game_UI.color.equals(ChessGame.TeamColor.WHITE)){
+                            Game_UI.board.drawWhite(Game_UI.board.out,null,null);
+                            Repl.printPrompt();
+                        }
+                        else if (Game_UI.color.equals(ChessGame.TeamColor.BLACK)){
+                            Game_UI.board.drawBlack(Game_UI.board.out,null,null);
+                            Repl.printPrompt();
                         }
                     }
                     else if (return_message.getServerMessageType().equals(ServerMessage.ServerMessageType.ERROR)){

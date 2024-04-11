@@ -1,14 +1,12 @@
 package ui;
 
-import chess.ChessBoard;
-import chess.ChessGame;
-import chess.ChessPiece;
-import chess.ChessPosition;
+import chess.*;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static ui.EscapeSequences.*;
@@ -19,20 +17,10 @@ import static ui.EscapeSequences.SET_BG_COLOR_BLACK;
 public class chess_board {
   public static PrintStream out=new PrintStream(System.out, true, StandardCharsets.UTF_8);
   public static ChessBoard board=new ChessBoard();
-
+  static ArrayList<String> letters;
 
   static {
     board.resetBoard();
-  }
-
-  static ArrayList<String> letters;
-
-
-  public static void main() {
-
-
-    out.print(ERASE_SCREEN);
-
     letters=new ArrayList<>();
     letters.add("a");
     letters.add("b");
@@ -42,6 +30,14 @@ public class chess_board {
     letters.add("f");
     letters.add("g");
     letters.add("h");
+  }
+
+
+  public static void main() {
+
+
+    out.print(ERASE_SCREEN);
+
 
 //    drawWhite(out);
 //    drawBlack(out);
@@ -54,7 +50,8 @@ public class chess_board {
 //    out.print(SET_TEXT_COLOR_WHITE);
   }
 
-  public static void drawWhite(PrintStream out) {
+  public static void drawBlack(PrintStream out, ChessPosition start, ArrayList<ChessPosition> end) {
+    List<String> letters=Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
     for (int i=0; i < 10; i++) {
       if (i == 0 || i == 9) {
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
@@ -71,33 +68,33 @@ public class chess_board {
         }
         out.print(EscapeSequences.EMPTY);
       }else {
-          out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-          out.print("\u2006");
-          out.print(i);
-          out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-          out.print("\u2006");
-          for (int k=1; k < 9; k++) {
-            drawpiece(out, i, k);
-          }
-            out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-            out.print("\u2006");
-            out.print(i);
-            out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-            out.print("\u2006");
-          }
-        out.println();
+        out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        out.print("\u2006");
+        out.print(i);
+        out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        out.print("\u2006");
+        for (int k=8; k > 0; k--) {
+          drawpiece(out, i, k, start, end);
         }
-        out.println();
-        out.print(RESET_BG_COLOR);
-        out.print(SET_TEXT_COLOR_WHITE);
+        out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        out.print("\u2006");
+        out.print(i);
+        out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        out.print("\u2006");
       }
-  public static void drawBlack(PrintStream out) {
-    List<String> letters = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
+      out.println();
+    }
+    out.println();
+    out.print(RESET_BG_COLOR);
+    out.print(SET_TEXT_COLOR_WHITE);
+  }
+
+  public static void drawWhite(PrintStream out, ChessPosition start, ArrayList<ChessPosition> end) {
     for (int i=9; i >= 0; i--) {
       if (i == 0 || i == 9) {
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print(EscapeSequences.EMPTY);
-        for (String letter : letters){
+        for (String letter : letters) {
           out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
           out.print("\u2003");
           out.print("\u2003");
@@ -115,8 +112,8 @@ public class chess_board {
         out.print(i);
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print("\u2006");
-        for (int k=8; k >0; k--) {
-          drawpiece(out, i, k);
+        for (int k=1; k < 9; k++) {
+          drawpiece(out, i, k, start, end);
         }
         out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
         out.print("\u2006");
@@ -132,35 +129,47 @@ public class chess_board {
   }
 
 
-
-
-  public static void drawpiece(PrintStream out, int row, int col) {
+  public static void drawpiece(PrintStream out, int row, int col, ChessPosition start, ArrayList<ChessPosition> end) {
     var piece=board.getPiece(new ChessPosition(row, col));
-    int doc = col + row;
+    int doc=col + row;
     if (doc % 2 == 0) { //white color piece
       out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
       out.print("\u2006");
-      out.print(selectpiece(piece,out));
+      if (start != null) {
+      if (new ChessPosition(row, col).equals(start)) {
+          out.print(SET_BG_COLOR_GREEN);
+        }else if (end.contains(new ChessPosition(row, col))) {
+          out.print(SET_BG_COLOR_RED);
+        }
+      }
+      out.print(selectpiece(piece, out));
       out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
       out.print("\u2006");
     }else if (doc % 2 == 1) {
       out.print(SET_BG_COLOR_BLACK);
       out.print("\u2006");
-      out.print(selectpiece(piece,out));
+      if (start != null) {
+        if (new ChessPosition(row, col).equals(start)) {
+          out.print(SET_TEXT_COLOR_GREEN);
+        }else if (end.contains(new ChessPosition(row, col))) {
+          out.print(SET_BG_COLOR_RED);
+        }
+      }
+      out.print(selectpiece(piece, out));
       out.print(SET_BG_COLOR_BLACK);
       out.print("\u2006");
     }
 
   }
 
-  public static String selectpiece(ChessPiece piece,PrintStream out) {
-    if (piece == null){
+  public static String selectpiece(ChessPiece piece, PrintStream out) {
+    if (piece == null) {
       return EMPTY;
     }
     if (piece.getPieceType().equals(ChessPiece.PieceType.KING)) {
       if (piece.getTeamColor().equals(ChessGame.TeamColor.WHITE)) {
         out.print(EscapeSequences.SET_TEXT_COLOR_YELLOW);
-        return  WHITE_KING;
+        return WHITE_KING;
       }else {
         out.print(EscapeSequences.SET_TEXT_COLOR_BLUE);
         return BLACK_KING;
@@ -174,6 +183,7 @@ public class chess_board {
       }else {
         out.print(EscapeSequences.SET_TEXT_COLOR_BLUE);
         return BLACK_QUEEN;
+//        return "Q";
       }
     }
     if (piece.getPieceType().equals(ChessPiece.PieceType.BISHOP)) {
@@ -214,8 +224,27 @@ public class chess_board {
     }
     return null;
   }
-  public void updateboard(ChessGame game){
-    board = game.getBoard();
+
+  public void updateboard(ChessGame game) {
+    board=game.getBoard();
+  }
+
+  public void highlight(PrintStream out, ChessGame.TeamColor color, Collection<ChessMove> moves) {
+    ChessPosition start_position=new ChessPosition(0, 0);
+    ArrayList<ChessPosition> end_position=new ArrayList<>();
+    for (ChessMove move : moves) {
+      start_position=move.getStartPosition();
+      end_position.add(move.getEndPosition());
+    }
+    if (color== null){
+      drawWhite(out, start_position, end_position);
+    }
+    else if (color.equals(ChessGame.TeamColor.WHITE)) {
+      drawWhite(out, start_position, end_position);
+    }else {
+      drawBlack(out, start_position, end_position);
+    }
+
   }
 }
 

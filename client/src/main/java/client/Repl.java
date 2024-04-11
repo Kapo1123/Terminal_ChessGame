@@ -64,8 +64,11 @@ public class Repl implements NotificationHandler{
 
 
 
-  private void printPrompt() {
-    System.out.print("\n" + SET_TEXT_BOLD + ">>>");
+  public static void printPrompt() {
+    System.out.print("\n" + SET_TEXT_BOLD +SET_TEXT_COLOR_RED+ ">>>");
+    System.out.print("\u001B[49m");
+    System.out.print(SET_TEXT_COLOR_WHITE);
+    System.out.print(SET_TEXT_BOLD);
   }
 
 

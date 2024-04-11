@@ -9,6 +9,7 @@ import websocket.WebSocketFacade;
 
 import java.util.Arrays;
 
+import static client.Repl.gameUi;
 import static client.ServerFacade.Authtoken;
 import static java.lang.Integer.parseInt;
 
@@ -89,12 +90,13 @@ public class Post_login {
         else{
            player_color =(ChessGame.TeamColor.BLACK);
         }
+      gameUi.board.main();
       WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler,Authtoken);
       webserver.Join_Player(GameID,player_color);
 
-      Repl.gameUi.color = player_color;
-      Repl.gameUi.GameId = GameID;
-      Repl.gameUi.server = webserver;
+      gameUi.color = player_color;
+      gameUi.GameId = GameID;
+      gameUi.server = webserver;
       Repl.state = client.state.Game_UI;
         return "You joined a game";
     }
@@ -106,12 +108,12 @@ public class Post_login {
   public String observe(String[] params) throws DataAccessException{
     try {
       Integer GameID=parseInt(params[0]);
-      ChessGame.TeamColor player_color=ChessGame.TeamColor.WHITE;
+      ChessGame.TeamColor player_color=null;
       WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, Authtoken);
       webserver.Join_Observer(GameID);
-      Repl.gameUi.color = player_color;
-      Repl.gameUi.GameId = GameID;
-      Repl.gameUi.server = webserver;
+      gameUi.color = player_color;
+      gameUi.GameId = GameID;
+      gameUi.server = webserver;
       Repl.state = client.state.Game_UI;
     } catch(DataAccessException ex){
       throw ex;

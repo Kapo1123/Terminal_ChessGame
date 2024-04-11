@@ -85,7 +85,7 @@ public class WebSocketHandler {
       }
       String visitorName= auth.getUserName(new Authtoken(action.getAuthString()));
       ChessGame chess_game = game.getGame(action.gameID);
-      var return_message = String.format("%s has joined the game as ", visitorName);
+      var return_message = String.format("%s has joined the game as Observer ", visitorName);
       var notification = new Notification(return_message);
       Load_Game load = new Load_Game(chess_game);
       connections.broadcast(action.gameID,action.getAuthString(), notification);
@@ -110,7 +110,7 @@ public class WebSocketHandler {
       visitorName= auth.getUserName(new Authtoken(action.getAuthString()));
       ChessGame chess_game=game.getGame(action.gameID);
       ChessGame.TeamColor color = game.getcolor(action.gameID, visitorName);
-      if (color != chess_game.getTeamTurn()){
+      if (!color.equals(chess_game.getTeamTurn())){
         throw new DataAccessException("Error:not valid team turn");
       }
       chess_game.makeMove(action.move);
@@ -119,6 +119,34 @@ public class WebSocketHandler {
       var notification=new Notification(return_message);
       connections.broadcast(action.gameID, action.getAuthString(), notification);
       connections.send_game(action.gameID, null, new Load_Game(chess_game));
+      String mycolor="";
+      String othercolor="";
+      if(color.equals(ChessGame.TeamColor.WHITE)){
+        mycolor = "White";
+        othercolor = "Black";
+      }
+      else{
+        mycolor = "Black";
+        othercolor = "White";
+      }
+      if(chess_game.isInStalemate(color)){
+        var return_message1 = String.format("%sPlayer is isInStalemate. The game is now ended %sPlayer win",mycolor, othercolor);
+        var notification1=new Notification(return_message1);
+        connections.broadcast(action.gameID, action.getAuthString(), notification1);
+        game.check_gameID(action.gameID, null, action.getAuthString());
+        game.delete_gameID(action.gameID);
+        connections.remove_gameid(action.gameID);
+      }
+      if(chess_game.isInCheckmate(color)){
+
+        var return_message2 = String.format("%sPlayer is isInStalemate. The game is now ended %sPlayer win",mycolor, othercolor );
+        var notification2=new Notification(return_message2);
+        connections.broadcast(action.gameID, action.getAuthString(), notification2);
+        game.check_gameID(action.gameID, null, action.getAuthString());
+        game.delete_gameID(action.gameID);
+        connections.remove_gameid(action.gameID);
+      }
+
     }
     catch (DataAccessException | InvalidMoveException e) {
       Error_message error_message =null;

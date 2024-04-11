@@ -87,7 +87,7 @@ public class ChessGame {
       throw new InvalidMoveException();
     }else if (!validMoves.contains(move)) {
       throw new InvalidMoveException();
-    }else {
+    }else if (validMoves.contains(move)) {
       if (move.getPromotionPiece() != null) {
         piece=new ChessPiece(piece.getTeamColor(), move.getPromotionPiece());
       }
