@@ -33,3 +33,37 @@ U
 %src/main/java/ui/EscapeSequences.java,f/5/f5164a7694d7bc0ec5a278873d5b206d75837ac4
 S
 #src/main/java/chess/ChessPiece.java,8/5/85a88ea4958ed1b3e2cc2a545a3ad992329e985a
+P
+ src/main/java/ui/ChessBoard.java,0/5/05068a4daa2156246d27534183442ee47536b832
+P
+ src/main/java/client/GameUI.java,9/1/91dbdbd1b0c861dbedab380348caa18dfa674572
+S
+#src/main/java/client/PostLogin.java,0/5/05f16ee13ce7e25deaec9108a3a44efd636bd0e9
+R
+"src/main/java/client/PreLogin.java,f/0/f0e31d25708a472095a059699a6604f4440dc241
+[
++src/main/java/dataAccess/GameInterface.java,8/6/86c9a38c73ec00e70dd4349da924a0a8f51c0645
+W
+'src/main/java/Websocket/Connection.java,2/6/26bbc41ee76ae336bbb0f73374567c50ec18f9e3
+Z
+*src/main/java/dataAccess/MysqlUserDao.java,7/3/73c8022259384f4c76a049766d89d75c9c1e1de0
+b
+2src/main/java/User_game_commands/JoinObserver.java,3/a/3a2095c95a626ea1a143f362b90ae905db410ce4
+`
+0src/main/java/User_game_commands/JoinPlayer.java,b/5/b57cd8ca33ca44f6ab901896d4a9f3fe62280f23
+[
++src/main/java/User_game_commands/Leave.java,6/2/6233cbe156e8e39ff97584bf98a6998e14ab2c79
+^
+.src/main/java/User_game_commands/MakeMove.java,1/4/14602198bdf3075b8b0c36282967f8a75534c22b
+\
+,src/main/java/User_game_commands/Resign.java,4/8/4862ed1cd96925e4c6e6c4f031f5b40e535b4b72
+V
+&src/main/java/client/ServerFacade.java,f/9/f93e641c237cc7bc5d1ac95b4ab90bc842130f38
+f
+6src/main/java/serverMessages_classes/Notification.java,6/1/61a3ff9f0bde312e10e2fa85af548ed5f5cf199e
+b
+2src/main/java/serverMessages_classes/LoadGame.java,a/6/a61c2b5c95f40aa11dbae9b7e48830164877e295
+O
+src/main/java/client/State.java,f/5/f5af2429d33ee77e64ec58aaa262c485ea42827c
+f
+6src/main/java/serverMessages_classes/ErrorMessage.java,1/7/176d82363f6e20afd0ebed813bf7c372b638afd0

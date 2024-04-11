@@ -1,6 +1,5 @@
 package client;
 
-import webSocketMessages.serverMessages.ServerMessage;
 import websocket.NotificationHandler;
 
 import java.util.Scanner;
@@ -8,18 +7,18 @@ import java.util.Scanner;
 import static ui.EscapeSequences.*;
 
 public class Repl implements NotificationHandler{
-  static  state state;
+  static State state;
   static String  url;
-  Pre_login preLogin;
-  Post_login postLogin;
-  static Game_UI gameUi = new Game_UI();
+  PreLogin preLogin;
+  PostLogin postLogin;
+  static GameUI gameUi = new GameUI();
 
     public Repl(String serverUrl)
     {
-      state=client.state.Pre_login;
+      state=State.Pre_login;
       url=serverUrl;
-      preLogin=new Pre_login();
-      postLogin=new Post_login(this);
+      preLogin=new PreLogin();
+      postLogin=new PostLogin(this);
     }
 
   public void run(){
@@ -29,23 +28,23 @@ public class Repl implements NotificationHandler{
     var result = "";
     while (!result.equals("quit")) {
 
-      if (state == client.state.Pre_login){
+      if (state == State.Pre_login){
         System.out.print(preLogin.help());
       }
-      else if (state == client.state.Post_login){
+      else if (state == State.Post_login){
         System.out.print(postLogin.help());
       }
       printPrompt();
       String line = scanner.nextLine();
       try {
-        if (state == client.state.Pre_login) {
+        if (state == State.Pre_login) {
 
           result=preLogin.eval(line);
         }
-        else if (state == client.state.Post_login ){
+        else if (state == State.Post_login ){
           result=postLogin.eval(line);
         }
-        else if (state == client.state.Game_UI) {
+        else if (state == State.Game_UI) {
           result = gameUi.eval(line);
         }
         if (result.equals("quit")){

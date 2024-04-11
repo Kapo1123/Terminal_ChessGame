@@ -96,11 +96,11 @@ public class MysqlGameDao implements GameInterface {
         preparedStatement.setString(2, jsonGame);
         preparedStatement.executeUpdate();
         var resultSet=preparedStatement.getGeneratedKeys();
-        var ID=0;
+        var id=0;
         if (resultSet.next()) {
-          ID=resultSet.getInt(1);
+          id=resultSet.getInt(1);
         }
-        return new Newgameresponse(ID);
+        return new Newgameresponse(id);
       }
     } catch (SQLException e) {
       throw new DataAccessException(e.getMessage());
@@ -109,11 +109,11 @@ public class MysqlGameDao implements GameInterface {
   }
 
   @Override
-  public ChessGame getGame(Integer GameID) throws DataAccessException {
-    ChessGame chess_game=new ChessGame();
+  public ChessGame getGame(Integer gameID) throws DataAccessException {
+    ChessGame chessGame=new ChessGame();
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement=conn.prepareStatement("SELECT chess FROM game WHERE gameID=?")) {
-        preparedStatement.setInt(1, GameID);
+        preparedStatement.setInt(1, gameID);
         try (var rs=preparedStatement.executeQuery()) {
           String game="";
           if (rs.next()) {
@@ -122,8 +122,8 @@ public class MysqlGameDao implements GameInterface {
             throw new DataAccessException("Error: no chess game found");
           }
           ChessGame board=new Gson().fromJson(game, ChessGame.class);
-          chess_game=board;
-          return chess_game;
+          chessGame=board;
+          return chessGame;
         }
 
       }
@@ -146,18 +146,18 @@ public class MysqlGameDao implements GameInterface {
   }
 
   @Override
-  public void leave_player(Integer GameID, ChessGame.TeamColor color) throws DataAccessException {
+  public void leavePlayer(Integer gameID, ChessGame.TeamColor color) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       if (color.toString().equalsIgnoreCase("white")) {
         try (var preparedStatement2=conn.prepareStatement("UPDATE game SET whiteUsername=? WHERE gameID=?")) {
           preparedStatement2.setString(1, null);
-          preparedStatement2.setInt(2, GameID);
+          preparedStatement2.setInt(2, gameID);
           preparedStatement2.executeUpdate();
         }
       }else if (color.toString().equalsIgnoreCase("black")) {
         try (var preparedStatement3=conn.prepareStatement("UPDATE game SET blackUsername=? WHERE gameID=?")) {
           preparedStatement3.setString(1, null);
-          preparedStatement3.setInt(2, GameID);
+          preparedStatement3.setInt(2, gameID);
           preparedStatement3.executeUpdate();
         }
       }
@@ -168,11 +168,11 @@ public class MysqlGameDao implements GameInterface {
   }
 
   @Override
-  public void check_gameID(Integer GameID, ChessGame.TeamColor color, String username) throws DataAccessException {
+  public void checkGameID(Integer gameID, ChessGame.TeamColor color, String username) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       if (color == null) {
         try (var preparedStatement2=conn.prepareStatement("Select * From game WHERE gameID=?")) {
-          preparedStatement2.setInt(1, GameID);
+          preparedStatement2.setInt(1, gameID);
           try (var rs=preparedStatement2.executeQuery()) {
             if (rs.next()) {
               return;
@@ -183,11 +183,11 @@ public class MysqlGameDao implements GameInterface {
         }
       }else if (color.toString().equalsIgnoreCase("white")) {
         try (var preparedStatement2=conn.prepareStatement("Select whiteUsername From game WHERE gameID=?")) {
-          preparedStatement2.setInt(1, GameID);
+          preparedStatement2.setInt(1, gameID);
           try (var rs=preparedStatement2.executeQuery()) {
             if (rs.next()) {
-              String us_name=rs.getString("whiteUsername");
-              if (!username.equalsIgnoreCase(us_name)) {
+              String usName=rs.getString("whiteUsername");
+              if (!username.equalsIgnoreCase(usName)) {
                 throw new DataAccessException("Error: Username doesn't match");
               }
             }else {
@@ -198,12 +198,12 @@ public class MysqlGameDao implements GameInterface {
         }
       }else if (color.toString().equalsIgnoreCase("black")) {
         try (var preparedStatement2=conn.prepareStatement("Select blackUsername From game WHERE gameID=?")) {
-          preparedStatement2.setInt(1, GameID);
+          preparedStatement2.setInt(1, gameID);
           try (var rs=preparedStatement2.executeQuery()) {
             String game="";
             if (rs.next()) {
-              String us_name=rs.getString("blackUsername");
-              if (!username.equalsIgnoreCase(us_name)) {
+              String usName=rs.getString("blackUsername");
+              if (!username.equalsIgnoreCase(usName)) {
                 throw new DataAccessException("Error: Username doesn't match");
               }
             }else {
@@ -222,10 +222,10 @@ public class MysqlGameDao implements GameInterface {
 
 
   @Override
-  public void delete_gameID(Integer GameID) throws DataAccessException {
+  public void deleteGameID(Integer gameID) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement2=conn.prepareStatement("DELETE FROM game WHERE gameID = ?")) {
-        preparedStatement2.setInt(1, GameID);
+        preparedStatement2.setInt(1, gameID);
         preparedStatement2.executeUpdate();
       }
 
@@ -234,17 +234,17 @@ public class MysqlGameDao implements GameInterface {
     }
   }
 
-  public ChessGame.TeamColor getcolor(Integer GameID,String Username ) throws DataAccessException {
+  public ChessGame.TeamColor getcolor(Integer gameID, String username) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement2=conn.prepareStatement("SELECT whiteUsername,blackUsername FROM game WHERE gameID=?")) {
-        preparedStatement2.setInt(1, GameID);
+        preparedStatement2.setInt(1, gameID);
         try (var rs=preparedStatement2.executeQuery()) {
           if (rs.next()) {
             var whiteUsername=rs.getString("whiteUsername");
             var blackUsername=rs.getString("blackUsername");
-            if (whiteUsername.equalsIgnoreCase(Username)) {
+            if (whiteUsername.equalsIgnoreCase(username)) {
               return ChessGame.TeamColor.WHITE;
-            }else if (blackUsername.equalsIgnoreCase(Username)) {
+            }else if (blackUsername.equalsIgnoreCase(username)) {
               return ChessGame.TeamColor.BLACK;
             }else {
               throw new DataAccessException("Error: Observer cannot resign");
@@ -260,11 +260,11 @@ public class MysqlGameDao implements GameInterface {
 
   }
 
-  public void update_game(Integer GameID, ChessGame game) throws DataAccessException {
+  public void updateGame(Integer gameID, ChessGame game) throws DataAccessException {
     try (var conn=DatabaseManager.getConnection()) {
       try (var preparedStatement2=conn.prepareStatement("UPDATE game SET chess=? WHERE gameID=?")) {
         preparedStatement2.setString(1, new Gson().toJson(game));
-        preparedStatement2.setInt(2, GameID);
+        preparedStatement2.setInt(2, gameID);
         preparedStatement2.executeUpdate();
       }
     }

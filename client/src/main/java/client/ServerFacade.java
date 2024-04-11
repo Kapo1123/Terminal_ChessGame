@@ -21,7 +21,7 @@ import java.util.Map;
 import static java.lang.Integer.parseInt;
 
 public class ServerFacade {
-  static String Authtoken;
+  static String authtoken;
   static String serverUrl;
 
   public ServerFacade(String url) {
@@ -31,14 +31,14 @@ public class ServerFacade {
     var path = "/user";
     Registerclass request = new Registerclass(params[0],params[1],params[2]);
     var response = this.makeRequest("POST", path, request, Registerresponse.class);
-    Authtoken = response.authToken();
+    authtoken= response.authToken();
     return response;
   }
   public Registerresponse  login(String[] params) throws DataAccessException {
     var path = "/session";
     Userclass request = new Userclass(params[0],params[1]);
     var response =  this.makeRequest("POST", path, request, Registerresponse.class);
-    Authtoken = response.authToken();
+    authtoken= response.authToken();
     return response;
   }
 
@@ -70,8 +70,8 @@ public class ServerFacade {
 //      URI uri = new URI("http://localhost:8080/game");
     HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
     http.setRequestMethod(method);
-      if (Authtoken != null){
-        http.addRequestProperty("authorization", Authtoken);
+      if (authtoken != null){
+        http.addRequestProperty("authorization", authtoken);
       }
     writeRequestBody(request, http);
     http.connect();

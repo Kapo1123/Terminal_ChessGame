@@ -32,9 +32,9 @@ public class MysqlUserDao implements UserInterface {
         preparedStatement.setString(1, info.username());
         try (var rs=preparedStatement.executeQuery()) {
           if (rs.next()) {
-            String Password = rs.getString("password");
+            String password = rs.getString("password");
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            return encoder.matches(info.password(), Password);
+            return encoder.matches(info.password(), password);
           }
         }
       }

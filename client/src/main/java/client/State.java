@@ -1,6 +1,6 @@
 package client;
 
-public enum state {
+public enum State {
   Pre_login,
   Post_login,
   Game_UI

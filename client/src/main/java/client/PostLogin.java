@@ -10,13 +10,13 @@ import websocket.WebSocketFacade;
 import java.util.Arrays;
 
 import static client.Repl.gameUi;
-import static client.ServerFacade.Authtoken;
+import static client.ServerFacade.authtoken;
 import static java.lang.Integer.parseInt;
 
-public class Post_login {
+public class PostLogin {
   private NotificationHandler notificationHandler;
 
-  public Post_login(NotificationHandler notificationHandler){
+  public PostLogin(NotificationHandler notificationHandler){
     this.notificationHandler = notificationHandler;
   }
   ServerFacade server = new ServerFacade(Repl.url);
@@ -91,13 +91,13 @@ public class Post_login {
            player_color =(ChessGame.TeamColor.BLACK);
         }
       gameUi.board.main();
-      WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler,Authtoken);
-      webserver.Join_Player(GameID,player_color);
+      WebSocketFacade webserver = new WebSocketFacade(Repl.url,this.notificationHandler, authtoken);
+      webserver.joinPlayer(GameID,player_color);
 
       gameUi.color = player_color;
-      gameUi.GameId = GameID;
+      gameUi.gameId= GameID;
       gameUi.server = webserver;
-      Repl.state = client.state.Game_UI;
+      Repl.state = State.Game_UI;
         return "You joined a game";
     }
     catch(DataAccessException ex){
@@ -109,12 +109,12 @@ public class Post_login {
     try {
       Integer GameID=parseInt(params[0]);
       ChessGame.TeamColor player_color=null;
-      WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, Authtoken);
-      webserver.Join_Observer(GameID);
+      WebSocketFacade webserver=new WebSocketFacade(Repl.url, this.notificationHandler, authtoken);
+      webserver.joinObserver(GameID);
       gameUi.color = player_color;
-      gameUi.GameId = GameID;
+      gameUi.gameId= GameID;
       gameUi.server = webserver;
-      Repl.state = client.state.Game_UI;
+      Repl.state = State.Game_UI;
     } catch(DataAccessException ex){
       throw ex;
     }
@@ -125,7 +125,7 @@ public class Post_login {
     try{
 
        server.logout();
-       Repl.state = state.Pre_login;
+       Repl.state = State.Pre_login;
       return "logout successfully";
     }
     catch(DataAccessException ex){
@@ -136,7 +136,7 @@ public class Post_login {
   public String clear() throws DataAccessException{
     try{
        server.clear();
-      Repl.state = state.Pre_login;
+      Repl.state = State.Pre_login;
       return "clear DB";
     }
     catch(DataAccessException ex){

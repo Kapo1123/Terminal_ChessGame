@@ -1,11 +1,9 @@
 package Websocket;
 
 import com.google.gson.Gson;
-import org.eclipse.jetty.websocket.api.Session;
-import serverMessages_classes.Error_message;
-import serverMessages_classes.Load_Game;
+import serverMessages_classes.ErrorMessage;
+import serverMessages_classes.LoadGame;
 import serverMessages_classes.Notification;
-import webSocketMessages.serverMessages.ServerMessage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,34 +13,34 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConnectionManager {
   public final ConcurrentHashMap<Integer, List<Connection>> connections=new ConcurrentHashMap<>();
 
-  public void add(Integer GameID, Connection connect) {
-    if(connections.get(GameID) == (null)){
-      connections.put(GameID,new ArrayList<>());
-      connections.get(GameID).add(connect);
+  public void add(Integer gameID, Connection connect) {
+    if(connections.get(gameID) == (null)){
+      connections.put(gameID,new ArrayList<>());
+      connections.get(gameID).add(connect);
     }
     else{
-      connections.get(GameID).add(connect);
+      connections.get(gameID).add(connect);
     }
   }
 
-  public void remove(Integer GameID, Connection connect) {
-    List<Connection> connectionList = connections.get(GameID);
+  public void remove(Integer gameID, Connection connect) {
+    List<Connection> connectionList = connections.get(gameID);
     if (connectionList != null) {
       connectionList.remove(connect);
       if (connectionList.isEmpty()) {
-        connections.remove(GameID); // Remove the entry if the list becomes empty
+        connections.remove(gameID); // Remove the entry if the list becomes empty
       }
     }
   }
 
-  public void remove_gameid(Integer GameID) {
-    connections.remove(GameID);
+  public void removeGameid(Integer gameID) {
+    connections.remove(gameID);
   }
 
-  public void broadcast(Integer GameID, String excludeAuthtoken, Notification notification) throws IOException {
-    for (var c : connections.get(GameID)) {
+  public void broadcast(Integer gameID, String excludeAuthtoken, Notification notification) throws IOException {
+    for (var c : connections.get(gameID)) {
       if (c.session.isOpen()) {
-        if (!c.Authtoken.equals(excludeAuthtoken)) {
+        if (!c.authtoken.equals(excludeAuthtoken)) {
           c.send(new Gson().toJson(notification));
         }
       }
@@ -50,22 +48,10 @@ public class ConnectionManager {
 
     // Clean up any connections that were left open.
   }
-  public void send_game(Integer GameID, String excludeAuthtoken, Load_Game notification) throws IOException {
-    for (var c : connections.get(GameID)) {
+  public void sendGame(Integer gameID, String excludeAuthtoken, LoadGame notification) throws IOException {
+    for (var c : connections.get(gameID)) {
       if (c.session.isOpen()) {
-        if (!c.Authtoken.equals(excludeAuthtoken)) {
-          c.send(new Gson().toJson(notification));
-        }
-      }
-    }
-
-    // Clean up any connections that were left open.
-  }
-
-  public void send_one(Integer GameID, String excludeAuthtoken, Load_Game notification) throws IOException {
-    for (var c : connections.get(GameID)) {
-      if (c.session.isOpen()) {
-        if (c.Authtoken.equals(excludeAuthtoken)) {
+        if (!c.authtoken.equals(excludeAuthtoken)) {
           c.send(new Gson().toJson(notification));
         }
       }
@@ -74,7 +60,19 @@ public class ConnectionManager {
     // Clean up any connections that were left open.
   }
 
-  public void send_error(Integer GameID, Connection session, Error_message error) throws IOException {
+  public void sendOne(Integer gameID, String excludeAuthtoken, LoadGame notification) throws IOException {
+    for (var c : connections.get(gameID)) {
+      if (c.session.isOpen()) {
+        if (c.authtoken.equals(excludeAuthtoken)) {
+          c.send(new Gson().toJson(notification));
+        }
+      }
+    }
+
+    // Clean up any connections that were left open.
+  }
+
+  public void sendError(Integer gameID, Connection session, ErrorMessage error) throws IOException {
       var c = session;
       if (c.session.isOpen()) {
           c.send(new Gson().toJson(error));

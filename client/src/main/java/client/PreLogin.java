@@ -4,7 +4,7 @@ import dataAccessError.DataAccessException;
 
 import java.util.Arrays;
 
-public class Pre_login {
+public class PreLogin {
   ServerFacade server = new ServerFacade(Repl.url);
   public String eval(String input) {
     try {
@@ -35,7 +35,7 @@ public class Pre_login {
   try{
 
     var response = server.register(params);
-    Repl.state = state.Post_login;
+    Repl.state = State.Post_login;
     return "Hello " + response.username() +" welcome to Chess Game";
   }
   catch(DataAccessException ex){
@@ -48,7 +48,7 @@ public class Pre_login {
   public String login(String[] params) throws DataAccessException{
     try{
       var response = server.login(params);
-      Repl.state = state.Post_login;
+      Repl.state = State.Post_login;
       return "Hello " + response.username() +" welcome to Chess Game";
     }
     catch(DataAccessException ex){

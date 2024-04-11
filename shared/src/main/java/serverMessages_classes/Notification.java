@@ -15,8 +15,5 @@ public class Notification extends ServerMessage {
     return message;
   }
 
-  public void setMessageContent(String messageContent) {
-    this.message = messageContent;
-  }
 }
 

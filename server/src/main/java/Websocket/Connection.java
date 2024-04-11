@@ -6,11 +6,11 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import java.io.IOException;
 
 public class Connection {
-  public String Authtoken;
+  public String authtoken;
   public Session session;
 
-  public Connection(String Authtoken, Session session) {
-    this.Authtoken = Authtoken;
+  public Connection(String authtoken, Session session) {
+    this.authtoken= authtoken;
     this.session = session;
   }
   @OnWebSocketMessage
@@ -27,6 +27,6 @@ public class Connection {
       return false;
     }
     Connection that = (Connection) obj;
-    return Authtoken.equals(that.Authtoken) && session.equals(that.session);
+    return authtoken.equals(that.authtoken) && session.equals(that.session);
   }
 }

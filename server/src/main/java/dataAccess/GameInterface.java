@@ -15,13 +15,13 @@ public interface GameInterface {
 
   public Newgameresponse createGame(String username, GameRequest body) throws DataAccessException;
 
-  public ChessGame getGame(Integer GameID) throws DataAccessException;
+  public ChessGame getGame(Integer gameID) throws DataAccessException;
 
-  public void leave_player(Integer GameID, ChessGame.TeamColor color)throws DataAccessException;
+  public void leavePlayer(Integer gameID, ChessGame.TeamColor color)throws DataAccessException;
   public  void deleteall() throws DataAccessException;
-  public  void check_gameID(Integer GameID, ChessGame.TeamColor color,String username) throws DataAccessException;
-  public  void delete_gameID(Integer GameID) throws DataAccessException;
-  public ChessGame.TeamColor getcolor(Integer GameID,String Username) throws DataAccessException;
-  public void update_game(Integer GameID,ChessGame game) throws DataAccessException;
+  public  void checkGameID(Integer gameID, ChessGame.TeamColor color, String username) throws DataAccessException;
+  public  void deleteGameID(Integer gameID) throws DataAccessException;
+  public ChessGame.TeamColor getcolor(Integer gameID,String username) throws DataAccessException;
+  public void updateGame(Integer gameID, ChessGame game) throws DataAccessException;
 }
 

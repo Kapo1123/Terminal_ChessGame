@@ -2,10 +2,10 @@ package serverMessages_classes;
 
 import webSocketMessages.serverMessages.ServerMessage;
 
-public class Error_message extends ServerMessage {
+public class ErrorMessage extends ServerMessage {
   private String errorMessage; // Additional field for notification message content
 
-  public Error_message(String messageContent) {
+  public ErrorMessage(String messageContent) {
     super(ServerMessageType.ERROR); // Call superclass constructor
     this.errorMessage = messageContent;
   }
